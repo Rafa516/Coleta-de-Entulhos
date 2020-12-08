@@ -11,7 +11,9 @@ $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
-require_once("site.php");
+require_once("user-site.php");
+require_once("admin-site.php");
+require_once("functions.php");
 
 
 $app->run();

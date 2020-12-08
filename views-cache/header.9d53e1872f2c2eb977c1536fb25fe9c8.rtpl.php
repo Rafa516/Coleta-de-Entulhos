@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coleta de  Entulhos</title>
-    <link rel="stylesheet" href="res/user/css/style.css">
+    <link rel="stylesheet" href="res/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
@@ -28,12 +28,15 @@
     <!--mobile navigation bar start-->
     <div class="mobile_nav">
       <div class="nav_bar">
-         {if="$user.picture == 0"}
-        <img src="res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
-        {else}
-        <img src="res/user/ft_perfil/{$user.picture}" class="mobile_profile_image" alt="">
-        {/if}
-         <b style="font-size: 17px;color: white;">{function="getUserName()"}</b>
+         <?php if( $user["picture"] == 0 ){ ?>
+
+        <img src="res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+        <?php }else{ ?>
+
+        <img src="res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
+        <?php } ?>
+
+         <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
         <i class="fa fa-bars nav_btn"></i>
       </div>
       <div class="mobile_nav_items">
@@ -48,12 +51,15 @@
     <!--sidebar start-->
     <div class="sidebar">
       <div class="profile_info">
-        {if="$user.picture == 0"}
-        <img src="res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
-        {else}
-        <img src="res/user/ft_perfil/{$user.picture}" class="profile_image" alt="">
-        {/if}
-        <h4>{function="getUserName()"}</h4>
+        <?php if( $user["picture"] == 0 ){ ?>
+
+        <img src="res/ft_perfil/no_photo.png" class="profile_image" alt="">
+        <?php }else{ ?>
+
+        <img src="res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
+        <?php } ?>
+
+        <h4><?php echo getUserName(); ?></h4>
       </div>
       
       <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>

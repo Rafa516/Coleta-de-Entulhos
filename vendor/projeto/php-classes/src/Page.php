@@ -35,6 +35,8 @@ class Page {
 
 		$this->tpl = new Tpl();
 
+		if (isset($_SESSION[User::SESSION])) $this->tpl->assign("user", $_SESSION[User::SESSION]);
+
 		
 
 		//atribuindo os valores das váriaveis do Usuario na sessão.
