@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coleta de  Entulhos - ADM</title>
+    <link href="/../res/admin/img/icon.png" rel="icon">
     <link rel="stylesheet" href="/../res/admin//css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+
   </head>
   <body>
 
@@ -14,7 +16,7 @@
     <!--header area start-->
     <header>
       <label for="check">
-        <i class="fas fa-bars" id="sidebar_btn"></i>
+        <i style="margin-top: -5px;" class="fas fa-bars" id="sidebar_btn"></i>
       </label>
       <div class="left_area">
         <h3 style="font-size: 18px;">Coleta de Entulhos - ADM</h3>
@@ -40,13 +42,12 @@
         <i class="fa fa-bars nav_btn"></i>
       </div>
       <div class="mobile_nav_items">
-      <a href="#"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
-      <a href="#"><i class="fas fa-user-plus"></i><span>Cadastrar Usuário</span></a>
+      <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
       <a href="#"><i class="fas fa-users"></i><span>Usuários</span></a>
        <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
       <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
-      <a href="#"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+      <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
       </div>
     </div>
     <!--mobile navigation bar end-->
@@ -56,20 +57,19 @@
       <div class="profile_info">
         <?php if( $user["picture"] == 0 ){ ?>
 
-        <img src="res/admin/ft_perfil/no_photo.png" class="profile_image" alt="">
+        <img src="/../res/admin/ft_perfil/no_photo.png" class="profile_image" alt="">
         <?php }else{ ?>
 
-        <img src="res/admin/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
+        <img src="/../res/admin/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
         <?php } ?>
 
-        <h4><?php echo getUserName(); ?></h4>
+        <h5 style="font-size: 18px;color: white;" ><?php echo getUserName(); ?></h5>
       </div>
-      <a href="#"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
-      <a href="#"><i class="fas fa-user-plus"></i><span>Cadastrar Usuário</span></a>
+      <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
       <a href="#"><i class="fas fa-users"></i><span>Usuários</span></a>
      <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
       <a href="#"><i class="fas fa-eye"></i><span>Ver Chamados</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
-      <a href="#"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+      <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
     <!--sidebar end-->

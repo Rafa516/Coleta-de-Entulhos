@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coleta de  Entulhos</title>
-    <link rel="stylesheet" href="res/css/style.css">
+    <link href="res/user/img/icon.png" rel="icon">
+    <link rel="stylesheet" href="res/user/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
@@ -30,10 +31,10 @@
       <div class="nav_bar">
          <?php if( $user["picture"] == 0 ){ ?>
 
-        <img src="res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+        <img src="res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
         <?php }else{ ?>
 
-        <img src="res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
+        <img src="res/user/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
         <?php } ?>
 
          <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
@@ -53,10 +54,10 @@
       <div class="profile_info">
         <?php if( $user["picture"] == 0 ){ ?>
 
-        <img src="res/ft_perfil/no_photo.png" class="profile_image" alt="">
+        <img src="res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
         <?php }else{ ?>
 
-        <img src="res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
+        <img src="res/user/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
         <?php } ?>
 
         <h4><?php echo getUserName(); ?></h4>

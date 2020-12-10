@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coleta de  Entulhos - ADM</title>
+    <link href="/../res/admin/img/icon.png" rel="icon">
     <link rel="stylesheet" href="/../res/admin/css/login_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <!-- CSS only -->

@@ -1,17 +1,18 @@
-body{
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
 }
+
+/******HEADER****/
 
 header{
   z-index: 1;
   position: fixed;
-  background:#151515;
+  background:#22242A;
   padding: 20px;
   width: calc(100% - 0%);
   top: 0;
-  height: 30px;
+  height: 70px;
   
 }
 
@@ -21,6 +22,7 @@ header{
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
+  margin-top: -20px;
 }
 
 .left_area span{
@@ -33,7 +35,7 @@ header{
   text-decoration: none;
   float: right;
   margin-top: -25px;
-  margin-right: 40px;
+  margin-right: 10px;
   border-radius: 2px;
   font-size: 15px;
   font-weight: 600;
@@ -44,18 +46,20 @@ header{
 
 .logout_btn:hover{
   background: #FE642E;
+  color: #fff;
+  text-decoration:none;
 }
 
 .sidebar{
   z-index: 1;
   top: 0;
-  background: #2E2E2E;
+  background:  #2f323a;
   margin-top: 70px;
   padding-top: 30px;
   position: fixed;
   left: 0;
-  width: 260px;
-  height: calc(100% - 9%);
+  width: 255px;
+  height: calc(100%);
   transition: 0.5s;
   transition-property: left;
   overflow-y: auto;
@@ -86,7 +90,7 @@ header{
   display: block;
   width: 100%;
   line-height: 60px;
-  text-decoration: none;
+  
   padding-left: 40px;
   box-sizing: border-box;
   transition: 0.5s;
@@ -95,6 +99,9 @@ header{
 
 .sidebar a:hover{
   background: #5FB404;
+  color: #fff;
+  text-decoration:none;
+
 }
 
 .sidebar i{
@@ -131,17 +138,7 @@ label #sidebar_btn:hover{
   width: 100%;
 }
 
-.content{
-  width: (100% - 250px);
-  margin-top: 60px;
-  padding: 20px;
-  margin-left: 250px;
-  background: url(background.png) no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  transition: 0.5s;
-}
+
 
 #check:checked ~ .content{
   margin-left: 60px;
@@ -167,6 +164,102 @@ label #sidebar_btn:hover{
   opacity: 0.8;
 }
 
+/******INDEX****/
+.content{
+  padding: 20px;
+  min-height: 100%;
+  padding-top: 100px;
+  width: (100% - 250px);
+ margin-left: 280px;
+  transition: 0.5s;
+ 
+}
+
+.content-inside {
+  padding: 20px;
+  padding-bottom: 70px;
+  padding-bottom: 100px;
+
+/******FOOTER****/
+
+}
+.footer{
+ 
+  width: 100%;
+  height: 70px;
+  margin-top: -70px;
+  background-color: #E6E6E6;
+}
+
+/*----PAINEL----------*/
+.color1{
+    background: #FE642E;
+}
+.color2{
+    background: #D7DF01;
+}
+.color3{
+    background: #00C292;
+}
+
+.color4{
+    background: #0431B4;
+}
+.card-body{
+    display: inline-block;
+    font-faxmily: "Roboto", sans-serif;
+    margin: 10px;
+    margin-right: 40px;
+    padding: 100px;
+    width: 310px;
+    height: 300px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.card-body h3{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.currency, .count{
+    font-size: 30px;
+    font-weight: 500;
+}
+.card-body p{
+    font-size: 16px;
+    margin-top: 0;
+}
+.card-body i{
+    font-size: 100px;
+    opacity: 0.5;
+}           
+
+
+/*-----PERFIL------*/
+.avatar-xl img {
+    width: 200px;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+.text-muted {
+    color: #aeb0b4 !important;
+}
+.text-muted {
+    font-weight: 300;
+}
+
 /* Responsivo CSS */
 
 @media screen and (max-width: 780px){
@@ -178,15 +271,37 @@ label #sidebar_btn:hover{
     display: none;
   }
 
+  .logout_btn{
+  padding: 5px;
+  background: #DF3A01;
+  text-decoration: none;
+  float: right;
+  margin-top: -25px;
+  margin-right: -8px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+  transition-property: background;
+}
+
   .content{
     margin-left: 0;
     margin-top: 0;
     padding: 10px 20px;
     transition: 0s;
+    min-height: 100%;
   }
+  
 
   #check:checked ~ .content{
     margin-left: 0;
+  }
+
+/**PAINEL*/
+  .card-body{
+    width: 280px;
   }
 
   .mobile_nav{
@@ -195,7 +310,7 @@ label #sidebar_btn:hover{
   }
 
   .nav_bar{
-    background: #2E2E2E;
+    background: #2f323a;
     width: (100% - 0px);
     margin-top: 70px;
     display: flex;
@@ -223,7 +338,7 @@ label #sidebar_btn:hover{
   }
 
   .mobile_nav_items{
-    background: #2E2E2E;
+    background: #2f323a;
     display: none;
   }
 
@@ -241,6 +356,8 @@ label #sidebar_btn:hover{
 
   .mobile_nav_items a:hover{
     background: #5FB404;
+    color: #fff;
+    text-decoration:none;
   }
 
   .mobile_nav_items i{
@@ -250,4 +367,7 @@ label #sidebar_btn:hover{
   .active{
     display: block;
   }
+
+
+  
 }

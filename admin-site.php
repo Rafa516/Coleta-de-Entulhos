@@ -35,7 +35,7 @@ $app->post("/admin/register", function(){
 	$user = new User();
 
 	$user->setData([
-		'inadmin'=>0,
+		'inadmin'=>1,
 		'login'=>$_POST['email'],
 		'person'=>$_POST['person'],
 		'email'=>$_POST['email'],
@@ -93,6 +93,17 @@ $app->get('/admin', function() {
 	$page = new PageAdmin();
 
 	$page->setTpl("index");
+
+});
+
+$app->get('/admin/profile', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("admin-profile");
 
 });
 
