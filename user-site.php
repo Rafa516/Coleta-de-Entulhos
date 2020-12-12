@@ -41,9 +41,11 @@ $app->post("/register", function(){
 		'email'=>$_POST['email'],
 		'despassword'=>$_POST['despassword'],
 		'phone'=>$_POST['phone'],
+		'born_date'=>$_POST['born_date'],
+		'city'=>$_POST['city'],
+		'address'=>$_POST['address'],
 		'picture'=>0
 	]);
-
 
 	$user->save();
 
@@ -93,6 +95,49 @@ $app->get('/user', function() {
 	$page = new Page();
 
 	$page->setTpl("index");
+
+});
+
+$app->get('/user/profile', function() {  
+
+
+	User::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("user-profile");
+
+});
+
+$app->post("/user/profile/update/:iduser", function ($iduser) {
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setData($_POST);
+
+	$user->update();
+
+	header('Location: /');
+	exit;
+
+});
+
+$app->post("/user/profile/update_image/:iduser", function ($iduser) {
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setData($_POST);
+
+
+
+	$user->updateImage();
+
+	header('Location: /');
+	exit;
 
 });
 

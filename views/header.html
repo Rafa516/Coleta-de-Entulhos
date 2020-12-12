@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coleta de Entulhos</title>
-  <link href="res/user/img/icon.png" rel="icon">
-  <link rel="stylesheet" href="res/user/css/style.css">
+  <link href="/res/user/img/icon.png" rel="icon">
+  <link rel="stylesheet" href="/res/user/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -32,18 +32,19 @@
   <div class="mobile_nav">
     <div class="nav_bar">
       {if="$user.picture == 0"}
-      <img src="res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+      <img src="/res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
       {else}
-      <img src="res/user/ft_perfil/{$user.picture}" class="mobile_profile_image" alt="">
+      <img src="/res/user/ft_perfil/{$user.picture}" class="mobile_profile_image" alt="">
       {/if}
       <b style="font-size: 17px;color: white;">{function="getUserName()"}</b>
       <i class="fa fa-bars nav_btn"></i>
     </div>
     <div class="mobile_nav_items">
+      <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
       <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
       <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
-      <a href="#"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+      <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -52,16 +53,16 @@
   <div class="sidebar">
     <div class="profile_info">
       {if="$user.picture == 0"}
-      <img src="res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
+      <img src="/res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
       {else}
-      <img src="res/user/ft_perfil/{$user.picture}" class="profile_image" alt="">
+      <img src="/res/user/ft_perfil/{$user.picture}" class="profile_image" alt="">
       {/if}
-      <h4>{function="getUserName()"}</h4>
+      <center><b style="font-size: 18px;color: white;">{function="getUserName()"}</b></center>
     </div>
-
+    <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
     <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
     <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
-    <a href="#"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+    <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
   </div>
   <!--sidebar end-->

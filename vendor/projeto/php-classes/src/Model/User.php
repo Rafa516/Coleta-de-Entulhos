@@ -56,7 +56,7 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.login = :login", array(
+		$results = $sql->select("SELECT * FROM tb_users  WHERE login = :login", array(
 			":login"=>$login
 		)); 
 
@@ -152,15 +152,12 @@ class User extends Model {
 	 
 		 $sql = new Sql();
 		 
-		 $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser;", array(
+		 $results = $sql->select("SELECT * FROM tb_users  WHERE iduser = :iduser", array(
 		 ":iduser"=>$iduser
 		 ));
-		 
-		 $data = $results[0];
 
-		 $data['desperson'] = utf8_encode($data['desperson']);
 		 
-		 $this->setData($data);
+		 $this->setData($results[0]);
 	 
 	 }
 
@@ -170,21 +167,45 @@ class User extends Model {
 
 		$sql  = new Sql();
 
-		$results = $sql->select("CALL sp_users_save(:person,:login,:despassword, :email, :phone, :inadmin,:picture)",array(
+		$results = $sql->select("CALL sp_users_save(:person,:login,:despassword, :email, :phone,:inadmin,:picture,:born_date,:city,:address)",array(
 			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
 			":despassword" => User::getPasswordHash($this->getdespassword()),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin(),
-			":picture"=>User::getImage($this->getpicture())
+			":picture"=>$this->getpicture(),
+			":born_date"=>$this->getborn_date(),
+			":city"=>$this->getcity(),
+			":address"=>$this->getaddress()	
 
 		));
 
 		$this->setData($results[0]);
 
+	}
+
+	public function update()
+	{
+
+		$sql  = new Sql();
+
+		$results = $sql->select("CALL sp_users_update(:iduser,:person,:phone,:born_date,:city,:address)",array(
+			":iduser"=>$this->getiduser(),
+			":person"=>$this->getperson(),
+			":phone"=>$this->getphone(),
+			":born_date"=>$this->getborn_date(),
+			":city"=>$this->getcity(),
+			":address"=>$this->getaddress()
+			
+		
+			
+		));
+
+		$this->setData($results[0]);
 
 	}
+
 
 	public function updateImage()
     {
@@ -201,49 +222,49 @@ class User extends Model {
 
 	        $img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 				"res" . DIRECTORY_SEPARATOR . 
-				"admin" . DIRECTORY_SEPARATOR . 
-				"dist" . DIRECTORY_SEPARATOR . 
+				"user" . DIRECTORY_SEPARATOR . 
 				"ft_perfil" . DIRECTORY_SEPARATOR . 
 				$this->getpicture();
 				unlink($img);
+
 		}
 		else
 		{
 			$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 				"res" . DIRECTORY_SEPARATOR . 
-				"admin" . DIRECTORY_SEPARATOR . 
-				"dist" . DIRECTORY_SEPARATOR . 
+				"user" . DIRECTORY_SEPARATOR . 
 				"ft_perfil" . DIRECTORY_SEPARATOR . 
-				$this->getpicture();
+			     $this->getpicture();
+			     $img;
+
 				
 		}
 
     }
 
-	public static function getImage($value)
+    public static function getImage($value)
 	{
 		$name_file = date('Ymdhms');
 
 		$directory = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 			"res" . DIRECTORY_SEPARATOR . 
-			"admin" . DIRECTORY_SEPARATOR . 
-			"dist" . DIRECTORY_SEPARATOR . 
-			"ft_perfil" . DIRECTORY_SEPARATOR . 
+			"user" . DIRECTORY_SEPARATOR . 
+			"ft_perfil" . DIRECTORY_SEPARATOR .
 			$name_file;	
 			     			
-		$picture = isset($_FILES['picture']) ? $_FILES['picture'] : FALSE;
+			$picture = isset($_FILES['picture']) ? $_FILES['picture'] : FALSE;
 			
-			if ($picture != 0){
-				
-				 move_uploaded_file($picture['tmp_name'],$directory);
+				if (!$picture['error']){
+					
+					 move_uploaded_file($picture['tmp_name'],$directory);
 
-				return $name_file;
+					return $name_file;
 
-			} else {
+				} else {
 
-				return 0;
+					return 0;
 
-			}
+				}
 	}
 
 	
@@ -329,7 +350,7 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_persons WHERE email = :email", [
+		$results = $sql->select("SELECT * FROM tb_users WHERE email = :email", [
 			':email'=>$email
 		]);
 
