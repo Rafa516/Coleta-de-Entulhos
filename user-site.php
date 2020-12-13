@@ -141,4 +141,21 @@ $app->post("/user/profile/update_image/:iduser", function ($iduser) {
 
 });
 
+$app->post("/user/profile/update_image/:iduser", function ($iduser) {
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setData($_POST);
+
+
+
+	$user->updateImage();
+
+	header('Location: /');
+	exit;
+
+});
+
 ?>

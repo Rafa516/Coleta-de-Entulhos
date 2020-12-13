@@ -3,8 +3,6 @@ html, body {
   margin: 0;
 }
 
-
-
 /******HEADER****/
 
 header{
@@ -194,28 +192,6 @@ label #sidebar_btn:hover{
 }
 
 
-
-/*-----PERFIL------*/
-.avatar-xl img {
-    width: 200px;
-}
-
-.rounded-circle {
-    border-radius: 50% !important;
-}
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-.text-muted {
-    color: #aeb0b4 !important;
-}
-.text-muted {
-    font-weight: 300;
-}
-
-
-
 /* Responsivo CSS */
 
 @media screen and (max-width: 780px){
@@ -255,6 +231,10 @@ img {
     margin-left: 0;
   }
 
+/**PAINEL*/
+  .card-body{
+    width: 280px;
+  }
 
   .mobile_nav{
     display: block;

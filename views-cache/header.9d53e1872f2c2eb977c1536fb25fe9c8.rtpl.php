@@ -23,7 +23,7 @@
       <h3>Coleta de Entulhos</h3>
     </div>
     <div class="right_area">
-      <a href="/user/logout"  class="logout_btn">Sair</a>
+      <a href="/user/logout" class="logout_btn">Sair</a>
     </div>
   </header>
   <!--header area end-->
@@ -33,10 +33,10 @@
     <div class="nav_bar">
       <?php if( $user["picture"] == 0 ){ ?>
 
-      <img src="/res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+      <img src="/res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
       <?php }else{ ?>
 
-      <img src="/res/user/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
+      <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
       <?php } ?>
 
       <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
@@ -57,15 +57,15 @@
     <div class="profile_info">
       <?php if( $user["picture"] == 0 ){ ?>
 
-      <img src="/res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
+      <img src="/res/ft_perfil/no_photo.png" class="profile_image" alt="">
       <?php }else{ ?>
 
-      <img src="/res/user/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
+      <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
       <?php } ?>
 
       <center><b style="font-size: 18px;color: white;"><?php echo getUserName(); ?></b></center>
     </div>
-     <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
     <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
     <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>

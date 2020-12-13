@@ -32,9 +32,9 @@
   <div class="mobile_nav">
     <div class="nav_bar">
       {if="$user.picture == 0"}
-      <img src="/res/user/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+      <img src="/res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
       {else}
-      <img src="/res/user/ft_perfil/{$user.picture}" class="mobile_profile_image" alt="">
+      <img src="/res/ft_perfil/{$user.picture}" class="mobile_profile_image" alt="">
       {/if}
       <b style="font-size: 17px;color: white;">{function="getUserName()"}</b>
       <i class="fa fa-bars nav_btn"></i>
@@ -53,9 +53,9 @@
   <div class="sidebar">
     <div class="profile_info">
       {if="$user.picture == 0"}
-      <img src="/res/user/ft_perfil/no_photo.png" class="profile_image" alt="">
+      <img src="/res/ft_perfil/no_photo.png" class="profile_image" alt="">
       {else}
-      <img src="/res/user/ft_perfil/{$user.picture}" class="profile_image" alt="">
+      <img src="/res/ft_perfil/{$user.picture}" class="profile_image" alt="">
       {/if}
       <center><b style="font-size: 18px;color: white;">{function="getUserName()"}</b></center>
     </div>

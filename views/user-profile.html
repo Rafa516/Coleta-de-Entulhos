@@ -14,9 +14,9 @@
         <div class="col-md-3 text-center mb-5">
           <div class="avatar avatar-xl">
             {if="$user.picture == 0"}
-            <img src="/res/user/ft_perfil/no_photo.png" class="avatar-img rounded-circle" />
+            <img src="/res/ft_perfil/no_photo.png" class="avatar-img rounded-circle" />
             {else}
-            <img src="/res/user/ft_perfil/{$user.picture}" class="avatar-img rounded-circle" />
+            <img src="/res/ft_perfil/{$user.picture}" class="avatar-img rounded-circle" />
             {/if}
             <br><br><button onclick="alertAlterarFoto()" data-toggle="modal" data-target="#imageModal"
               class="btn btn-primary"><b>Alterar Foto</b> </button>

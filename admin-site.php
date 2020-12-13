@@ -107,4 +107,36 @@ $app->get('/admin/profile', function() {
 
 });
 
+$app->post("/admin/profile/update/:iduser", function ($iduser) {
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setData($_POST);
+
+	$user->update();
+
+	header('Location: /admin/login');
+	exit;
+
+});
+
+$app->post("/admin/profile/update_image/:iduser", function ($iduser) {
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setData($_POST);
+
+
+
+	$user->updateImage();
+
+	header('Location: /admin/login');
+	exit;
+
+});
+
 ?>

@@ -67,7 +67,8 @@
 			Email
 			<input class="user-input" type="email" name="email" placeholder="Digite um e-mail válido " required>
 			Telefone
-			<input class="user-input" type="tel" name="phone" placeholder="(00)-00000 0000" maxlength="13" pattern="[0-9]+$" required>
+			<input class="user-input" type="tel" name="phone" placeholder="(00)-00000 0000" maxlength="13"
+				pattern="[0-9]+$" required>
 
 			Endereço
 			<input class="user-input" type="text" name="address" placeholder="Digite seu Endereço" required>
@@ -79,40 +80,40 @@
 			<input class="user-input" type="password" name="despassword" placeholder="Digite uma senha" required>
 			Cidade
 			<select class="user-input" name="city" id="city">
-						<option  value="Brasília - DF">Brasília - DF</option>
-						<option value=" Gama - DF">Gama - DF</option>
-						<option value="Taguatinga - DF">Taguatinga - DF</option>
-						<option value="Brazlândia - DF">Brazlândia - DF</option>
-						<option value="Sobradinho - DF">Sobradinho - DF</option>
-						<option value="Planaltina - DF">Planaltina - DF</option>
-						<option value="Paranoá - DF">Paranoá - DF</option>
-						<option value="Núcleo Bandeirante - DF">Núcleo Bandeirante - DF</option>
-						<option value="Ceilândia - DF">Ceilândia - DF</option>
-						<option value="Guará - DF">Guará - DF</option>
-						<option value="Cruzeiro - DF">Cruzeiro - DF</option>
-						<option value="Samambaia - DF"> Samambaia - DF</option>
-						<option value="Santa Maria- DF">Santa Maria - DF</option>
-						<option value="São Sebastião - DF">São Sebastião - DF</option>
-						<option value="Recanto das Emas - DF">Recanto das Emas - DF</option>
-						<option value="Lago Sul - DF">Lago Sul - DF</option>
-						<option value="Riacho Fundo - DF">Riacho Fundo - DF</option>
-						<option value="Lago Norte - DF">Lago Norte - DF</option>
-						<option value="Candangolândia - DF">Candangolândia - DF</option>
-						<option value="Águas Claras- DF">Águas Claras - DF</option>
-						<option value="Riacho Fundo II - DF">Riacho Fundo II - DF</option>
-						<option value="Sudoeste/Octogonal - DF">Sudoeste/Octogonal - DF</option>
-						<option value="Varjão - DF">Varjão - DF</option>
-						<option value="Park Way - DF">Park Way - DF</option>
-						<option value="SCIA - DF">SCIA - DF</option>
-						<option value="Sobradinho II - DF">Sobradinho II - DF</option>
-						<option value="Jardim Botânico - DF">Jardim Botânico - DF</option>
-						<option value="Itapoã - DF">Itapoã - DF</option>
-						<option value="SIA - DF">SIA - DF</option>
-						<option value="Vicente Pires - DF">Vicente Pires - DF</option>
-						<option value="Fercal - DF">Fercal - DF</option>
-						<option value="Sol Nascente/Pôr do Sol - DF">Sol Nascente/Pôr do Sol - DF</option>
-						<option value="Arniqueira - DF">Arniqueira - DF</option>					
-						
+				<option value="Brasília - DF">Brasília - DF</option>
+				<option value=" Gama - DF">Gama - DF</option>
+				<option value="Taguatinga - DF">Taguatinga - DF</option>
+				<option value="Brazlândia - DF">Brazlândia - DF</option>
+				<option value="Sobradinho - DF">Sobradinho - DF</option>
+				<option value="Planaltina - DF">Planaltina - DF</option>
+				<option value="Paranoá - DF">Paranoá - DF</option>
+				<option value="Núcleo Bandeirante - DF">Núcleo Bandeirante - DF</option>
+				<option value="Ceilândia - DF">Ceilândia - DF</option>
+				<option value="Guará - DF">Guará - DF</option>
+				<option value="Cruzeiro - DF">Cruzeiro - DF</option>
+				<option value="Samambaia - DF"> Samambaia - DF</option>
+				<option value="Santa Maria- DF">Santa Maria - DF</option>
+				<option value="São Sebastião - DF">São Sebastião - DF</option>
+				<option value="Recanto das Emas - DF">Recanto das Emas - DF</option>
+				<option value="Lago Sul - DF">Lago Sul - DF</option>
+				<option value="Riacho Fundo - DF">Riacho Fundo - DF</option>
+				<option value="Lago Norte - DF">Lago Norte - DF</option>
+				<option value="Candangolândia - DF">Candangolândia - DF</option>
+				<option value="Águas Claras- DF">Águas Claras - DF</option>
+				<option value="Riacho Fundo II - DF">Riacho Fundo II - DF</option>
+				<option value="Sudoeste/Octogonal - DF">Sudoeste/Octogonal - DF</option>
+				<option value="Varjão - DF">Varjão - DF</option>
+				<option value="Park Way - DF">Park Way - DF</option>
+				<option value="SCIA - DF">SCIA - DF</option>
+				<option value="Sobradinho II - DF">Sobradinho II - DF</option>
+				<option value="Jardim Botânico - DF">Jardim Botânico - DF</option>
+				<option value="Itapoã - DF">Itapoã - DF</option>
+				<option value="SIA - DF">SIA - DF</option>
+				<option value="Vicente Pires - DF">Vicente Pires - DF</option>
+				<option value="Fercal - DF">Fercal - DF</option>
+				<option value="Sol Nascente/Pôr do Sol - DF">Sol Nascente/Pôr do Sol - DF</option>
+				<option value="Arniqueira - DF">Arniqueira - DF</option>
+
 			</select>
 
 			<input class="btn" type="submit" name="" value="Registrar">

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coleta de Entulhos - ADM</title>
   <link href="/../res/admin/img/icon.png" rel="icon">
-  <link rel="stylesheet" href="/../res/admin//css/style.css">
+  <link rel="stylesheet" href="/../res/admin/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -34,10 +34,10 @@
     <div class="nav_bar">
       <?php if( $user["picture"] == 0 ){ ?>
 
-      <img src="/../res/admin/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+      <img src="/../res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
       <?php }else{ ?>
 
-      <img src="/../res/admin/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
+      <img src="/../res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
       <?php } ?>
 
       <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
@@ -59,10 +59,10 @@
     <div class="profile_info">
       <?php if( $user["picture"] == 0 ){ ?>
 
-      <img src="/../res/admin/ft_perfil/no_photo.png" class="profile_image" alt="">
+      <img src="/../res/ft_perfil/no_photo.png" class="profile_image" alt="">
       <?php }else{ ?>
 
-      <img src="/../res/admin/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
+      <img src="/../res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
       <?php } ?>
 
       <h5 style="font-size: 18px;color: white;"><?php echo getUserName(); ?></h5>

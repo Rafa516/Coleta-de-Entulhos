@@ -6,6 +6,7 @@ use Exception;
 use \Projeto\Model;
 use \Projeto\DB\Sql;
 use \Projeto\Mailer;
+use \Projeto\Page;
 
 class User extends Model {
 
@@ -17,39 +18,7 @@ class User extends Model {
 	
 
 
-	public static function getFromSession()
-	{
-
-		$user = new User();
-
-		if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0) {
-
-			$user->setData($_SESSION[User::SESSION]);
-
-		}
-
-		return $user;
-
-	}
-
-	public static function checkLogin($inadmin = true)
-	{
-
-			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
-
-				return true;
-
-			} else if ($inadmin === false) {
-
-				return true;
-
-			} else {
-
-				return false;
-
-			}
-
-	}
+	
 
 	public static function login($login, $password)
 	{
@@ -91,6 +60,13 @@ class User extends Model {
 
 	}
 
+	public static function logout()
+	{
+
+		$_SESSION[User::SESSION] = NULL;
+
+	}
+
 	public static function getPasswordHash($password)
 	{
 
@@ -100,17 +76,47 @@ class User extends Model {
 
 	}
 
+	public static function getFromSession()
+	{
+
+		$user = new User();
+
+		if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0) {
+
+			$user->setData($_SESSION[User::SESSION]);
+
+		}
+
+		return $user;
+
+	}
+
+	public static function checkLogin($inadmin = true)
+	{
+
+			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
+
+				return true;
+
+			} else if ($inadmin === false) {
+
+				return true;
+
+			} else {
+
+				return false;
+
+			}
+
+	}
+
 	public static function verifyLogin($inadmin = true)
 	{
 
-		if (
-			!isset($_SESSION[User::SESSION])
-			|| 
-			!$_SESSION[User::SESSION]
-			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-			||
+		if (	
 			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin
+			||
+			(int)$_SESSION[User::SESSION]["inadmin"] !== 0
 		) {
 			
 			header("Location: /");
@@ -124,13 +130,10 @@ class User extends Model {
 	{
 
 		if (
-			!isset($_SESSION[User::SESSION])
-			|| 
-			!$_SESSION[User::SESSION]
-			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-			||
+			
 			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin
+			||
+			(int)$_SESSION[User::SESSION]["inadmin"] !== 1
 		) {
 			
 			header("Location: /admin/login");
@@ -140,12 +143,7 @@ class User extends Model {
 
 	}
 
-	public static function logout()
-	{
-
-		$_SESSION[User::SESSION] = NULL;
-
-	}
+	
 
 	public function get($iduser)
 	{
@@ -222,7 +220,6 @@ class User extends Model {
 
 	        $img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 				"res" . DIRECTORY_SEPARATOR . 
-				"user" . DIRECTORY_SEPARATOR . 
 				"ft_perfil" . DIRECTORY_SEPARATOR . 
 				$this->getpicture();
 				unlink($img);
@@ -232,7 +229,6 @@ class User extends Model {
 		{
 			$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 				"res" . DIRECTORY_SEPARATOR . 
-				"user" . DIRECTORY_SEPARATOR . 
 				"ft_perfil" . DIRECTORY_SEPARATOR . 
 			     $this->getpicture();
 			     $img;
@@ -248,7 +244,6 @@ class User extends Model {
 
 		$directory = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 			"res" . DIRECTORY_SEPARATOR . 
-			"user" . DIRECTORY_SEPARATOR . 
 			"ft_perfil" . DIRECTORY_SEPARATOR .
 			$name_file;	
 			     			
