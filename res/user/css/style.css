@@ -3,6 +3,11 @@ html, body {
   margin: 0;
 }
 
+strong{
+  margin-left: 280px;
+  color:#424242;
+}
+
 /******HEADER****/
 
 header{
@@ -299,7 +304,10 @@ label #sidebar_btn:hover{
   .active{
     display: block;
   }
-
+   strong{
+  margin-left: 20px;
+  color:#424242;
+}
 
   
 }

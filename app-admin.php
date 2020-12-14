@@ -21,38 +21,6 @@ $app->get('/admin/login', function() {
 
 });
 
-//------------------ROTA  DO FORMULÁRIO DE REGISTRO--------------------------------//
-$app->post("/admin/register", function(){
-
-	if (User::checkEmailExist($_POST['email']) === true) {
-
-		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário.");
-		header("Location: /");
-		exit;
-
-	}
-
-	$user = new User();
-
-	$user->setData([
-		'inadmin'=>1,
-		'login'=>$_POST['email'],
-		'person'=>$_POST['person'],
-		'email'=>$_POST['email'],
-		'despassword'=>$_POST['despassword'],
-		'phone'=>$_POST['phone'],
-		'picture'=>0
-	]);
-
-
-	$user->save();
-
-	User::setSuccess("Usuário registrado com sucesso!! Efetue o Acesso");
-
-	header('Location: /');
-	exit;
-
-});
 
 //---------ROTA DO FORMULÁRIO DE LOGIN----------------------//
 
@@ -76,6 +44,20 @@ $app->post('/admin/login', function() {
 
 });
 
+$app->get("/admin/users/delete/:iduser",function($iduser){
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->delete();
+
+	User::setSuccess("Usuário removido com sucesso.");
+
+	header("Location: /admin/users");
+ 	exit;
+});
+
 $app->get('/admin/logout', function() {
 
 	User::logout();
@@ -84,6 +66,8 @@ $app->get('/admin/logout', function() {
 	exit;
 
 });
+
+
 
 $app->get('/admin', function() {  
 
@@ -106,6 +90,8 @@ $app->get('/admin/profile', function() {
 	$page->setTpl("admin-profile");
 
 });
+
+
 
 $app->post("/admin/profile/update/:iduser", function ($iduser) {
 
@@ -130,11 +116,72 @@ $app->post("/admin/profile/update_image/:iduser", function ($iduser) {
 
 	$user->setData($_POST);
 
-
-
 	$user->updateImage();
 
 	header('Location: /admin/login');
+	exit;
+
+});
+
+
+
+$app->get('/admin/users', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$users = User::listAll();
+
+	$page = new PageAdmin();
+	
+	
+	$page->setTpl("users", array(	
+		"users"=>$users,
+		'profileMsg'=>User::getSuccess(),
+		'errorRegister'=>User::getErrorRegister()
+		
+	));
+
+});
+
+$app->post("/admin/users/register", function(){
+
+	if (User::checkEmailExist($_POST['email']) === true) {
+
+		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário.");
+		header("Location: /admin/users");
+		exit;
+
+	}
+
+	if (User::checkLoginExist($_POST['login']) === true) {
+
+		User::setErrorRegister("Este Login já está sendo usado por outro usuário.");
+		header("Location: /admin/users");
+		exit;
+
+	}
+
+	$user = new User();
+
+	$user->setData([
+		'inadmin'=>1,
+		'login'=>$_POST['login'],
+		'person'=>$_POST['person'],
+		'email'=>$_POST['email'],
+		'despassword'=>$_POST['despassword'],
+		'phone'=>$_POST['phone'],
+		'born_date'=>$_POST['born_date'],
+		'city'=>$_POST['city'],
+		'address'=>$_POST['address'],
+		'picture'=>0
+	]);
+
+	$user->save();
+
+	User::setSuccess("Usuário cadastrado com sucesso");
+
+	header('Location: /admin/users');
 	exit;
 
 });

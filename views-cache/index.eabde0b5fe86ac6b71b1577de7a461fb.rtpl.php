@@ -13,7 +13,7 @@
                     <h3>
                         <center><span class="count">Chamados Pendentes</span></center>
                     </h3>
-                    <center> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i></center>
+                    <br><center> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i></center>
                 </div>
 
             </div>
@@ -25,7 +25,7 @@
                         <h3>
                             <center><span class="count">Chamados em Andamento</span></center>
                         </h3>
-                        <center> <i class="fas fa-hourglass-half" aria-hidden="true"></i></center>
+                        <br><center> <i class="fas fa-hourglass-half" aria-hidden="true"></i></center>
                 </div>
 
             </div>
@@ -37,7 +37,7 @@
                         <h3>
                             <center><span class="count">Chamados Finalizados</span></center>
                         </h3>
-                        <center> <i class="fas fa-check-square" aria-hidden="true"></i></center>
+                        <br><center> <i class="fas fa-check-square" aria-hidden="true"></i></center>
                 </div>
 
             </div>
@@ -49,7 +49,21 @@
                         <h3>
                             <center><span class="count">Usuários Cadastrados</span></center>
                         </h3>
-                        <center> <i class="fas fa-users" aria-hidden="true"></i></center>
+                        <br><center> <i class="fas fa-users" aria-hidden="true"></i></center>
+                        <?php if( totalUsers() == 0 ){ ?>
+
+                         <center><p style="font-size: 20px;">Nenhum usuário</p></center>
+                        
+                        <?php }elseif( totalUsers() == 1 ){ ?>
+
+                         <center><p style="font-size: 20px;"><?php echo totalUsers(); ?> Usuário</p></center>
+                        
+                        <?php }else{ ?>
+
+                         <center><p style="font-size: 20px;"><?php echo totalUsers(); ?> Usuários</p></center>
+                        
+                        <?php } ?>
+
                 </div>
 
             </div>

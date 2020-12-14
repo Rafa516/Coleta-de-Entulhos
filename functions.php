@@ -29,6 +29,15 @@ use \Projeto\Model\User;
 
 	}
 
+	function totalUsers(){
+
+		$total = User::total();
+
+	   return  $total['usersTotal'];
+
+	}
+
+
 
 
 ?>

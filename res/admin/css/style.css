@@ -3,6 +3,10 @@ html, body {
   margin: 0;
 }
 
+strong{
+  color:#424242;
+
+}
 /******HEADER****/
 
 header{
@@ -301,7 +305,7 @@ img {
 
 /**PAINEL*/
   .card-body{
-    width: 280px;
+    width: 260px;
   }
 
   .mobile_nav{
@@ -368,6 +372,10 @@ img {
     display: block;
   }
 
+  strong{
+  margin-left: 20px;
+  color:#424242;
+}
 
   
 }

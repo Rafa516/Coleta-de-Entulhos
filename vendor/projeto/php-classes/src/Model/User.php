@@ -262,6 +262,82 @@ class User extends Model {
 				}
 	}
 
+	public function delete()
+	{
+
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_users WHERE iduser = :iduser", [
+			':iduser'=>$this->getiduser()
+		]);
+
+			if($this->getinadmin() == 1 && $this->getpicture() != 0){
+
+				$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+					"res" . DIRECTORY_SEPARATOR . 
+					"ft_perfil" . DIRECTORY_SEPARATOR . 
+					$this->getpicture();
+					unlink($img);
+			}
+			else{
+
+				$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+					"res" . DIRECTORY_SEPARATOR . 
+					"ft_perfil" . DIRECTORY_SEPARATOR . 
+					$this->getpicture();
+
+			}
+
+	}
+
+	public static function listAll()
+	{
+
+		$sql = new Sql();
+		
+		return  $sql->select("SELECT * FROM tb_users  ORDER BY dtregister desc ");
+		 
+
+	}
+
+	public static function total()
+	{
+		
+		$sql = new Sql();
+		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_users");
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+	  
+		return ['usersTotal'=>(int)$resultTotal[0]["nrtotal"]];
+	}	
+
+	public static function checkEmailExist($email)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE email = :email", [
+			':email'=>$email
+		]);
+
+		return (count($results) > 0);
+
+	}
+
+	public static function checkLoginExist($login)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE login = :login", [
+			':login'=>$login
+		]);
+
+		return (count($results) > 0);
+
+	}
+
+
 	
 	public static function setError($msg)
 	{
@@ -340,18 +416,7 @@ class User extends Model {
 
 	
 
-	public static function checkEmailExist($email)
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT * FROM tb_users WHERE email = :email", [
-			':email'=>$email
-		]);
-
-		return (count($results) > 0);
-
-	}
+	
 
 	
 }

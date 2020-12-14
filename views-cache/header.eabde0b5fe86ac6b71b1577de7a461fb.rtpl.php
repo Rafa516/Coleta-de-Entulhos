@@ -45,7 +45,7 @@
     </div>
     <div class="mobile_nav_items">
       <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
-      <a href="#"><i class="fas fa-users"></i><span>Usuários</span></a>
+      <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
       <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
       <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
@@ -68,7 +68,7 @@
       <h5 style="font-size: 18px;color: white;"><?php echo getUserName(); ?></h5>
     </div>
     <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
-    <a href="#"><i class="fas fa-users"></i><span>Usuários</span></a>
+    <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
     <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
     <a href="#"><i class="fas fa-eye"></i><span>Ver Chamados</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>

@@ -39,7 +39,7 @@
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Endereço:</b> <?php echo $user["address"]; ?></p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Email:</b>
                 <?php echo $user["email"]; ?></p>
-                 <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Login:</b>
+              <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Login:</b>
                 <?php echo $user["login"]; ?></p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Telefone:</b> <?php echo $user["phone"]; ?></p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Data Nascimento: </b>
