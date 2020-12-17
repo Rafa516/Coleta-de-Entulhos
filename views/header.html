@@ -4,11 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Coleta de Entulhos</title>
   <link href="/res/user/img/icon.png" rel="icon">
+    <!--style-->
   <link rel="stylesheet" href="/res/user/css/style.css">
+  <!--font-awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <!--bootstrap-->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!--magnific-popup-->
+  <link rel="stylesheet" href="/res/user/css/magnific-popup.css">
 </head>
 
 <body>
@@ -41,8 +47,8 @@
     </div>
     <div class="mobile_nav_items">
       <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-      <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
+      <a href="/user/openCall"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
+      <a href="/user/mycalls/{$user.iduser}"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
       <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
@@ -60,8 +66,8 @@
       <center><b style="font-size: 18px;color: white;">{function="getUserName()"}</b></center>
     </div>
     <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
-    <a href="#"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-    <a href="#"><i class="fas fa-table"></i><span>Andamento do Chamado</span></a>
+    <a href="/user/openCall"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
+    <a href="/user/mycalls/{$user.iduser}"><i class="fas fa-table"></i><span>Meus chamados</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
     <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
   </div>

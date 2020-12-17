@@ -8,13 +8,55 @@ strong{
   color:#424242;
 }
 
+/******Imagens-Chamados****/
+#myWorkContent{
+    max-width:92em;
+    height:270px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+#myWorkContent a {
+    display: inline-block;
+    vertical-align: middle;
+   border: 1px solid #5FB404;
+
+}
+
+#myWorkContent img {border: 0;}
+
+.photo:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+ }
+
+.images{
+  height: 20em;
+  width: 20em;
+  margin-left: 5em;
+  margin-top: 15px;
+  border-style: groove;
+  border-width: 5px;
+}
+/******Mapa-Abertura de Chamado****/
+ #map {
+        width: 550px;
+        height: 450px;
+        border-style: groove;
+        border-width: 5px;
+      }
+
+
 /******HEADER****/
 
 header{
   z-index: 1;
   position: fixed;
   background:#22242A;
-  padding: 20px;
+  padding: 10px;
   width: calc(100% - 0%);
   top: 0;
   height: 70px;
@@ -27,7 +69,7 @@ header{
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
-  margin-top: -20px;
+  margin-top: -13px;
 }
 
 .left_area span{
@@ -39,7 +81,7 @@ header{
   background: #DF3A01;
   text-decoration: none;
   float: right;
-  margin-top: -25px;
+  margin-top: -27px;
   margin-right: 10px;
   border-radius: 2px;
   font-size: 15px;
@@ -63,7 +105,7 @@ header{
   padding-top: 30px;
   position: fixed;
   left: 0;
-  width: 255px;
+  width: 250px;
   height: calc(100%);
   transition: 0.5s;
   transition-property: left;
@@ -197,6 +239,25 @@ label #sidebar_btn:hover{
 }
 
 
+/*-----PERFIL------*/
+.avatar-xl img {
+    width: 250px;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+.text-muted {
+    color: #aeb0b4 !important;
+}
+.text-muted {
+    font-weight: 300;
+}
+
 /* Responsivo CSS */
 
 @media screen and (max-width: 780px){
@@ -308,6 +369,18 @@ label #sidebar_btn:hover{
   margin-left: 20px;
   color:#424242;
 }
+
+#map {
+        width: 270px;
+        height: 270px;
+        border-style: groove;
+        border-width: 5px;
+      }
+
+ #myWorkContent{
+    max-width:245px;
+    height:270px;
+  }
 
   
 }

@@ -1,6 +1,7 @@
 
 //ALERT PARA ALTERAÇÃO DE FOTO
-function alertAlterarFoto() {
+function alertAlterarFoto() 
+{
   
        Swal.fire({
 		  position: 'inherit',
@@ -13,7 +14,8 @@ function alertAlterarFoto() {
 }
 
 //ALERT PARA ALTERAÇÃO DOS DADOS
-function alertAlterarDados() {
+function alertAlterarDados() 
+{
   
        Swal.fire({
 		  position: 'inherit',
@@ -24,5 +26,20 @@ function alertAlterarDados() {
 		})
     
 }
+
+/*lightbox das imagens*/
+
+	$(document).ready(function() {
+
+	  $('.image-link').magnificPopup({
+	  	type:'image',
+	  	gallery:{enabled:true}
+	  });
+	  
+
+	});
+
+
+
 
 

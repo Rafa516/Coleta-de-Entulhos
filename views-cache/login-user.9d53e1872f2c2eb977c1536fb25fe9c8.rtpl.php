@@ -63,21 +63,21 @@
 
 			<i style="font-size: 40px;color: #0B610B" class="fas fa-user-plus"></i><br>
 			Nome
-			<input class="user-input" type="text" name="person" placeholder="Digite seu nome" required>
+			<input class="user-input" id="person"type="text" name="person" placeholder="Digite seu nome" required>
 			Email
-			<input class="user-input" type="email" name="email" placeholder="Digite um e-mail válido " required>
+			<input class="user-input" id="email"type="email" name="email" placeholder="Digite um e-mail válido " required>
 			Telefone
-			<input class="user-input" type="tel" name="phone" placeholder="(00)-00000 0000" maxlength="13"
+			<input class="user-input" id="phone"type="tel" name="phone" placeholder="(00)-00000 0000" maxlength="13"
 				pattern="[0-9]+$" required>
 
 			Endereço
-			<input class="user-input" type="text" name="address" placeholder="Digite seu Endereço" required>
+			<input class="user-input"  id="address" type="text" name="address" placeholder="Digite seu Endereço" required>
 
 			Data de Nascimento
-			<input class="user-input" type="date" name="born_date" required>
+			<input class="user-input" id="born_date" type="date" name="born_date" required>
 
 			Senha
-			<input class="user-input" type="password" name="despassword" placeholder="Digite uma senha" required>
+			<input class="user-input"  id="despassword"type="password" name="despassword" placeholder="Digite uma senha" required>
 			Cidade
 			<select class="user-input" name="city" id="city">
 				<option value="Brasília - DF">Brasília - DF</option>
@@ -117,6 +117,7 @@
 			</select>
 
 			<input class="btn" type="submit" name="" value="Registrar">
+
 			<div class="options-02">
 				<p> <a href="#">Voltar</a></p>
 			</div>
@@ -124,6 +125,11 @@
 		<!--signup form end-->
 	</div>
 	<!--form area end-->
+
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<script src="/res/user/js/functions.js"></script>
 
 	<script type="text/javascript">
 		$('.options-02 a').click(function () {

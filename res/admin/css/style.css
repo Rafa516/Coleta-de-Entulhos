@@ -209,9 +209,11 @@ label #sidebar_btn:hover{
 .color4{
     background: #0431B4;
 }
+
+
 .card-body{
     display: inline-block;
-    font-faxmily: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: 10px;
     margin-right: 40px;
     padding: 100px;

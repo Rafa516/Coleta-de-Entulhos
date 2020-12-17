@@ -1,0 +1,60 @@
+
+<div class="content">
+    <div class="content-inside">
+        <div class="my-4">
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab"
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Meus chamados<b></a>
+                </li>
+            </ul>
+
+             <div class="table-responsive">
+            <table class="table table-hover  table-bordered">
+                <thead style="background-color: #D8D8D8">
+                  <tr style="font-size: 16px; font-weight: bold; " >
+                    
+                    <th  ><center>Código<b></th>
+                    <th  ><center>Local<b></th>
+                    <th ><center>Obsercação</th>
+                    <th><center>Mapa</th>
+                    <th><center>Fotos</th>
+                    <th><center>Situação</th>
+                    <th><center>Data de Registro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$calls"}
+                  <tr style="font-size: 15px;font-weight: normal;">
+                    
+                    <td><center>{$value.idcall}</td>
+                    <td><center>{$value.locality}</td>
+                    <td><center>{$value.observation}</td>
+                    <td><center><a href=""  class="btn btn-info btn-xs"><i class="fa fa-globe"></i> Mapa</a></td/>
+                    <td><center>   <a href="/user/mycalls/images/{$value.idcall}"  class="btn btn-info btn-xs"><i class="fa fa-camera"></i> Fotos</a>
+                   </td/>
+                    <td><center>{if="$value.situation == 1"}<b style="color: #FF4000;">Pendente</b>{else}Não{/if}</td>
+                    <td><center>{function="formatDate($value.dtregister)"}</td>
+                   
+                   
+                  </tr>
+         
+
+                  
+                  {/loop}
+                </tbody>
+              </table>
+          </div>
+            
+
+
+            <hr class="my-4" />
+
+
+        </div>
+    </div>
+</div>
+
+
+
+      

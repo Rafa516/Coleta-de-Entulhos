@@ -2,6 +2,7 @@
 
 use \Projeto\Page;
 use \Projeto\Model\User;
+use \Projeto\Model\Call;
 
 //------------------ROTA DA PÁGINA DE LOGIN--------------------------------//
 
@@ -21,7 +22,8 @@ $app->get('/', function() {
 
 });
 
-//------------------ROTA  DO FORMULÁRIO DE REGISTRO--------------------------------//
+//------------------ROTA  DO FORMULÁRIO DE REGISTRO DOS USUÁRIOS--------------------------------//
+
 $app->post("/register", function(){
 
 	if (User::checkEmailExist($_POST['email']) === true) {
@@ -51,8 +53,9 @@ $app->post("/register", function(){
 
 	User::setSuccess("Usuário registrado com sucesso!! Efetue o Acesso");
 
-	header('Location: /');
+	header("Location: /");
 	exit;
+
 
 });
 
@@ -78,6 +81,8 @@ $app->post('/login', function() {
 
 });
 
+//---------ROTA PARA ENCERRAR A SESSÃO----------------------//
+
 $app->get('/user/logout', function() {
 
 	User::logout();
@@ -86,6 +91,9 @@ $app->get('/user/logout', function() {
 	exit;
 
 });
+
+
+//---------ROTA PARA A PÁGINA INICIAL----------------------//
 
 $app->get('/user', function() {  
 
@@ -98,6 +106,80 @@ $app->get('/user', function() {
 
 });
 
+//---------ROTA PARA A PÁGINA DE ABERTURA DOS CHAMADOS----------------------//
+
+$app->get('/user/openCall', function() {  
+
+
+	User::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("open-call-users");
+
+});
+
+//---------ROTA PARA A PÁGINA DO PERFIL DO USUÁRIO----------------------//
+
+
+$app->post("/use/openCall/submit", function(){
+
+	User::verifyLogin();
+
+	$call = new Call();
+
+	$call->setData($_POST);
+
+	$call->save();
+
+	header("Location: /user/openCall");
+	exit;
+
+
+});
+
+
+//---------ROTA PARA A PÁGINA DOS MEUS CHAMADOS----------------------//
+
+$app->get('/user/mycalls/:iduser', function($iduser) {  
+
+
+	User::verifyLogin();
+
+	$user = User::getFromSession();
+
+	$call = new Call();
+
+	$page = new Page();
+
+	$page->setTpl("mycalls",[
+		'user'=>$user->getValues(),
+		'images'=>$call->showPhotos($iduser),
+		'calls'=>$call->getCallsID($iduser)	
+	]);
+
+});
+
+//---------ROTA PARA A PÁGINA DAS IMAGENS DOS CHAMADOS----------------------//
+
+$app->get('/user/mycalls/images/:idcall', function($idcall) {  
+
+
+	User::verifyLogin();
+
+	$call = new Call();
+
+	$page = new Page();
+
+	$page->setTpl("image-calls-user",[
+		'images'=>$call->showPhotos($idcall),
+		"call"=>$call->get((int)$idcall)
+	]);
+
+});
+
+//---------ROTA PARA  A PÁGINA DO PERFIL DO USUÁRIO----------------------//
+
 $app->get('/user/profile', function() {  
 
 
@@ -108,6 +190,9 @@ $app->get('/user/profile', function() {
 	$page->setTpl("user-profile");
 
 });
+
+
+//---------ROTA PARA ALTERAR OS DADOS DO USUÁRIO - POST----------------------//
 
 $app->post("/user/profile/update/:iduser", function ($iduser) {
 
@@ -124,22 +209,7 @@ $app->post("/user/profile/update/:iduser", function ($iduser) {
 
 });
 
-$app->post("/user/profile/update_image/:iduser", function ($iduser) {
-
-	$user = new User();
-
-	$user->get((int)$iduser);
-
-	$user->setData($_POST);
-
-
-
-	$user->updateImage();
-
-	header('Location: /');
-	exit;
-
-});
+//---------ROTA PARA ALTERAR A FOTO DO PERFIL DO USUÁRIO - POST---------------------//
 
 $app->post("/user/profile/update_image/:iduser", function ($iduser) {
 
@@ -149,13 +219,12 @@ $app->post("/user/profile/update_image/:iduser", function ($iduser) {
 
 	$user->setData($_POST);
 
-
-
 	$user->updateImage();
 
 	header('Location: /');
 	exit;
 
 });
+
 
 ?>

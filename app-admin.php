@@ -1,6 +1,5 @@
 <?php
 
-
 use \Projeto\PageAdmin;
 use \Projeto\Model\User;
 

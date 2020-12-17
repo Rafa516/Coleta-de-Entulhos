@@ -13,7 +13,7 @@ class Page {
 	private $defaults = [
 		"header"=>true,
 		"footer"=>true,
-		"data"=>["dir_url" => "http://www.coletaentulhos.com.br"  // variável
+		"data"=>["dir_url" => "https://www.coleta-entulhos.com.br/"  // variável
 		]
 
 	];
