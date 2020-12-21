@@ -165,13 +165,14 @@ class User extends Model {
 
 		$sql  = new Sql();
 
-		$results = $sql->select("CALL sp_users_save(:person,:login,:despassword, :email, :phone,:inadmin,:picture,:born_date,:city,:address)",array(
+		$results = $sql->select("CALL sp_users_save(:person,:login,:despassword, :email, :phone,:inadmin,:genre,:picture,:born_date,:city,:address)",array(
 			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
 			":despassword" => User::getPasswordHash($this->getdespassword()),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin(),
+			":genre"=>$this->getgenre(),
 			":picture"=>$this->getpicture(),
 			":born_date"=>$this->getborn_date(),
 			":city"=>$this->getcity(),
@@ -188,16 +189,14 @@ class User extends Model {
 
 		$sql  = new Sql();
 
-		$results = $sql->select("CALL sp_users_update(:iduser,:person,:phone,:born_date,:city,:address)",array(
+		$results = $sql->select("CALL sp_users_update(:iduser,:person,:genre,:phone,:born_date,:city,:address)",array(
 			":iduser"=>$this->getiduser(),
 			":person"=>$this->getperson(),
+			":genre"=>$this->getgenre(),
 			":phone"=>$this->getphone(),
 			":born_date"=>$this->getborn_date(),
 			":city"=>$this->getcity(),
-			":address"=>$this->getaddress()
-			
-		
-			
+			":address"=>$this->getaddress()	
 		));
 
 		$this->setData($results[0]);

@@ -16,9 +16,10 @@
                     
                     <th  ><center>Código<b></th>
                     <th  ><center>Local<b></th>
-                    <th ><center>Obsercação</th>
-                    <th><center>Mapa</th>
+                    <th ><center>Observação</th>
+                    <th><center>Localização</th>
                     <th><center>Fotos</th>
+                    <th><center>Prioridade</th>
                     <th><center>Situação</th>
                     <th><center>Data de Registro</th>
                   </tr>
@@ -27,14 +28,20 @@
                   {loop="$calls"}
                   <tr style="font-size: 15px;font-weight: normal;">
                     
-                    <td><center>{$value.idcall}</td>
-                    <td><center>{$value.locality}</td>
-                    <td><center>{$value.observation}</td>
-                    <td><center><a href=""  class="btn btn-info btn-xs"><i class="fa fa-globe"></i> Mapa</a></td/>
-                    <td><center>   <a href="/user/mycalls/images/{$value.idcall}"  class="btn btn-info btn-xs"><i class="fa fa-camera"></i> Fotos</a>
+                    <td><br><center>{$value.idcall}</td>
+                    <td><br><center>{$value.locality}</td>
+                    <td><br><center>{$value.observation}</td>
+                    <td><br><center><a href="/user/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"><i class="fa fa-map-marker"></i> Localização</a></td/>
+                    <td><br><center>   <a href="/user/mycalls/images/{$value.idcall}"  class="btn btn-info btn-sm"><i class="fa fa-camera"></i> Fotos</a>
                    </td/>
-                    <td><center>{if="$value.situation == 1"}<b style="color: #FF4000;">Pendente</b>{else}Não{/if}</td>
-                    <td><center>{function="formatDate($value.dtregister)"}</td>
+                    <td><br><center>{$value.priority}</td>
+                    <td><br><center>
+                      {if="$value.situation == 1"}<b style="color: #FF4000;">Pendente</b>
+                      {elseif="$value.situation == 2"}<b style="color: #D7DF01;">Em Andamento</b>
+                      {else}<b style="color: #04B404;">Finalizado</b>
+                      {/if}
+                    </td>
+                    <td><br><center>{function="formatDate($value.dtregister)"}</td>
                    
                    
                   </tr>

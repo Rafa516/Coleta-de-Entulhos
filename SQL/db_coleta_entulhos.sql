@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 12/12/2020 às 12:01
+-- Tempo de geração: 21/12/2020 às 01:05
 -- Versão do servidor: 5.7.32-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -25,6 +25,28 @@ DELIMITER $$
 --
 -- Procedimentos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_call_save` (IN `piduser` INT(11), IN `plocality` VARCHAR(128), IN `pobservation` TEXT, IN `ppriority` VARCHAR(64), IN `psituation` INT(11))  NO SQL
+BEGIN
+   
+    INSERT INTO tb_calls (iduser,locality,observation,priority,situation)
+    
+    VALUES(piduser,plocality,pobservation,ppriority,psituation);
+    
+    
+  SELECT * FROM tb_calls  WHERE idcall = LAST_INSERT_ID();
+    
+    
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_image_call_add` (IN `pidcall` INT(11), IN `piduser` INT(11), IN `pnamephoto` VARCHAR(64))  NO SQL
+BEGIN
+
+INSERT INTO tb_callphotos (idcall,iduser,namephoto)
+    VALUES(pidcall,piduser,pnamephoto);
+   
+
+ END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_image` (IN `piduser` INT(11), IN `ppicture` VARCHAR(64))  BEGIN
  
     UPDATE tb_users
@@ -35,11 +57,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_image` (IN `piduser` INT(
     
  END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save` (IN `pperson` VARCHAR(64), IN `plogin` VARCHAR(64), IN `pdespassword` VARCHAR(256), IN `pemail` VARCHAR(128), IN `pphone` BIGINT, IN `pinadmin` TINYINT, IN `ppicture` VARCHAR(64), IN `pborn_date` DATE, IN `pcity` VARCHAR(64), IN `paddress` VARCHAR(128))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_situation` (IN `pidcall` INT(11), IN `psituation` INT(11))  BEGIN
+ 
+    UPDATE tb_calls
+    SET
+        situation = psituation
+          
+        WHERE idcall = pidcall;
+        
+      SELECT * FROM tb_calls WHERE idcall = pidcall;  
+        
+          
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save` (IN `pperson` VARCHAR(64), IN `plogin` VARCHAR(64), IN `pdespassword` VARCHAR(256), IN `pemail` VARCHAR(128), IN `pphone` BIGINT, IN `pinadmin` TINYINT, IN `pgenre` INT(11), IN `ppicture` VARCHAR(64), IN `pborn_date` DATE, IN `pcity` VARCHAR(64), IN `paddress` VARCHAR(128))  BEGIN
    
-    INSERT INTO tb_users (person,login,despassword,email, phone,inadmin,picture,born_date,city,address)
+    INSERT INTO tb_users (person,login,despassword,email, phone,inadmin,genre,picture,born_date,city,address)
     
-    VALUES(pperson,plogin,pdespassword,pemail, pphone,pinadmin,ppicture,pborn_date,pcity,paddress);
+    VALUES(pperson,plogin,pdespassword,pemail, pphone,pinadmin,pgenre,ppicture,pborn_date,pcity,paddress);
     
     
   SELECT * FROM tb_users  WHERE iduser = LAST_INSERT_ID();
@@ -47,11 +82,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save` (IN `pperson` VARCHA
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_update` (IN `piduser` INT(11), IN `pperson` VARCHAR(64), IN `pphone` BIGINT(20), IN `pborn_date` DATE, IN `pcity` VARCHAR(64), IN `paddress` VARCHAR(128))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_update` (IN `piduser` INT(11), IN `pperson` VARCHAR(64), IN `pgenre` INT(11), IN `pphone` BIGINT(20), IN `pborn_date` DATE, IN `pcity` VARCHAR(64), IN `paddress` VARCHAR(128))  BEGIN
  
     UPDATE tb_users
     SET
         person = pperson,
+        genre = pgenre,
         phone = pphone,
         born_date = pborn_date,
         city = pcity,
@@ -71,6 +107,85 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tb_callphotos`
+--
+
+CREATE TABLE `tb_callphotos` (
+  `idphoto` int(11) NOT NULL,
+  `idcall` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `namephoto` varchar(64) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_callphotos`
+--
+
+INSERT INTO `tb_callphotos` (`idphoto`, `idcall`, `iduser`, `namephoto`, `dtregister`) VALUES
+(64, 24, 18, 'Captura de tela de 2020-12-18 11-34-30.png', '2020-12-18 14:37:48'),
+(65, 24, 18, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-18 14:37:48'),
+(66, 24, 18, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-18 14:37:48'),
+(67, 24, 18, 'Captura de tela de 2020-12-18 11-36-30.png', '2020-12-18 14:37:48'),
+(68, 24, 18, 'Captura de tela de 2020-12-18 11-36-44.png', '2020-12-18 14:37:48'),
+(69, 24, 18, 'Captura de tela de 2020-12-18 11-36-49.png', '2020-12-18 14:37:48'),
+(70, 24, 18, 'Captura de tela de 2020-12-18 11-36-55.png', '2020-12-18 14:37:48'),
+(71, 24, 18, 'Captura de tela de 2020-12-18 11-37-00.png', '2020-12-18 14:37:49'),
+(72, 24, 18, 'Captura de tela de 2020-12-18 11-37-05.png', '2020-12-18 14:37:49'),
+(73, 24, 18, 'Entulhos-se-acumulam.jpg', '2020-12-18 14:37:49'),
+(74, 25, 16, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-18 14:40:25'),
+(75, 25, 16, 'Captura de tela de 2020-12-18 11-36-44.png', '2020-12-18 14:40:25'),
+(76, 25, 16, 'Captura de tela de 2020-12-18 11-36-49.png', '2020-12-18 14:40:25'),
+(77, 26, 20, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-18 22:35:13'),
+(78, 27, 1, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-20 14:23:22'),
+(79, 27, 1, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-20 14:23:22'),
+(82, 29, 1, 'Captura de tela de 2020-12-16 15-29-23.png', '2020-12-21 02:25:14'),
+(83, 29, 1, 'Captura de tela de 2020-12-17 23-52-48.png', '2020-12-21 02:25:14');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_calls`
+--
+
+CREATE TABLE `tb_calls` (
+  `idcall` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `locality` varchar(128) NOT NULL,
+  `observation` text,
+  `priority` varchar(64) NOT NULL,
+  `situation` int(11) NOT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_calls`
+--
+
+INSERT INTO `tb_calls` (`idcall`, `iduser`, `locality`, `observation`, `priority`, `situation`, `dtregister`) VALUES
+(24, 18, 'Quadra 518', ' Perto da Praça', 'Alta', 2, '2020-12-21 02:38:42'),
+(25, 16, 'Quadra 517', ' Perto da Igreja', 'Baixa', 3, '2020-12-21 04:02:03'),
+(26, 20, 'Quadra 215', ' Perto do mercado', 'Baixa', 1, '2020-12-21 03:07:09'),
+(27, 1, 'Quadra 516 conjunto c casa 20', ' 2222222', 'Baixa', 3, '2020-12-21 02:47:05'),
+(29, 1, 'eeee', ' 2222', 'Baixa', 2, '2020-12-21 02:34:42');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_locations`
+--
+
+CREATE TABLE `tb_locations` (
+  `idlocation` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `lng` float(10,6) NOT NULL,
+  `lat` float(10,6) NOT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tb_users`
 --
 
@@ -85,6 +200,7 @@ CREATE TABLE `tb_users` (
   `login` varchar(64) NOT NULL,
   `despassword` varchar(256) NOT NULL,
   `inadmin` tinyint(4) NOT NULL DEFAULT '0',
+  `genre` int(11) NOT NULL,
   `picture` varchar(64) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -93,29 +209,88 @@ CREATE TABLE `tb_users` (
 -- Despejando dados para a tabela `tb_users`
 --
 
-INSERT INTO `tb_users` (`iduser`, `person`, `email`, `phone`, `born_date`, `city`, `address`, `login`, `despassword`, `inadmin`, `picture`, `dtregister`) VALUES
-(1, '', '', 0, NULL, '', '', 'admin', '$2y$12$hKaYkmysAUxuw4gYLdTL3eyB7eVzwt4.mK4gGCQUYMD0X/YNzINrG', 1, '0', '2020-12-08 18:55:47'),
-(2, 'Rafael Oliveira', 'rafaxvi@hotmail.com', 6191441738, '1989-03-28', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 10', 'rafaxvi@hotmail.com', '$2y$12$vueXMfw.bEJtC3qZCFFhNOfZHLFmUUK50Xog6i7dpLOgb/GGrkJuu', 0, '20201212111221', '2020-12-08 19:10:10');
+INSERT INTO `tb_users` (`iduser`, `person`, `email`, `phone`, `born_date`, `city`, `address`, `login`, `despassword`, `inadmin`, `genre`, `picture`, `dtregister`) VALUES
+(1, 'Suporte', 'suporte@gmail.com', 6199999999999, '0001-01-01', 'Brasília - DF', 'Empresa S/A', 'admin', '$2y$12$hKaYkmysAUxuw4gYLdTL3eyB7eVzwt4.mK4gGCQUYMD0X/YNzINrG', 1, 0, '20201216121216', '2020-12-08 18:55:47'),
+(16, 'Rafael Oliveira', 'rafaxvi@hotmail.com', 6191441738, '2020-12-22', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 10', 'rafaxvi@hotmail.com', '$2y$12$ASdDwhq473Syx5F0U0cp2OfngHKgMiVOFrkw3gSAEA/rBbcSzEHKu', 0, 1, '20201218071222', '2020-12-18 13:03:43'),
+(18, 'Adjair Nascimento', 'adjair@gmail.com', 6199633909, '2020-12-15', 'Sobradinho - DF', 'Quadra 518 conjunto c casa 22', 'adjair@gmail.com', '$2y$12$fi8aemKy9D0s.3b9.oh3muAWpIWwrqE7H2M2pqtQTHcnI2gfGCWmy', 0, 0, '20201218111250', '2020-12-18 14:21:36'),
+(20, 'Sabrina ', 'sabrina.sa.sa@hotmail.com', 619941738, '1994-04-26', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 22', 'sabrina.sa.sa@hotmail.com', '$2y$12$VfP2I51w3m.PBFnzPpiLiO97t/azO/pS2gmJzIP.DSmaHQvSjLDXS', 0, 2, '0', '2020-12-18 21:43:12');
 
 --
 -- Índices de tabelas apagadas
 --
 
 --
+-- Índices de tabela `tb_callphotos`
+--
+ALTER TABLE `tb_callphotos`
+  ADD PRIMARY KEY (`idphoto`),
+  ADD KEY `fk_callphotos_calls` (`idcall`),
+  ADD KEY `fk_callphotos_users` (`iduser`);
+
+--
+-- Índices de tabela `tb_calls`
+--
+ALTER TABLE `tb_calls`
+  ADD PRIMARY KEY (`idcall`),
+  ADD KEY `fk_calls_users` (`iduser`);
+
+--
+-- Índices de tabela `tb_locations`
+--
+ALTER TABLE `tb_locations`
+  ADD PRIMARY KEY (`idlocation`);
+
+--
 -- Índices de tabela `tb_users`
 --
 ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`iduser`);
+  ADD PRIMARY KEY (`iduser`),
+  ADD KEY `iduser` (`iduser`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
+-- AUTO_INCREMENT de tabela `tb_callphotos`
+--
+ALTER TABLE `tb_callphotos`
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- AUTO_INCREMENT de tabela `tb_calls`
+--
+ALTER TABLE `tb_calls`
+  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT de tabela `tb_locations`
+--
+ALTER TABLE `tb_locations`
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Restrições para dumps de tabelas
+--
+
+--
+-- Restrições para tabelas `tb_callphotos`
+--
+ALTER TABLE `tb_callphotos`
+  ADD CONSTRAINT `fk_callphotos_calls` FOREIGN KEY (`idcall`) REFERENCES `tb_calls` (`idcall`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_callphotos_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `tb_calls`
+--
+ALTER TABLE `tb_calls`
+  ADD CONSTRAINT `fk_calls_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

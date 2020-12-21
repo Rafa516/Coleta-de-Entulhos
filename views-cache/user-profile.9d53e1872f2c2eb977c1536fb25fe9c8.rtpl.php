@@ -13,13 +13,20 @@
       <div class="row mt-5 align-items-center">
         <div class="col-md-3 text-center mb-5">
           <div class="avatar avatar-xl">
-            <?php if( $user["picture"] == 0 ){ ?>
 
-            <img src="/res/ft_perfil/no_photo.png" class="avatar-img rounded-circle" />
-            <?php }else{ ?>
+             <?php if( $user["picture"] == 0 && $user["genre"] == 1 ){ ?>
 
-            <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="avatar-img rounded-circle" />
-            <?php } ?>
+              <img src="/res/ft_perfil/ft_male.png" class="avatar-img rounded-circle" alt="">
+              <?php }elseif( $user["picture"] == 0 && $user["genre"] == 2 ){ ?>
+
+              <img src="/res/ft_perfil/ft_female.png" class="avatar-img rounded-circle" alt="">
+              <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
+
+              <img src="/res/ft_perfil/ft_unknowm.png" class="avatar-img rounded-circle" alt="">
+              <?php }else{ ?>
+
+              <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="avatar-img rounded-circle" alt="">
+              <?php } ?>
 
             <br><br><button onclick="alertAlterarFoto()" data-toggle="modal" data-target="#imageModal"
               class="btn btn-primary"><b>Alterar Foto</b> </button>
@@ -77,6 +84,14 @@
 
           <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
             <input class="form-control py-1" value='<?php echo getUserName(); ?>' type="text" name="person" required />
+          </div>
+
+          <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+              <select class="form-control py-1" name="genre" id="genre">
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <option value="3">Outros</option>
+            </select>
           </div>
 
           <div class="form-group"><label class="small mb-1"><b>Telefone</b></label>

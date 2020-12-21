@@ -17,9 +17,10 @@
                     
                     <th  ><center>Código<b></th>
                     <th  ><center>Local<b></th>
-                    <th ><center>Obsercação</th>
-                    <th><center>Mapa</th>
+                    <th ><center>Observação</th>
+                    <th><center>Localização</th>
                     <th><center>Fotos</th>
+                    <th><center>Prioridade</th>
                     <th><center>Situação</th>
                     <th><center>Data de Registro</th>
                   </tr>
@@ -29,14 +30,21 @@
 
                   <tr style="font-size: 15px;font-weight: normal;">
                     
-                    <td><center><?php echo $value1["idcall"]; ?></td>
-                    <td><center><?php echo $value1["locality"]; ?></td>
-                    <td><center><?php echo $value1["observation"]; ?></td>
-                    <td><center><a href=""  class="btn btn-info btn-xs"><i class="fa fa-globe"></i> Mapa</a></td/>
-                    <td><center>   <a href="/user/mycalls/images/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-xs"><i class="fa fa-camera"></i> Fotos</a>
+                    <td><br><center><?php echo $value1["idcall"]; ?></td>
+                    <td><br><center><?php echo $value1["locality"]; ?></td>
+                    <td><br><center><?php echo $value1["observation"]; ?></td>
+                    <td><br><center><a href="/user/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"><i class="fa fa-map-marker"></i> Localização</a></td/>
+                    <td><br><center>   <a href="/user/mycalls/images/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"><i class="fa fa-camera"></i> Fotos</a>
                    </td/>
-                    <td><center><?php if( $value1["situation"] == 1 ){ ?><b style="color: #FF4000;">Pendente</b><?php }else{ ?>Não<?php } ?></td>
-                    <td><center><?php echo formatDate($value1["dtregister"]); ?></td>
+                    <td><br><center><?php echo $value1["priority"]; ?></td>
+                    <td><br><center>
+                      <?php if( $value1["situation"] == 1 ){ ?><b style="color: #FF4000;">Pendente</b>
+                      <?php }elseif( $value1["situation"] == 2 ){ ?><b style="color: #D7DF01;">Em Andamento</b>
+                      <?php }else{ ?><b style="color: #04B404;">Finalizado</b>
+                      <?php } ?>
+
+                    </td>
+                    <td><br><center><?php echo formatDate($value1["dtregister"]); ?></td>
                    
                    
                   </tr>

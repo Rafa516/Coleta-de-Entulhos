@@ -44,8 +44,8 @@
 			</div>
 			<?php } ?>
 
-			<input class="user-input" type="email" name="login" placeholder="Email" required>
-			<input class="user-input" type="password" name="despassword" placeholder="Senha" required>
+			<input    class="user-login" type="email" name="login" placeholder="Email" required>
+			<input class="user-login" type="password" name="despassword" placeholder="Senha" required>
 			<div class="options-01">
 				<label class="remember-me"><input type="checkbox" name="">Lembrar</label>
 				<a href="#">Esqueceu a senha</a>
@@ -75,6 +75,13 @@
 
 			Data de Nascimento
 			<input class="user-input" id="born_date" type="date" name="born_date" required>
+
+			Gênero
+			<select class="user-input" name="genre" id="genre">
+				<option value="1">Masculino</option>
+				<option value="2">Feminino</option>
+				<option value="3">Outros</option>
+			</select>
 
 			Senha
 			<input class="user-input"  id="despassword"type="password" name="despassword" placeholder="Digite uma senha" required>

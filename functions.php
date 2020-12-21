@@ -1,6 +1,7 @@
 <?php
 
 use \Projeto\Model\User;
+use \Projeto\Model\Call;
 
 
 	function formatDate($date)
@@ -34,6 +35,30 @@ use \Projeto\Model\User;
 		$total = User::total();
 
 	   return  $total['usersTotal'];
+
+	}
+
+	function totalCallPendings(){
+
+		$total = Call::totalCallsPendings();
+
+	   return  $total['callsPendings'];
+
+	}
+
+	function totalCallProgress(){
+
+		$total = Call::totalCallsProgress();
+
+	   return  $total['callsProgress'];
+
+	}
+
+	function totalCallFinished(){
+
+		$total = Call::totalCallsFinished();
+
+	   return  $total['callsFinished'];
 
 	}
 

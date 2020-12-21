@@ -45,6 +45,7 @@ $app->post("/register", function(){
 		'phone'=>$_POST['phone'],
 		'born_date'=>$_POST['born_date'],
 		'city'=>$_POST['city'],
+		'genre'=>$_POST['genre'],
 		'address'=>$_POST['address'],
 		'picture'=>0
 	]);
@@ -108,7 +109,7 @@ $app->get('/user', function() {
 
 //---------ROTA PARA A PÁGINA DE ABERTURA DOS CHAMADOS----------------------//
 
-$app->get('/user/openCall', function() {  
+$app->get('/user/open-call', function() {  
 
 
 	User::verifyLogin();
@@ -122,7 +123,7 @@ $app->get('/user/openCall', function() {
 //---------ROTA PARA A PÁGINA DO PERFIL DO USUÁRIO----------------------//
 
 
-$app->post("/use/openCall/submit", function(){
+$app->post("/user/open-call/submit", function(){
 
 	User::verifyLogin();
 
@@ -132,7 +133,7 @@ $app->post("/use/openCall/submit", function(){
 
 	$call->save();
 
-	header("Location: /user/openCall");
+	header("Location: /user/open-call");
 	exit;
 
 
@@ -141,7 +142,7 @@ $app->post("/use/openCall/submit", function(){
 
 //---------ROTA PARA A PÁGINA DOS MEUS CHAMADOS----------------------//
 
-$app->get('/user/mycalls/:iduser', function($iduser) {  
+$app->get('/user/my-calls/:iduser', function($iduser) {  
 
 
 	User::verifyLogin();
@@ -178,6 +179,23 @@ $app->get('/user/mycalls/images/:idcall', function($idcall) {
 
 });
 
+//---------ROTA PARA A PÁGINA DE LOCALIZAÇÃO NO MAPA----------------------//
+
+$app->get('/user/calls/maps/:idcall', function($idcall) {  
+
+
+	User::verifyLogin();
+
+	$call = new Call();
+
+	$page = new Page();
+
+	$page->setTpl("map-calls-user",[
+		"call"=>$call->get((int)$idcall)
+	]);
+
+});
+
 //---------ROTA PARA  A PÁGINA DO PERFIL DO USUÁRIO----------------------//
 
 $app->get('/user/profile', function() {  
@@ -188,6 +206,21 @@ $app->get('/user/profile', function() {
 	$page = new Page();
 
 	$page->setTpl("user-profile");
+
+});
+
+$app->get('/user/all-calls', function() {  
+
+
+	User::verifyLogin();
+
+	$call = new Call();
+
+	$page = new Page();
+
+	$page->setTpl("user-AllCalls",[
+	 "allCalls"=>$call::listAll()
+	]);
 
 });
 

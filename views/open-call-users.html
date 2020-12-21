@@ -11,7 +11,7 @@
       </ul>
 
       <div class="row mt-5 align-items-center">
-        <div class="col-md-5 text-center mb-5">
+        <div class="col-md-7 text-center mb-5">
           <div class="avatar avatar-xl">
             <div id="map"></div>
           </div>
@@ -22,10 +22,10 @@
 
           </div>
           <div class="row mb-7">
-            <div class="col-md-7">
+            <div class="col-md-10">
               <p class="text-muted">
 
-              <form class="form-group" action="/use/openCall/submit" method="post" enctype="multipart/form-data"><br>
+              <form class="form-group" action="/user/open-call/submit" method="post" enctype="multipart/form-data"><br>
 
 
                 <div class="form-group"><label class="small mb-1"><b
@@ -38,6 +38,15 @@
                   <textarea class="form-control py-1" value="" type="text" name="observation"> </textarea>
                 </div>
 
+                 <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:20px;color: #585858">Prioridade</b></label>
+                    <select class="form-control py-1" name="priority" id="city">
+                      <option value="Baixa">Baixa</option>
+                      <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+
 
                 <div class="form-group"><label class="small mb-1"><b b
                       style="font-size:20px;color: #585858">Fotos</b></label>
@@ -49,13 +58,13 @@
                 <input class="form-control py-1" value="1" name="situation" type="hidden">
 
 
-                <input class="form-control py-1" id="lat" type="text" name="lat">
+                <input class="form-control py-1" id="lat" type="hidden" name="lat">
 
 
-                <input class="form-control py-1" id="lng" type="text" name="lat">
+                <input class="form-control py-1" id="lng" type="hidden" name="lng">
 
 
-                <center><input style="width: 10em;" class="btn btn-primary btn " type="submit" value="Enviar"></center>
+                <center><input style="width:100%;" class="btn btn-primary btn " type="submit" value="Enviar"></center>
 
             </div>
 

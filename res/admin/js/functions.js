@@ -25,6 +25,18 @@ function alertAlterarDados() {
     
 }
 
+/*lightbox das imagens*/
+
+	$(document).ready(function() {
+
+	  $('.image-link').magnificPopup({
+	  	type:'image',
+	  	gallery:{enabled:true}
+	  });
+	  
+
+	});
+
 
 
 

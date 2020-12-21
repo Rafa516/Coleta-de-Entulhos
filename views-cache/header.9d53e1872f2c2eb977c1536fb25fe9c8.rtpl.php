@@ -37,21 +37,28 @@
   <!--mobile navigation bar start-->
   <div class="mobile_nav">
     <div class="nav_bar">
-      <?php if( $user["picture"] == 0 ){ ?>
+     <?php if( $user["picture"] == 0 && $user["genre"] == 1 ){ ?>
 
-      <img src="/res/ft_perfil/no_photo.png" class="mobile_profile_image" alt="">
+      <img src="/res/ft_perfil/ft_male.png" class="mobile_profile_image" alt="">
+      <?php }elseif( $user["picture"] == 0 && $user["genre"] == 2 ){ ?>
+
+      <img src="/res/ft_perfil/ft_female.png" class="mobile_profile_image" alt="">
+      <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
+
+      <img src="/res/ft_perfil/ft_unknowm.png" class="mobile_profile_image" alt="">
       <?php }else{ ?>
 
       <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
       <?php } ?>
 
-      <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
+       <b style="font-size: 17px;color: white;"><?php echo getUserName(); ?></b>
       <i class="fa fa-bars nav_btn"></i>
     </div>
     <div class="mobile_nav_items">
       <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="/user/openCall"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-      <a href="/user/mycalls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
+      <a href="/user/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
+      <a href="/user/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
+      <a href="/user/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
       <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
@@ -61,9 +68,15 @@
   <!--sidebar start-->
   <div class="sidebar">
     <div class="profile_info">
-      <?php if( $user["picture"] == 0 ){ ?>
+      <?php if( $user["picture"] == 0 && $user["genre"] == 1 ){ ?>
 
-      <img src="/res/ft_perfil/no_photo.png" class="profile_image" alt="">
+      <img src="/res/ft_perfil/ft_male.png" class="profile_image" alt="">
+      <?php }elseif( $user["picture"] == 0 && $user["genre"] == 2 ){ ?>
+
+      <img src="/res/ft_perfil/ft_female.png" class="profile_image" alt="">
+      <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
+
+      <img src="/res/ft_perfil/ft_unknowm.png" class="profile_image" alt="">
       <?php }else{ ?>
 
       <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">
@@ -72,8 +85,9 @@
       <center><b style="font-size: 18px;color: white;"><?php echo getUserName(); ?></b></center>
     </div>
     <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
-    <a href="/user/openCall"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-    <a href="/user/mycalls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus chamados</span></a>
+    <a href="/user/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
+    <a href="/user/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus chamados</span></a>
+    <a href="/user/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
     <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
   </div>

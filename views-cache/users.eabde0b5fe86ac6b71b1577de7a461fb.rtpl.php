@@ -12,8 +12,7 @@
          <?php if( $profileMsg != '' ){ ?>
 
             <div class="alert alert-success">
-                <?php echo $profileMsg; ?>
-
+                <b><?php echo $profileMsg; ?></b>
             </div>
             <?php } ?>
 
@@ -21,8 +20,7 @@
             <?php if( $errorRegister != '' ){ ?>
 
             <div class="alert alert-danger">
-                <?php echo $errorRegister; ?>
-
+               <b> <?php echo $errorRegister; ?></b>
             </div>
             <?php } ?>
 
@@ -31,6 +29,7 @@
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
                 
+                     <th ><center>Foto<b></th>
                     <th  ><center>Nome<b></th>
                     <th ><center>E-mail</th>
                     <th><center>Login</th>
@@ -48,24 +47,40 @@
 
                   <tr style="font-size: 15px;font-weight: normal;">
                     
-                    <td><center><?php echo $value1["person"]; ?></td>
-                    <td><center><?php echo $value1["email"]; ?></td>
-                    <td><center><?php echo $value1["login"]; ?></td/>
-                    <td><center><?php echo $value1["phone"]; ?></td>
-                    <td><center><?php echo $value1["city"]; ?></td/>
-                    <td ><center><?php echo $value1["address"]; ?></td/>
-                    <td><center><?php echo formatDate($value1["born_date"]); ?></td>
-                    <td><center><?php if( $value1["inadmin"] == 1 ){ ?>Sim<?php }else{ ?>Não<?php } ?></td>
-                    <td><center><?php echo formatDate($value1["dtregister"]); ?></td>
-                    <td>
+                    <td><br><center> 
+                      <?php if( $value1["picture"] == 0 && $value1["genre"] == 1 ){ ?>
+
+                      <img src="/../res/ft_perfil/ft_male.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <?php }elseif( $value1["picture"] == 0 && $value1["genre"] == 2 ){ ?>
+
+                      <img src="/../res/ft_perfil/ft_female.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <?php }elseif( $value1["picture"] == 0 && $value1["genre"] == 3 ){ ?>
+
+                      <img src="/../res/ft_perfil/ft_unknowm.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <?php }else{ ?>
+
+                      <img src="/../res/ft_perfil/<?php echo $value1["picture"]; ?>" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <?php } ?>
+
+                    </td>
+                    <td><br><center><?php echo $value1["person"]; ?></td>
+                    <td><br><center><?php echo $value1["email"]; ?></td>
+                    <td><br><center><?php echo $value1["login"]; ?></td/>
+                    <td><br><center><?php echo $value1["phone"]; ?></td>
+                    <td><br><center><?php echo $value1["city"]; ?></td/>
+                    <td ><br><center><?php echo $value1["address"]; ?></td/>
+                    <td><br><center><?php echo formatDate($value1["born_date"]); ?></td>
+                    <td><br><center><?php if( $value1["inadmin"] == 1 ){ ?>Sim<?php }else{ ?>Não<?php } ?></td>
+                    <td><br><center><?php echo formatDate($value1["dtregister"]); ?></td>
+                    <td><br>
                       <center>
                       
                       <?php if( $value1["iduser"] == $user["iduser"] ){ ?>
 
-                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary"></i> Editar</button>
+                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary btn-sm"></i> Editar</button>
                       <?php }else{ ?>
 
-                    <a style="width: 80px;" href="/admin/users/delete/<?php echo $value1["iduser"]; ?>"  onclick="return confirm('Deseja realmente excluir o usuário <?php echo $value1["person"]; ?>?')" class="btn btn-danger btn-xs"> Excluir</a>
+                    <a style="width: 80px;" href="/admin/users/delete/<?php echo $value1["iduser"]; ?>"  onclick="return confirm('Deseja realmente excluir o usuário <?php echo $value1["person"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a>
                       <?php } ?>
 
 

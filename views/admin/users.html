@@ -11,13 +11,13 @@
 
          {if="$profileMsg != ''"}
             <div class="alert alert-success">
-                {$profileMsg}
+                <b>{$profileMsg}</b>
             </div>
             {/if}
 
             {if="$errorRegister != ''"}
             <div class="alert alert-danger">
-                {$errorRegister}
+               <b> {$errorRegister}</b>
             </div>
             {/if}
         <div class="table-responsive">
@@ -25,6 +25,7 @@
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
                 
+                     <th ><center>Foto<b></th>
                     <th  ><center>Nome<b></th>
                     <th ><center>E-mail</th>
                     <th><center>Login</th>
@@ -41,22 +42,33 @@
                   {loop="$users"}
                   <tr style="font-size: 15px;font-weight: normal;">
                     
-                    <td><center>{$value.person}</td>
-                    <td><center>{$value.email}</td>
-                    <td><center>{$value.login}</td/>
-                    <td><center>{$value.phone}</td>
-                    <td><center>{$value.city}</td/>
-                    <td ><center>{$value.address}</td/>
-                    <td><center>{function="formatDate($value.born_date)"}</td>
-                    <td><center>{if="$value.inadmin == 1"}Sim{else}Não{/if}</td>
-                    <td><center>{function="formatDate($value.dtregister)"}</td>
-                    <td>
+                    <td><br><center> 
+                      {if="$value.picture == 0 && $value.genre == 1"}
+                      <img src="/../res/ft_perfil/ft_male.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      {elseif="$value.picture == 0 && $value.genre == 2"}
+                      <img src="/../res/ft_perfil/ft_female.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      {elseif="$value.picture == 0 && $value.genre == 3"}
+                      <img src="/../res/ft_perfil/ft_unknowm.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      {else}
+                      <img src="/../res/ft_perfil/{$value.picture}" style="height: 50px;width: 50px;border-radius: 30px;">
+                      {/if}
+                    </td>
+                    <td><br><center>{$value.person}</td>
+                    <td><br><center>{$value.email}</td>
+                    <td><br><center>{$value.login}</td/>
+                    <td><br><center>{$value.phone}</td>
+                    <td><br><center>{$value.city}</td/>
+                    <td ><br><center>{$value.address}</td/>
+                    <td><br><center>{function="formatDate($value.born_date)"}</td>
+                    <td><br><center>{if="$value.inadmin == 1"}Sim{else}Não{/if}</td>
+                    <td><br><center>{function="formatDate($value.dtregister)"}</td>
+                    <td><br>
                       <center>
                       
                       {if="$value.iduser == $user.iduser"}
-                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary"></i> Editar</button>
+                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary btn-sm"></i> Editar</button>
                       {else}
-                    <a style="width: 80px;" href="/admin/users/delete/{$value.iduser}"  onclick="return confirm('Deseja realmente excluir o usuário {$value.person}?')" class="btn btn-danger btn-xs"> Excluir</a>
+                    <a style="width: 80px;" href="/admin/users/delete/{$value.iduser}"  onclick="return confirm('Deseja realmente excluir o usuário {$value.person}?')" class="btn btn-danger btn-sm"> Excluir</a>
                       {/if}
 
                     </td>
