@@ -64,8 +64,16 @@
                     <td><br><center><?php echo $value1["person"]; ?></td>
                     <td><br><center><?php echo $value1["locality"]; ?></td>
                     <td><br><center><?php echo $value1["observation"]; ?></td>
-                    <td><br><center><a href="/admin/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"><i class="fa fa-map-marker"></i> Localização</a></td/>
-                    <td><br><center>   <a href="/admin/calls/images/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"><i class="fa fa-camera"></i> Fotos</a>
+                    <td><br><center><a href="/admin/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"><b>Localização</b></a></td/>
+                    <td><br><center>   <a href="/admin/calls/images/<?php echo $value1["idcall"]; ?>"  style="width: 100px;" class="btn btn-info btn-sm" >
+                     <?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
+
+                      <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
+                      <?php }else{ ?>
+
+                      <b><?php echo numPhotos($value1["idcall"]); ?> Fotos</b></a>
+                      <?php } ?>
+
                    </td/>
                     <td><br><center><?php echo $value1["priority"]; ?></td>
                     <td><br><center>

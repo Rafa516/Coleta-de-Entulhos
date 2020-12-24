@@ -52,8 +52,12 @@
                     <td><br><center>{$value.person}</td>
                     <td><br><center>{$value.locality}</td>
                     <td><br><center>{$value.observation}</td>
-                    <td><br><center><a href="/admin/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"><i class="fa fa-map-marker"></i> Localização</a></td/>
-                    <td><br><center>   <a href="/admin/calls/images/{$value.idcall}"  class="btn btn-info btn-sm"><i class="fa fa-camera"></i> Fotos</a>
+                    <td><br><center><a href="/admin/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
+                    <td><br><center>   <a href="/admin/calls/images/{$value.idcall}"  style="width: 100px;" class="btn btn-info btn-sm" >{if="numPhotos($value.idcall) == 1"}
+                      <b>{function="numPhotos($value.idcall)"} Foto</b></a>
+                      {else}
+                      <b>{function="numPhotos($value.idcall)"} Fotos</b></a>
+                      {/if}
                    </td/>
                     <td><br><center>{$value.priority}</td>
                     <td><br><center>

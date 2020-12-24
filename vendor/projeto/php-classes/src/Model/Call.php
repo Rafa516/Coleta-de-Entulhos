@@ -5,9 +5,10 @@ namespace Projeto\Model;
 use \Projeto\DB\Sql;
 use \Projeto\Model;
 
+//Classe Call(Chamados, com seus métodos específicos)
 class Call extends Model {
 
-	//Função com a query que seleciona  todos dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente
+	//Método estático com a query que seleciona  todos dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente
 
 	public static function listAll()
 	{
@@ -18,7 +19,7 @@ class Call extends Model {
 
 	}
 
-	//Função para selecionar somente os chamados pendentes
+	//Método estático para selecionar somente os chamados pendentes
 	public static function listCallPendigs()
 	{
 
@@ -28,7 +29,7 @@ class Call extends Model {
 
 	}
 
-	//Função para selecionar somente os chamados em andamento
+	//Método estático para selecionar somente os chamados em andamento
 	public static function listCallProgress()
 	{
 
@@ -38,7 +39,7 @@ class Call extends Model {
 
 	}
 
-	//Função para selecionar somente os chamados finalizados
+	//Método estático para selecionar somente os chamados finalizados
 	public static function listCallFinished()
 	{
 
@@ -48,7 +49,7 @@ class Call extends Model {
 
 	}
 	
-	//Função com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro.
+	//Método com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro.
 
 	public function getCallsID($iduser)
 	{
@@ -66,7 +67,7 @@ class Call extends Model {
 	}
 
 
-	//Função que verifica o array de dados
+	//Método estático que verifica o array de dados
 	public static function checkList($list)
 	{
 
@@ -82,6 +83,7 @@ class Call extends Model {
 
 	}
 
+	//Método estático que verifica o total de chamados registrados
 	public static function total()
 	{
 		
@@ -94,6 +96,7 @@ class Call extends Model {
 		return ['callsTotal'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
+	//Método estático que verifica o total de chamados pedentes registrados
 	public static function totalCallsPendings()
 	{
 		
@@ -105,6 +108,7 @@ class Call extends Model {
 		return ['callsPendings'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
+	//Método estático que verifica o total de chamados em andamento registrados
 	public static function totalCallsProgress()
 	{
 		
@@ -116,6 +120,7 @@ class Call extends Model {
 		return ['callsProgress'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
+	//Método estático que verifica o total de chamados finalizados  registrados
 	public static function totalCallsFinished()
 	{
 		
@@ -127,10 +132,23 @@ class Call extends Model {
 		return ['callsFinished'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
+	//Método estático que verifica o total de chamados finalizados  registrados
+	public static function numPhotos($idcall)
+	{
+		
+		$sql = new Sql();
+		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
+			FROM  tb_callphotos WHERE idcall = :idcall",[
+			':idcall'=>$idcall]);
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+	  
+		return ['photos'=>(int)$resultTotal[0]["nrtotal"]];
+	}
 
 
 
-	//função que busca os dados do procedimento e salva no tabela de chamados
+
+	//Método que busca os dados do procedimento e salva no tabela de chamados
 	public function save()
 	{
 
@@ -151,6 +169,7 @@ class Call extends Model {
 
 	}
 
+	//Método para atualizar a situação dos chamados
 	public function updateSituation()
 	{
 
@@ -165,7 +184,7 @@ class Call extends Model {
 
 	}
 
-
+	//Método que seleciona todos chamados passando a ID por parâmetro
 	public function get($idcall)
 	{
 
@@ -181,6 +200,7 @@ class Call extends Model {
 
 	}
 
+	//Método que seleciona todos chamados passando a ID por parâmetro e verificando o valor da situação de cada chamado
 	public function valueSituation($idcall)
 	{
 
@@ -198,7 +218,7 @@ class Call extends Model {
 
 	
 	
-	
+	//Método para deletar um chamado
 	public function delete()
 	{
 
@@ -218,7 +238,7 @@ class Call extends Model {
 
 	}
 
-	
+	//Método estático para a verificação do total de fotos de cada chamado
 	public static function totalPhotos($idcall)
 	{
 		
@@ -233,7 +253,7 @@ class Call extends Model {
 	}
 
 
-
+	//Método para pegar os valores do array
 	public function getValues()
 	{
 		
@@ -244,7 +264,7 @@ class Call extends Model {
 
 	}
 
-
+	//Método para verificar e mover as fotos para  a pasta de destino e seu nome para o banco de dados
 	public function movePhotos()
 	{
 		 				
@@ -279,6 +299,7 @@ class Call extends Model {
 		
 	}
 
+	//Método para listar as imagens referentes a cada chamado
 	public function showPhotos($idcall)
 	{
 	     $sql = new Sql();
@@ -303,8 +324,9 @@ class Call extends Model {
 	     return $resultsExistPhoto;
 	 	 }
 	}
-
-	public   function getPhotos($idphoto)
+	
+	//Método para listar todos as fotos de cada chamado e passar pro parâmetro a ID
+	public  function getPhotos($idphoto)
 	{
 
 		$sql = new Sql();
@@ -315,6 +337,7 @@ class Call extends Model {
 
 	}
 
+	//Método para deletar fotos
 	public function deletePhoto($idphoto)
 	{
 

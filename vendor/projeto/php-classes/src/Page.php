@@ -5,7 +5,7 @@ namespace Projeto;
 use \Rain\Tpl;
 use \Projeto\Model\User;
 
-
+//Classe Page(Página, com os principais métodos de templates usado para a página de usuários comuns)
 class Page {
 
 	private $tpl;
@@ -18,6 +18,7 @@ class Page {
 
 	];
 
+	//Método Construtor para ativação do Rain Tpl
 	public function __construct($opts = array(),$tpl_dir = "/views/")
 	{
 
@@ -35,17 +36,15 @@ class Page {
 
 		$this->tpl = new Tpl();
 
-		if (isset($_SESSION[User::SESSION])) $this->tpl->assign("user", $_SESSION[User::SESSION]);
-
-		
-
 		//atribuindo os valores das váriaveis do Usuario na sessão.
+		if (isset($_SESSION[User::SESSION])) $this->tpl->assign("user", $_SESSION[User::SESSION]);
 		
 		if ($this->options['data']) $this->setData($this->options['data']);
 
 		if ($this->options['header'] === true) $this->tpl->draw("header", false);
 
 	}
+
 
 	public function __destruct()
 	{
@@ -66,6 +65,7 @@ class Page {
 
 	}
 
+	//Método para renderização do template com parâmetro do nome da página html e seus dados ou chamadas de métodos, se houver.
 	public function setTpl($tplname, $data = array(), $returnHTML = false)
 	{
 

@@ -38,12 +38,12 @@
                   <textarea class="form-control py-1" value="" type="text" name="observation"> </textarea>
                 </div>
 
-                 <div class="form-group"><label class="small mb-1"><b
+                <div class="form-group"><label class="small mb-1"><b
                       style="font-size:20px;color: #585858">Prioridade</b></label>
-                    <select class="form-control py-1" name="priority" id="city">
-                      <option value="Baixa">Baixa</option>
-                      <option value="Alta">Alta</option>
-                    </select>
+                  <select class="form-control py-1" name="priority" id="city">
+                    <option value="Baixa">Baixa</option>
+                    <option value="Alta">Alta</option>
+                  </select>
                 </div>
 
 

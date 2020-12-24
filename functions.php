@@ -59,6 +59,13 @@ use \Projeto\Model\Call;
 		$total = Call::totalCallsFinished();
 
 	   return  $total['callsFinished'];
+	}
+
+	function numPhotos($idcall){
+
+		$total = Call::numPhotos($idcall);
+
+	   	return  $total['photos'];
 
 	}
 

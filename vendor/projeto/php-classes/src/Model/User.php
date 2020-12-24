@@ -2,12 +2,11 @@
 
 namespace Projeto\Model;
 
-use Exception;
+
 use \Projeto\Model;
 use \Projeto\DB\Sql;
-use \Projeto\Mailer;
-use \Projeto\Page;
 
+//Classe User(Usuários, com seus métodos específicos)
 class User extends Model {
 
 	const SESSION = "User";
@@ -18,8 +17,7 @@ class User extends Model {
 	
 
 
-	
-
+	//Método estático para verificação e validação do usuário comum e do administrador
 	public static function login($login, $password)
 	{
 
@@ -33,8 +31,8 @@ class User extends Model {
 			throw new \Exception("Falha na sua tentativa de login.Conta não cadastrada");
 		}
 
-		$data = $results[0];
 
+		$data = $results[0];
 
 
 		if (password_verify($password, $data['despassword']) === true) {
@@ -60,6 +58,36 @@ class User extends Model {
 
 	}
 
+	//Método estático para verificar se o email do usuário já existe
+	public static function checkEmailExist($email)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE email = :email", [
+			':email'=>$email
+		]);
+
+		return (count($results) > 0);
+
+	}
+
+	//Método estático para verificar se o login do usuário já existe
+	public static function checkLoginExist($login)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE login = :login", [
+			':login'=>$login
+		]);
+
+		return (count($results) > 0);
+
+	}
+
+	
+ 	//Método estático para encerrar a sessão do usuário (logout)
 	public static function logout()
 	{
 
@@ -67,6 +95,7 @@ class User extends Model {
 
 	}
 
+	//Método estático para criptografar as senhas registradas dos usuários
 	public static function getPasswordHash($password)
 	{
 
@@ -76,6 +105,7 @@ class User extends Model {
 
 	}
 
+	//Método estático para pegar a sessão dos usuários
 	public static function getFromSession()
 	{
 
@@ -91,25 +121,7 @@ class User extends Model {
 
 	}
 
-	public static function checkLogin($inadmin = true)
-	{
-
-			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
-
-				return true;
-
-			} else if ($inadmin === false) {
-
-				return true;
-
-			} else {
-
-				return false;
-
-			}
-
-	}
-
+	//Método estático para verificar a autenticidade do usuário comun, e verificar se ele esta com a sessão iniciada ou não.
 	public static function verifyLogin($inadmin = true)
 	{
 
@@ -126,6 +138,7 @@ class User extends Model {
 
 	}
 
+	//Método estático para verificar a autenticidade do usuário Administrador, e verificar se ele esta com a sessão iniciada ou não.
 	public static function verifyLoginAdmin($inadmin = true)
 	{
 
@@ -144,7 +157,7 @@ class User extends Model {
 	}
 
 	
-
+	//Método para selecionar todos os usuários e passar a ID como parâmetro
 	public function get($iduser)
 	{
 	 
@@ -159,7 +172,7 @@ class User extends Model {
 	 
 	 }
 
-
+	 //Método para salvar os dados do procedimento de registro do usuário comum.
 	public function save()
 	{
 
@@ -184,6 +197,7 @@ class User extends Model {
 
 	}
 
+	 //Método para editar os dados do procedimento  do usuário comum.
 	public function update()
 	{
 
@@ -203,7 +217,7 @@ class User extends Model {
 
 	}
 
-
+	//Método para editar a imagem do perfil
 	public function updateImage()
     {
         $sql = new Sql();
@@ -236,7 +250,8 @@ class User extends Model {
 		}
 
     }
-
+	
+	//Método estático para nomear e mover a imagem para a pasta de destino 
     public static function getImage($value)
 	{
 		$name_file = date('Ymdhms');
@@ -260,7 +275,7 @@ class User extends Model {
 
 				}
 	}
-
+	//Método para deletar os usuários
 	public function delete()
 	{
 
@@ -289,6 +304,7 @@ class User extends Model {
 
 	}
 
+    //Método estático para listar todos os usuários
 	public static function listAll()
 	{
 
@@ -299,6 +315,7 @@ class User extends Model {
 
 	}
 
+	//Método estático para verificar o total de usuários registrados
 	public static function total()
 	{
 		
@@ -310,34 +327,10 @@ class User extends Model {
 		return ['usersTotal'=>(int)$resultTotal[0]["nrtotal"]];
 	}	
 
-	public static function checkEmailExist($email)
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT * FROM tb_users WHERE email = :email", [
-			':email'=>$email
-		]);
-
-		return (count($results) > 0);
-
-	}
-
-	public static function checkLoginExist($login)
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT * FROM tb_users WHERE login = :login", [
-			':login'=>$login
-		]);
-
-		return (count($results) > 0);
-
-	}
-
-
 	
+
+
+	//Método estático que seta a mensagem de erro
 	public static function setError($msg)
 	{
 
@@ -345,6 +338,7 @@ class User extends Model {
 
 	}
 
+	//Método estático que pega a mensagem de erro
 	public static function getError()
 	{
 
@@ -356,13 +350,14 @@ class User extends Model {
 
 	}
 
+	//Método estático que limpa a mensagem de erro
 	public static function clearError()
 	{
 
 		$_SESSION[User::ERROR] = NULL;
 
 	}
-
+	//Método estático que seta a mensagem de sucesso
 	public static function setSuccess($msg)
 	{
 
@@ -370,6 +365,7 @@ class User extends Model {
 
 	}
 
+	//Método estático que seta a mensagem de sucesso
 	public static function getSuccess()
 	{
 
@@ -380,7 +376,7 @@ class User extends Model {
 		return $msg;
 
 	}
-
+	//Método estático que limpa a mensagem de sucesso
 	public static function clearSuccess()
 	{
 

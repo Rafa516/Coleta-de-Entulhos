@@ -163,7 +163,7 @@ $app->get('/user/my-calls/:iduser', function($iduser) {
 
 //---------ROTA PARA A PÁGINA DAS IMAGENS DOS CHAMADOS----------------------//
 
-$app->get('/user/mycalls/images/:idcall', function($idcall) {  
+$app->get('/user/calls/images/:idcall', function($idcall) {  
 
 
 	User::verifyLogin();

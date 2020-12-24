@@ -2,6 +2,7 @@
 
 namespace Projeto\DB;
 
+//Classe Sql(SQL, principais métodos com a conexão com o Banco de Dados e suas DDL E DML)
 class Sql {
 
 	const HOSTNAME = "127.0.0.1";
@@ -11,6 +12,7 @@ class Sql {
 
 	private $conn;
 
+	//Método construtor para a conexão com o banco de dados através do PDO
 	public function __construct()
 	{
 
@@ -25,6 +27,7 @@ class Sql {
 
 	}
 
+	//Método privado para setar o bindParam
 	private function setParams($statement, $parameters = array())
 	{
 
@@ -36,6 +39,7 @@ class Sql {
 
 	}
 
+	//Método passar por parametro os valores do bindParam
 	private function bindParam($statement, $key, $value)
 	{
 
@@ -43,6 +47,7 @@ class Sql {
 
 	}
 
+	//Método para utilizar as buscas sem procedimentos
 	public function query($rawQuery, $params = array())
 	{
 
@@ -53,7 +58,7 @@ class Sql {
 		$stmt->execute();
 
 	}
-
+	//Método para utilizar as buscas principalmente com procedimentos
 	public function select($rawQuery, $params = array()):array
 	{
 

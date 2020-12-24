@@ -2,10 +2,12 @@
 
 namespace Projeto;
 
+//Classe Model(Modelo com os principais métodos)
 class Model {
 
 	private $values = [];
 
+	//Método para setar os dados das váriaveis de forma dinâmica
 	public function setData($data)
 	{
 
@@ -18,6 +20,7 @@ class Model {
 
 	}
 
+	//Método Construtor para  passar por parâmetros Get e Set das variáveis dinâmicamente
 	public function __call($name, $args)
 	{
 		//verificando o valor dos 3 primeiros campos para GET ou SET
@@ -40,6 +43,7 @@ class Model {
 
 	}
 
+	//Método para pegar os valores das váriaveis
 	public function getValues()
 	{
 
