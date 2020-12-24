@@ -5,7 +5,6 @@ session_start();
 require_once("vendor/autoload.php");
 
 //name space
-use \Slim\slim;
 
 $app = new \Slim\Slim(); 
 

@@ -60,7 +60,7 @@
                 <center><a href="/user/calls/maps/<?php echo $value1["idcall"]; ?>" class="btn btn-info btn-sm"><b> Localização</b></a>
               </td />
               <td><br>
-                <center> <a href="/user/mycalls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;"
+                <center> <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;"
                     class="btn btn-info btn-sm"><?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
 
                     <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>

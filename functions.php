@@ -12,13 +12,6 @@ use \Projeto\Model\Call;
 	}
 
 
-	function checkLogin($inadmin = true)
-	{
-		
-		return User::checkLogin($inadmin);
-
-	}
-
 	function getUserName()
 	{
 
