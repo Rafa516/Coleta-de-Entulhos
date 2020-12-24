@@ -1,11 +1,11 @@
-<img src="logo.png" width="350">
+<center><img src="logo.png" width="350"></center>
 
-# Projeto-Ecommerce
+# Projeto - Sistema Web De Gerenciamento de Coleta de Entulhos.
 
 
 ## Descrição
 
-Projeto em andamento desenvolvido do zero, referente ao TCC do curso de Tcnologia em Sistemas para Internet.
+Projeto em andamento desenvolvido do zero, referente ao TCC do curso de Tecnologia em Sistemas para Internet.
 
 Esse projeto do Sistema Web de Gerenciamento de Coleta de Entulhos, visa melhorar o atendimento e a interação da população com o serviço de coleta 
 
