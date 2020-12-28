@@ -22,7 +22,7 @@
               <img src="/res/ft_perfil/ft_female.png" class="avatar-img rounded-circle" alt="">
               <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
 
-              <img src="/res/ft_perfil/ft_unknowm.png" class="avatar-img rounded-circle" alt="">
+              <img src="/res/ft_perfil/ft_unknown.png" class="avatar-img rounded-circle" alt="">
               <?php }else{ ?>
 
               <img src="/res/ft_perfil/<?php echo $user["picture"]; ?>" class="avatar-img rounded-circle" alt="">
@@ -49,6 +49,12 @@
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Telefone:</b> <?php echo $user["phone"]; ?></p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Data Nascimento: </b>
                 <?php echo formatDate($user["born_date"]); ?></p>
+              <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Gênero: 
+              <?php if( $user["genre"] == 1 ){ ?> </b> Masculino</p>
+              <?php }elseif( $user["genre"] == 2 ){ ?> </b> Feminino</p>
+              <?php }else{ ?> </b> Outros</p>
+              <?php } ?>
+
 
             </div>
 
@@ -87,10 +93,25 @@
           </div>
 
           <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
-              <select class="form-control py-1" name="genre" id="genre">
+            <select class="form-control py-1" name="genre" id="genre">
+            <?php if( $user["genre"] == 1 ){ ?>
+
             <option value="1">Masculino</option>
             <option value="2">Feminino</option>
             <option value="3">Outros</option>
+            <?php }elseif( $user["genre"] == 2 ){ ?>
+
+            <option value="2">Feminino</option>
+            <option value="1">Masculino</option>
+            <option value="3">Outros</option>
+            <?php }else{ ?>
+
+            <option value="3">Outros</option>
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <?php } ?>
+
+
             </select>
           </div>
 
@@ -172,7 +193,7 @@
 
 
           <div class="form-group"><label class="small mb-1"><b>Foto</b></label>
-            <input class="form-control py-1" type="file" id="picture" name="picture" required="" />
+            <input id="addPhotoProfile"  class="form-control py-1" type="file" id="picture" name="picture" required="" />
           </div>
 
           <input class="btn btn-primary btn btn-block" type="submit" value="Alterar">

@@ -378,7 +378,13 @@ img {
   margin-left: 20px;
   color:#424242;
 }
+  #addPhoto{
+    font-size: 12px;
+  }
 
+  #addPhotoProfile{
+    font-size: 14px;
+  }
   
  #myWorkContent{
     max-width:245px;

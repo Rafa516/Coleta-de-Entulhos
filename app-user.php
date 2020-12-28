@@ -116,7 +116,9 @@ $app->get('/user/open-call', function() {
 
 	$page = new Page();
 
-	$page->setTpl("open-call-users");
+	$page->setTpl("open-call-users",[
+		'CallOpenMsg'=>User::getSuccess(),
+	]);
 
 });
 
@@ -132,6 +134,8 @@ $app->post("/user/open-call/submit", function(){
 	$call->setData($_POST);
 
 	$call->save();
+
+	User::setSuccess("Chamado registrado com sucesso!!");
 
 	header("Location: /user/open-call");
 	exit;

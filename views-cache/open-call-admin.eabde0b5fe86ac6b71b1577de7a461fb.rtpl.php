@@ -9,10 +9,10 @@
             role="tab" aria-controls="home" aria-selected="false"><b>Abertura de Chamado</b></a>
         </li>
       </ul>
-      <?php if( $profileMsg != '' ){ ?>
+      <?php if( $CallOpenMsg != '' ){ ?>
 
             <div class="alert alert-success">
-                <b><?php echo $profileMsg; ?></b>
+                <b><?php echo $CallOpenMsg; ?></b>
             </div>
             <?php } ?>
 
@@ -56,7 +56,7 @@
 
                 <div class="form-group"><label class="small mb-1"><b b
                       style="font-size:20px;color: #585858">Fotos</b></label>
-                  <input class="form-control py-1" type="file" id="" name="namephoto[]" multiple="multiple" required />
+                  <input id="addPhoto" class="form-control py-1" type="file" id="" name="namephoto[]" multiple="multiple" required />
                 </div>
 
                 <input class="form-control py-1" value="<?php echo $user["iduser"]; ?>" name="iduser" type="hidden">
@@ -147,3 +147,4 @@
   </script>
 
 <script src="/res/admin/js/functions.js"></script>
+<script type="text/javascript">observation()</script>  

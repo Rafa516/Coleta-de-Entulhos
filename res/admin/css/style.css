@@ -430,5 +430,13 @@ img {
     max-width:245px;
     height:270px;
   }
+
+   #addPhoto{
+    font-size: 12px;
+  }
+
+  #addPhotoProfile{
+    font-size: 14px;
+  }
   
 }

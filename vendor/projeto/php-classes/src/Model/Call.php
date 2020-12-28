@@ -320,6 +320,8 @@ class Call extends Model {
 	                 }
 	             }
 	         } 
+
+	    
 	     
 	     return $resultsExistPhoto;
 	 	 }

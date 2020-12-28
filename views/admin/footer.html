@@ -14,17 +14,15 @@
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<script type="text/javascript" src="/../res/admin/js/ckeditor/ckeditor.js"></script>
+
+
 <script src="/../res/admin/js/functions.js"></script>
 
+<script type="text/javascript">mobileNav()</script> 
 
-  <script type="text/javascript">
-  $(document).ready(function () {
-    $('.nav_btn').click(function () {
-      $('.mobile_nav_items').toggleClass('active');
-    });
-  });
-</script>
 
+ 
 
 </body>
 

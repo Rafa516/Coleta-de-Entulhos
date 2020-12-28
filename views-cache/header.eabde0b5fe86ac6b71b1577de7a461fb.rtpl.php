@@ -47,7 +47,7 @@
       <img src="/../res/ft_perfil/ft_female.png" class="mobile_profile_image" alt="">
       <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
 
-      <img src="/../res/ft_perfil/ft_unknowm.png" class="mobile_profile_image" alt="">
+      <img src="/../res/ft_perfil/ft_unknown.png" class="mobile_profile_image" alt="">
       <?php }else{ ?>
 
       <img src="/../res/ft_perfil/<?php echo $user["picture"]; ?>" class="mobile_profile_image" alt="">
@@ -78,7 +78,7 @@
       <img src="/../res/ft_perfil/ft_female.png" class="profile_image" alt="">
       <?php }elseif( $user["picture"] == 0 && $user["genre"] == 3 ){ ?>
 
-      <img src="/../res/ft_perfil/ft_unknowm.png" class="profile_image" alt="">
+      <img src="/../res/ft_perfil/ft_unknown.png" class="profile_image" alt="">
       <?php }else{ ?>
 
       <img src="/../res/ft_perfil/<?php echo $user["picture"]; ?>" class="profile_image" alt="">

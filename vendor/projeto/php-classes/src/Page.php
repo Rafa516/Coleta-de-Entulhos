@@ -18,7 +18,7 @@ class Page {
 
 	];
 
-	//Método Construtor para ativação do Rain Tpl
+	//Método Construtor para redirecionar as páginas do diretório views 
 	public function __construct($opts = array(),$tpl_dir = "/views/")
 	{
 

@@ -56,7 +56,7 @@
                       <img src="/../res/ft_perfil/ft_female.png" style="height: 50px;width: 50px;border-radius: 30px;">
                       <?php }elseif( $value1["picture"] == 0 && $value1["genre"] == 3 ){ ?>
 
-                      <img src="/../res/ft_perfil/ft_unknowm.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <img src="/../res/ft_perfil/ft_unknown.png" style="height: 50px;width: 50px;border-radius: 30px;">
                       <?php }else{ ?>
 
                       <img src="/../res/ft_perfil/<?php echo $value1["picture"]; ?>" style="height: 50px;width: 50px;border-radius: 30px;">
@@ -116,6 +116,29 @@
 
           <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
             <input class="form-control py-1" value='<?php echo getUserName(); ?>' type="text" name="person" required />
+          </div>
+
+           <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+            <select class="form-control py-1" name="genre" id="genre">
+            <?php if( $user["genre"] == 1 ){ ?>
+
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <option value="3">Outros</option>
+            <?php }elseif( $user["genre"] == 2 ){ ?>
+
+            <option value="2">Feminino</option>
+            <option value="1">Masculino</option>
+            <option value="3">Outros</option>
+            <?php }else{ ?>
+
+            <option value="3">Outros</option>
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <?php } ?>
+
+
+            </select>
           </div>
 
           <div class="form-group"><label class="small mb-1"><b>Telefone</b></label>
@@ -196,6 +219,29 @@
 
           <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
             <input class="form-control py-1" type="text" name="person" placeholder="Digite o nome do usuário" required />
+          </div>
+
+          <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+            <select class="form-control py-1" name="genre" id="genre">
+            <?php if( $user["genre"] == 1 ){ ?>
+
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <option value="3">Outros</option>
+            <?php }elseif( $user["genre"] == 2 ){ ?>
+
+            <option value="2">Feminino</option>
+            <option value="1">Masculino</option>
+            <option value="3">Outros</option>
+            <?php }else{ ?>
+
+            <option value="3">Outros</option>
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            <?php } ?>
+
+
+            </select>
           </div>
 
           <div class="form-group"><label class="small mb-1"><b>Login</b></label>

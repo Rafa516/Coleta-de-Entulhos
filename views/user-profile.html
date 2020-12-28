@@ -19,7 +19,7 @@
               {elseif="$user.picture == 0 && $user.genre == 2"}
               <img src="/res/ft_perfil/ft_female.png" class="avatar-img rounded-circle" alt="">
               {elseif="$user.picture == 0 && $user.genre == 3"}
-              <img src="/res/ft_perfil/ft_unknowm.png" class="avatar-img rounded-circle" alt="">
+              <img src="/res/ft_perfil/ft_unknown.png" class="avatar-img rounded-circle" alt="">
               {else}
               <img src="/res/ft_perfil/{$user.picture}" class="avatar-img rounded-circle" alt="">
               {/if}
@@ -44,6 +44,11 @@
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Telefone:</b> {$user.phone}</p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Data Nascimento: </b>
                 {function="formatDate($user.born_date)"}</p>
+              <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Gênero: 
+              {if="$user.genre == 1"} </b> Masculino</p>
+              {elseif="$user.genre == 2"} </b> Feminino</p>
+              {else} </b> Outros</p>
+              {/if}
 
             </div>
 
@@ -82,10 +87,21 @@
           </div>
 
           <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
-              <select class="form-control py-1" name="genre" id="genre">
+            <select class="form-control py-1" name="genre" id="genre">
+            {if="$user.genre == 1"}
             <option value="1">Masculino</option>
             <option value="2">Feminino</option>
             <option value="3">Outros</option>
+            {elseif="$user.genre == 2"}
+            <option value="2">Feminino</option>
+            <option value="1">Masculino</option>
+            <option value="3">Outros</option>
+            {else}
+            <option value="3">Outros</option>
+            <option value="1">Masculino</option>
+            <option value="2">Feminino</option>
+            {/if}
+
             </select>
           </div>
 
@@ -167,7 +183,7 @@
 
 
           <div class="form-group"><label class="small mb-1"><b>Foto</b></label>
-            <input class="form-control py-1" type="file" id="picture" name="picture" required="" />
+            <input id="addPhotoProfile"  class="form-control py-1" type="file" id="picture" name="picture" required="" />
           </div>
 
           <input class="btn btn-primary btn btn-block" type="submit" value="Alterar">

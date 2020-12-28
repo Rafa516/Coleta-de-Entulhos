@@ -10,6 +10,14 @@
         </li>
       </ul>
 
+       <?php if( $CallOpenMsg != '' ){ ?>
+
+            <div class="alert alert-success">
+                <b><?php echo $CallOpenMsg; ?></b>
+            </div>
+            <?php } ?>
+
+
       <div class="row mt-5 align-items-center">
         <div class="col-md-7 text-center mb-5">
           <div class="avatar avatar-xl">
@@ -35,7 +43,7 @@
 
                 <div class="form-group"><label class="small mb-1"><b
                       style="font-size:20px;color: #585858">Observação</b></label>
-                  <textarea class="form-control py-1" value="" type="text" name="observation"> </textarea>
+                  <textarea  id="observation"  value="" type="text" name="observation"> </textarea>
                 </div>
 
                 <div class="form-group"><label class="small mb-1"><b
@@ -50,7 +58,7 @@
 
                 <div class="form-group"><label class="small mb-1"><b b
                       style="font-size:20px;color: #585858">Fotos</b></label>
-                  <input class="form-control py-1" type="file" id="" name="namephoto[]" multiple="multiple" required />
+                  <input  class="form-control py-1" type="file" id="addPhoto" name="namephoto[]" multiple="multiple" required />
                 </div>
 
                 <input class="form-control py-1" value="<?php echo $user["iduser"]; ?>" name="iduser" type="hidden">
@@ -141,3 +149,5 @@
   </script>
 
 <script src="/res/user/js/functions.js"></script>
+
+<script type="text/javascript">observation()</script>   

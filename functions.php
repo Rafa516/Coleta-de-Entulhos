@@ -2,6 +2,9 @@
 
 use \Projeto\Model\User;
 use \Projeto\Model\Call;
+use \Projeto\DB\Sql;
+
+
 
 
 	function formatDate($date)
@@ -61,8 +64,8 @@ use \Projeto\Model\Call;
 	   	return  $total['photos'];
 
 	}
-
-
-
+	
+	
+	
 
 ?>

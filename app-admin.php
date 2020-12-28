@@ -165,7 +165,7 @@ $app->get('/admin/open-call', function() {
 	$page = new PageAdmin();
 
 	$page->setTpl("open-call-admin",[
-		'profileMsg'=>User::getSuccess(),
+		'CallOpenMsg'=>User::getSuccess(),
 
 	]);
 
@@ -376,6 +376,7 @@ $app->post("/admin/users/register", function(){
 	$user->setData([
 		'inadmin'=>1,
 		'login'=>$_POST['login'],
+		'genre'=>$_POST['genre'],
 		'person'=>$_POST['person'],
 		'email'=>$_POST['email'],
 		'despassword'=>$_POST['despassword'],

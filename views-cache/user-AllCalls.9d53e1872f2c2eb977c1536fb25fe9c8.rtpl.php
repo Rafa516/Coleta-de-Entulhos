@@ -43,7 +43,7 @@
                       <img src="/res/ft_perfil/ft_female.png" style="height: 50px;width: 50px;border-radius: 30px;">
                       <?php }elseif( $value1["picture"] == 0 && $value1["genre"] == 3 ){ ?>
 
-                      <img src="/res/ft_perfil/ft_unknowm.png" style="height: 50px;width: 50px;border-radius: 30px;">
+                      <img src="/res/ft_perfil/ft_unknown.png" style="height: 50px;width: 50px;border-radius: 30px;">
                       <?php }else{ ?>
 
                       <img src="/res/ft_perfil/<?php echo $value1["picture"]; ?>" style="height: 50px;width: 50px;border-radius: 30px;">
