@@ -17,9 +17,6 @@
              <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
 
 
-            
-
-
         </div>
     </div>
 </div>
@@ -42,7 +39,7 @@
         var infoWindow = new google.maps.InfoWindow;
 
           // Change this depending on the name of your PHP or XML file
-          downloadUrl("/resultado.php", function(data) {
+          downloadUrl('resultado.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {

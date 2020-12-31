@@ -25,7 +25,7 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 1 ORDER BY a.dtregister DESC");
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 1 ORDER BY b.dtregister DESC");
 
 	}
 
@@ -35,7 +35,7 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 2 ORDER BY a.dtregister DESC");
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 2 ORDER BY b.dtregister DESC");
 
 	}
 
@@ -45,11 +45,11 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 3 ORDER BY a.dtregister DESC");
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 3 ORDER BY b.dtregister DESC");
 
 	}
 	
-	//Método com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro.
+	//Método com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro (Chamados relacionado ao usuário)
 
 	public function getCallsID($iduser)
 	{
@@ -57,7 +57,7 @@ class Call extends Model {
 		$sql = new Sql();
 
 		return $sql->select("
-			SELECT * FROM tb_calls a INNER JOIN tb_users b ON a.iduser = b.iduser WHERE b.iduser = :iduser ORDER BY a.dtregister DESC
+			SELECT * FROM tb_users a INNER JOIN tb_calls b ON a.iduser = b.iduser WHERE b.iduser = :iduser ORDER BY b.dtregister DESC
 		", [	 
 
 			':iduser'=>$iduser
@@ -132,7 +132,7 @@ class Call extends Model {
 		return ['callsFinished'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
-	//Método estático que verifica o total de chamados finalizados  registrados
+	//Método estático para a verificação do total de fotos de cada chamado
 	public static function numPhotos($idcall)
 	{
 		
@@ -144,8 +144,6 @@ class Call extends Model {
 	  
 		return ['photos'=>(int)$resultTotal[0]["nrtotal"]];
 	}
-
-
 
 
 	//Método que busca os dados do procedimento e salva no tabela de chamados
@@ -228,29 +226,16 @@ class Call extends Model {
 			':idcall'=>$this->getidcall()
 		]);
 
-		/*$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
-			"res" . DIRECTORY_SEPARATOR . 
-			"site" . DIRECTORY_SEPARATOR . 
-			"img" . DIRECTORY_SEPARATOR . 
-			"products" . DIRECTORY_SEPARATOR . 
-			$name;
-			unlink($img);*/
+
+		 /*$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+				"res" . DIRECTORY_SEPARATOR . 
+				"ft_call" . DIRECTORY_SEPARATOR . 
+				$this->getnamephoto();
+				unlink($img);*/
 
 	}
 
-	//Método estático para a verificação do total de fotos de cada chamado
-	public static function totalPhotos($idcall)
-	{
-		
-		$sql = new Sql();
-		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_callphotos WHERE idcall = :idcall", [
-	         ':idcall'=>$idcall
-	     ]);
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-	  
-		return ['totalPhotos'=>(int)$resultTotal[0]["nrtotal"]];
-	}
+	
 
 
 	//Método para pegar os valores do array

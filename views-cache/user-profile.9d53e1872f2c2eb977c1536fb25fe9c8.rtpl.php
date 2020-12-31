@@ -6,7 +6,7 @@
       <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
         <li class="nav-item">
           <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
-            role="tab" aria-controls="home" aria-selected="false"><b>Perfil<b></a>
+            role="tab" aria-controls="home" aria-selected="false"><b>Perfil</b></a>
         </li>
       </ul>
 
@@ -49,10 +49,10 @@
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Telefone:</b> <?php echo $user["phone"]; ?></p>
               <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Data Nascimento: </b>
                 <?php echo formatDate($user["born_date"]); ?></p>
-              <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Gênero: 
-              <?php if( $user["genre"] == 1 ){ ?> </b> Masculino</p>
-              <?php }elseif( $user["genre"] == 2 ){ ?> </b> Feminino</p>
-              <?php }else{ ?> </b> Outros</p>
+              <p style="font-size: 18px;color: #585858;" class="small mb-1"><b>Gênero:</b>
+              <?php if( $user["genre"] == 1 ){ ?>  Masculino</p>
+              <?php }elseif( $user["genre"] == 2 ){ ?>  Feminino</p>
+              <?php }else{ ?> Outros<</p>
               <?php } ?>
 
 
