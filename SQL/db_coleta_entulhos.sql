@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 21/12/2020 às 01:05
+-- Tempo de geração: 03/01/2021 às 15:18
 -- Versão do servidor: 5.7.32-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -46,6 +46,16 @@ INSERT INTO tb_callphotos (idcall,iduser,namephoto)
    
 
  END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_locations_call_add` (IN `pidcall` INT(11), IN `plng` FLOAT(25), IN `plat` FLOAT(25))  BEGIN
+   
+    INSERT INTO tb_locations (idcall,lng,lat)
+    
+    VALUES(pidcall,plng,plat); 
+    
+      SELECT * FROM tb_locations  WHERE idlocation = LAST_INSERT_ID();
+    
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_image` (IN `piduser` INT(11), IN `ppicture` VARCHAR(64))  BEGIN
  
@@ -118,30 +128,6 @@ CREATE TABLE `tb_callphotos` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `tb_callphotos`
---
-
-INSERT INTO `tb_callphotos` (`idphoto`, `idcall`, `iduser`, `namephoto`, `dtregister`) VALUES
-(64, 24, 18, 'Captura de tela de 2020-12-18 11-34-30.png', '2020-12-18 14:37:48'),
-(65, 24, 18, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-18 14:37:48'),
-(66, 24, 18, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-18 14:37:48'),
-(67, 24, 18, 'Captura de tela de 2020-12-18 11-36-30.png', '2020-12-18 14:37:48'),
-(68, 24, 18, 'Captura de tela de 2020-12-18 11-36-44.png', '2020-12-18 14:37:48'),
-(69, 24, 18, 'Captura de tela de 2020-12-18 11-36-49.png', '2020-12-18 14:37:48'),
-(70, 24, 18, 'Captura de tela de 2020-12-18 11-36-55.png', '2020-12-18 14:37:48'),
-(71, 24, 18, 'Captura de tela de 2020-12-18 11-37-00.png', '2020-12-18 14:37:49'),
-(72, 24, 18, 'Captura de tela de 2020-12-18 11-37-05.png', '2020-12-18 14:37:49'),
-(73, 24, 18, 'Entulhos-se-acumulam.jpg', '2020-12-18 14:37:49'),
-(74, 25, 16, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-18 14:40:25'),
-(75, 25, 16, 'Captura de tela de 2020-12-18 11-36-44.png', '2020-12-18 14:40:25'),
-(76, 25, 16, 'Captura de tela de 2020-12-18 11-36-49.png', '2020-12-18 14:40:25'),
-(77, 26, 20, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-18 22:35:13'),
-(78, 27, 1, 'Captura de tela de 2020-12-18 11-36-01.png', '2020-12-20 14:23:22'),
-(79, 27, 1, 'Captura de tela de 2020-12-18 11-36-06.png', '2020-12-20 14:23:22'),
-(82, 29, 1, 'Captura de tela de 2020-12-16 15-29-23.png', '2020-12-21 02:25:14'),
-(83, 29, 1, 'Captura de tela de 2020-12-17 23-52-48.png', '2020-12-21 02:25:14');
-
 -- --------------------------------------------------------
 
 --
@@ -158,17 +144,6 @@ CREATE TABLE `tb_calls` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `tb_calls`
---
-
-INSERT INTO `tb_calls` (`idcall`, `iduser`, `locality`, `observation`, `priority`, `situation`, `dtregister`) VALUES
-(24, 18, 'Quadra 518', ' Perto da Praça', 'Alta', 2, '2020-12-21 02:38:42'),
-(25, 16, 'Quadra 517', ' Perto da Igreja', 'Baixa', 3, '2020-12-21 04:02:03'),
-(26, 20, 'Quadra 215', ' Perto do mercado', 'Baixa', 1, '2020-12-21 03:07:09'),
-(27, 1, 'Quadra 516 conjunto c casa 20', ' 2222222', 'Baixa', 3, '2020-12-21 02:47:05'),
-(29, 1, 'eeee', ' 2222', 'Baixa', 2, '2020-12-21 02:34:42');
-
 -- --------------------------------------------------------
 
 --
@@ -177,9 +152,9 @@ INSERT INTO `tb_calls` (`idcall`, `iduser`, `locality`, `observation`, `priority
 
 CREATE TABLE `tb_locations` (
   `idlocation` int(11) NOT NULL,
-  `iduser` int(11) NOT NULL,
-  `lng` float(10,6) NOT NULL,
-  `lat` float(10,6) NOT NULL,
+  `idcall` int(11) NOT NULL,
+  `lng` double NOT NULL,
+  `lat` double NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -197,9 +172,9 @@ CREATE TABLE `tb_users` (
   `born_date` date DEFAULT NULL,
   `city` varchar(64) DEFAULT NULL,
   `address` varchar(128) DEFAULT NULL,
-  `login` varchar(64) NOT NULL,
+  `login` varchar(64) DEFAULT NULL,
   `despassword` varchar(256) NOT NULL,
-  `inadmin` tinyint(4) NOT NULL DEFAULT '0',
+  `inadmin` tinyint(4) DEFAULT '0',
   `genre` int(11) NOT NULL,
   `picture` varchar(64) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -210,8 +185,8 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`iduser`, `person`, `email`, `phone`, `born_date`, `city`, `address`, `login`, `despassword`, `inadmin`, `genre`, `picture`, `dtregister`) VALUES
-(1, 'Suporte', 'suporte@gmail.com', 6199999999999, '0001-01-01', 'Brasília - DF', 'Empresa S/A', 'admin', '$2y$12$hKaYkmysAUxuw4gYLdTL3eyB7eVzwt4.mK4gGCQUYMD0X/YNzINrG', 1, 0, '20201216121216', '2020-12-08 18:55:47'),
-(16, 'Rafael Oliveira', 'rafaxvi@hotmail.com', 6191441738, '2020-12-22', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 10', 'rafaxvi@hotmail.com', '$2y$12$ASdDwhq473Syx5F0U0cp2OfngHKgMiVOFrkw3gSAEA/rBbcSzEHKu', 0, 1, '20201218071222', '2020-12-18 13:03:43'),
+(1, 'Suporte', 'suporte@gmail.com', 6199999999999, '0001-01-01', 'Brasília - DF', 'Empresa S/A', 'admin', '$2y$12$hKaYkmysAUxuw4gYLdTL3eyB7eVzwt4.mK4gGCQUYMD0X/YNzINrG', 1, 1, '20201216121216', '2020-12-08 18:55:47'),
+(16, 'Rafael Oliveira', 'rafaxvi@hotmail.com', 6191441738, '2020-12-22', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 10', 'rafaxvi@hotmail.com', '$2y$12$ASdDwhq473Syx5F0U0cp2OfngHKgMiVOFrkw3gSAEA/rBbcSzEHKu', 0, 1, '20201222071227', '2020-12-18 13:03:43'),
 (18, 'Adjair Nascimento', 'adjair@gmail.com', 6199633909, '2020-12-15', 'Sobradinho - DF', 'Quadra 518 conjunto c casa 22', 'adjair@gmail.com', '$2y$12$fi8aemKy9D0s.3b9.oh3muAWpIWwrqE7H2M2pqtQTHcnI2gfGCWmy', 0, 0, '20201218111250', '2020-12-18 14:21:36'),
 (20, 'Sabrina ', 'sabrina.sa.sa@hotmail.com', 619941738, '1994-04-26', 'Santa Maria- DF', 'Quadra 516 conjunto c casa 22', 'sabrina.sa.sa@hotmail.com', '$2y$12$VfP2I51w3m.PBFnzPpiLiO97t/azO/pS2gmJzIP.DSmaHQvSjLDXS', 0, 2, '0', '2020-12-18 21:43:12');
 
@@ -238,7 +213,8 @@ ALTER TABLE `tb_calls`
 -- Índices de tabela `tb_locations`
 --
 ALTER TABLE `tb_locations`
-  ADD PRIMARY KEY (`idlocation`);
+  ADD PRIMARY KEY (`idlocation`),
+  ADD KEY `fk_locations_calls` (`idcall`);
 
 --
 -- Índices de tabela `tb_users`
@@ -255,19 +231,19 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT de tabela `tb_callphotos`
 --
 ALTER TABLE `tb_callphotos`
-  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT de tabela `tb_calls`
 --
 ALTER TABLE `tb_calls`
-  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de tabela `tb_locations`
 --
 ALTER TABLE `tb_locations`
-  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `tb_users`
@@ -291,6 +267,12 @@ ALTER TABLE `tb_callphotos`
 --
 ALTER TABLE `tb_calls`
   ADD CONSTRAINT `fk_calls_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `tb_locations`
+--
+ALTER TABLE `tb_locations`
+  ADD CONSTRAINT `fk_locations_calls` FOREIGN KEY (`idcall`) REFERENCES `tb_calls` (`idcall`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

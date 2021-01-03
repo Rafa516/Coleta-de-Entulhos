@@ -62,7 +62,6 @@ class Call extends Model {
 
 			':iduser'=>$iduser
 		]);
-
 	
 	}
 
@@ -84,7 +83,7 @@ class Call extends Model {
 	}
 
 	//Método estático que verifica o total de chamados registrados
-	public static function total()
+	public static function totalCall()
 	{
 		
 		$sql = new Sql();
@@ -92,8 +91,22 @@ class Call extends Model {
 			FROM tb_calls");
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
-
+	
 		return ['callsTotal'=>(int)$resultTotal[0]["nrtotal"]];
+	}
+
+	public static function totalCallID($iduser)
+	{
+		
+		$sql = new Sql();
+		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_calls WHERE iduser = :iduser",[
+				':iduser'=>$iduser
+				]);
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+	
+		return ['callsTotalID'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
 	//Método estático que verifica o total de chamados pedentes registrados
@@ -139,7 +152,8 @@ class Call extends Model {
 		$sql = new Sql();
 		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
 			FROM  tb_callphotos WHERE idcall = :idcall",[
-			':idcall'=>$idcall]);
+			':idcall'=>$idcall
+			]);
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 	  
 		return ['photos'=>(int)$resultTotal[0]["nrtotal"]];

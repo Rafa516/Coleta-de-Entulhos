@@ -16,6 +16,15 @@
             </div>
             <?php } ?>
 
+
+       <?php if( $errorRegister != '' ){ ?>
+
+            <div class="alert alert-danger">
+                  <b><?php echo $errorRegister; ?></b>
+            </div>
+             <?php } ?>
+
+
       <div class="row mt-5 align-items-center">
         <div class="col-md-7 text-center mb-5">
           <div class="avatar avatar-xl">
@@ -56,7 +65,7 @@
 
                 <div class="form-group"><label class="small mb-1"><b b
                       style="font-size:20px;color: #585858">Fotos</b></label>
-                  <input id="addPhoto" class="form-control py-1" type="file" id="" name="namephoto[]" multiple="multiple" required />
+                  <input id="addPhoto" class="form-control py-1" type="file" id="" name="namephoto[]" multiple="multiple"/>
                 </div>
 
                 <input class="form-control py-1" value="<?php echo $user["iduser"]; ?>" name="iduser" type="hidden">

@@ -6,7 +6,18 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Todos Chamados <b></a>
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>  
+                          <?php if( totalCalls() == 0 ){ ?>
+
+                          Nenhum Chamado 
+                          <?php }elseif( totalCalls() == 1 ){ ?>
+
+                          <?php echo totalCalls(); ?> Chamado 
+                          <?php }else{ ?>
+
+                          <?php echo totalCalls(); ?> Chamados 
+                          <?php } ?>  <b></a>
+
                 </li>
             </ul>
 
@@ -17,6 +28,9 @@
                 <b><?php echo $profileMsg; ?></b>
             </div>
             <?php } ?>
+
+
+             <?php if( totalCalls() != 0 ){ ?>
 
              <div class="table-responsive">
             <table class="table table-hover  table-bordered">
@@ -62,13 +76,22 @@
                     <td><br><center><?php echo $value1["locality"]; ?></td>
                     <td><br><center><?php echo $value1["observation"]; ?></td>
                     <td><br><center><a href="/admin/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
-                    <td><br><center>   <a href="/admin/calls/images/<?php echo $value1["idcall"]; ?>"  style="width: 100px;" class="btn btn-info btn-sm" ><?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
+                    <?php if( namePhotos($value1["idcall"]) == '' ){ ?>
+
+                    <td><br><center><b>Sem Fotos<b></td/>
+                    <?php }else{ ?>
+
+                    <td><br><center>   <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
+                      <?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
 
                       <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
                       <?php }else{ ?>
 
                       <b><?php echo numPhotos($value1["idcall"]); ?> Fotos</b></a>
                       <?php } ?>
+
+                   </td/>
+                   <?php } ?>
 
                    </td/>
                     <td><br><center><?php echo $value1["priority"]; ?></td>
@@ -100,7 +123,9 @@
                 </tbody>
               </table>
           </div>
-            
+           <?php } ?>
+
+          <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
 
 
             <hr class="my-4" />

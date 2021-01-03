@@ -166,6 +166,7 @@ $app->get('/admin/open-call', function() {
 
 	$page->setTpl("open-call-admin",[
 		'CallOpenMsg'=>User::getSuccess(),
+		'errorRegister'=>User::getErrorRegister()
 
 	]);
 
@@ -180,6 +181,14 @@ $app->post("/admin/open-call/submit", function(){
 
 	$call = new Call();
 
+	if ($_POST['lat'] == '' &&  $_POST['lng'] == '') {
+
+			User::setErrorRegister("Marque um local no mapa");
+			header("Location: /admin/open-call");
+			exit;
+
+	}
+
 	$call->setData($_POST);
 
 	$call->save();
@@ -189,6 +198,28 @@ $app->post("/admin/open-call/submit", function(){
 	header("Location: /admin/open-call");
 	exit;
 
+
+});
+
+//---------ROTA PARA A PÁGINA DOS MEUS CHAMADOS----------------------//
+
+$app->get('/admin/my-calls/:iduser', function($iduser) {  
+
+
+	User::verifyLoginAdmin();
+
+	$user = User::getFromSession();
+
+	$call = new Call();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("mycalls-admin",[
+		'user'=>$user->getValues(),
+		'images'=>$call->showPhotos($iduser),
+		'calls'=>$call->getCallsID($iduser)
+
+	]);
 
 });
 
@@ -277,7 +308,11 @@ $app->get('/admin/calls/maps/:idcall', function($idcall) {
 	$page = new PageAdmin();
 
 	$page->setTpl("map-calls-admin",[
-		"call"=>$call->get((int)$idcall)
+		"call"=>$call->get((int)$idcall),
+		"lat"=>$call->latitude((float)$idcall),
+		"lng"=>$call->longitude((float)$idcall),
+		'locality'=>$call->locality($idcall),
+		'observation'=>$call->observation($idcall)
 	]);
 
 });

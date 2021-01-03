@@ -6,11 +6,22 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Todos Chamados </b></a>
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>  
+                          <?php if( totalCalls() == 0 ){ ?>
+
+                          Nenhum Chamado 
+                          <?php }elseif( totalCalls() == 1 ){ ?>
+
+                          <?php echo totalCalls(); ?> Chamado 
+                          <?php }else{ ?>
+
+                          <?php echo totalCalls(); ?> Chamados 
+                          <?php } ?>  </b></a>
                 </li>
             </ul>
 
 
+            <?php if( totalCalls() != 0 ){ ?>
 
              <div class="table-responsive">
             <table class="table table-hover  table-bordered">
@@ -86,6 +97,9 @@
                 </tbody>
               </table>
           </div>
+          <?php } ?>
+
+             <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
             
 
 

@@ -34,6 +34,25 @@ use \Projeto\DB\Sql;
 
 	}
 
+	function totalCalls(){
+
+		$total = Call::totalCall();
+	
+
+	   return  $total['callsTotal'];
+
+	}
+
+	function totalCallsID($iduser){
+
+		$total = Call::totalCallID($iduser);
+	
+
+	   return  $total['callsTotalID'];
+
+	}
+
+
 	function totalCallPendings(){
 
 		$total = Call::totalCallsPendings();
@@ -73,10 +92,6 @@ use \Projeto\DB\Sql;
 	}
 
 
-
-
-	
-	
 	
 
 ?>

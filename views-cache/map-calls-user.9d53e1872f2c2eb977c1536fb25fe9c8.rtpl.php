@@ -23,7 +23,7 @@
 
     <script>
 
-      function inicializar() {
+      function initMap() {
         var coordenadas = {lat: <?php echo $lat["value"]; ?>, lng: <?php echo $lng["value"]; ?>};
 
         var mapa = new google.maps.Map(document.getElementById('map'), {
@@ -47,7 +47,7 @@
         var marker = new google.maps.Marker({
           position: coordenadas,
           map: mapa,
-          title: 'Meu marcador'
+          title: 'Chamado <?php echo $call["value"]; ?>'
         });
 
         marker.addListener("click", () => {
@@ -58,7 +58,7 @@
 
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=inicializar">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=initMap">
     </script>
 
 

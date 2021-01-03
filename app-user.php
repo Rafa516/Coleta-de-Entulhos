@@ -142,7 +142,6 @@ $app->post("/user/open-call/submit", function(){
 
 	$call->setData($_POST);
 
-
 	$call->save();
 
 	User::setSuccess("Chamado registrado com sucesso!!");

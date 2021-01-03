@@ -10,34 +10,61 @@
                 </li>
             </ul>
             
-           <div id="mapa"></div>
+           <div id="map"></div>
 
             <hr class="my-4" />
 
-         <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
+             <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
 
 
         </div>
     </div>
 </div>
 
- <script>
+    <script>
 
-      function inicializar() {
-        var coordenadas = {lat: -16.018568390360233, lng: -47.988355895404055};
+      function initMap() {
+        var coordenadas = {lat: <?php echo $lat["value"]; ?>, lng: <?php echo $lng["value"]; ?>};
 
-        var mapa = new google.maps.Map(document.getElementById('mapa'), {
+        var mapa = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: coordenadas 
         });
 
+        const contentString =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h5 id="firstHeading" class="firstHeading"><?php echo $locality["value"]; ?></h5>' +
+          '<div id="bodyContent">' +
+          "<p ><b style='font-size:17px;'><?php echo $observation["value"]; ?></b><b style='font-size:13px;'>Latitude: <?php echo $lat["value"]; ?><br>Longitude: <?php echo $lng["value"]; ?></b> </p>" +
+          "</div>" +
+          "</div>";
+           const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+  
         var marker = new google.maps.Marker({
           position: coordenadas,
           map: mapa,
-          title: 'Meu marcador'
+          title: 'Chamado <?php echo $call["value"]; ?>'
         });
+
+        marker.addListener("click", () => {
+        infowindow.open(map, marker);
+       });
+        
       }
+
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=inicializar">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=initMap">
     </script>
+
+
+
+
+
+
+
+ 
