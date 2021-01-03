@@ -118,6 +118,7 @@ $app->get('/user/open-call', function() {
 
 	$page->setTpl("open-call-users",[
 		'CallOpenMsg'=>User::getSuccess(),
+		'errorRegister'=>User::getErrorRegister()
 	]);
 
 });
@@ -131,7 +132,16 @@ $app->post("/user/open-call/submit", function(){
 
 	$call = new Call();
 
+	if ($_POST['lat'] == '' &&  $_POST['lng'] == '') {
+
+			User::setErrorRegister("Marque um local no mapa");
+			header("Location: /user/open-call");
+			exit;
+
+	}
+
 	$call->setData($_POST);
+
 
 	$call->save();
 
@@ -160,7 +170,8 @@ $app->get('/user/my-calls/:iduser', function($iduser) {
 	$page->setTpl("mycalls",[
 		'user'=>$user->getValues(),
 		'images'=>$call->showPhotos($iduser),
-		'calls'=>$call->getCallsID($iduser)	
+		'calls'=>$call->getCallsID($iduser)
+
 	]);
 
 });
@@ -195,7 +206,11 @@ $app->get('/user/calls/maps/:idcall', function($idcall) {
 	$page = new Page();
 
 	$page->setTpl("map-calls-user",[
-		"call"=>$call->get((int)$idcall)
+		"call"=>$call->get((int)$idcall),
+		"lat"=>$call->latitude((float)$idcall),
+		"lng"=>$call->longitude((float)$idcall),
+		'locality'=>$call->locality($idcall),
+		'observation'=>$call->observation($idcall)
 	]);
 
 });

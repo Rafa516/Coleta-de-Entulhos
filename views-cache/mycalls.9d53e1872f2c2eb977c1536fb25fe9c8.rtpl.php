@@ -59,17 +59,23 @@
               <td><br>
                 <center><a href="/user/calls/maps/<?php echo $value1["idcall"]; ?>" class="btn btn-info btn-sm"><b> Localização</b></a>
               </td />
-              <td><br>
-                <center> <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;"
-                    class="btn btn-info btn-sm"><?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
+              <?php if( namePhotos($value1["idcall"]) == '' ){ ?>
 
-                    <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
-                  <?php }else{ ?>
+                    <td><br><center><b>Sem Fotos<b></td/>
+                    <?php }else{ ?>
 
-                  <b><?php echo numPhotos($value1["idcall"]); ?> Fotos</b></a>
-                  <?php } ?>
+                    <td><br><center>   <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
+                      <?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
 
-              </td />
+                      <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
+                      <?php }else{ ?>
+
+                      <b><?php echo numPhotos($value1["idcall"]); ?> Fotos</b></a>
+                      <?php } ?>
+
+                   </td/>
+                   <?php } ?>
+
               <td><br>
                 <center><?php echo $value1["priority"]; ?>
 

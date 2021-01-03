@@ -47,12 +47,17 @@
                     <td><br><center>{$value.locality}</td>
                     <td><br><center>{$value.observation}</td>
                     <td><br><center><a href="/user/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"> <b>Localização</b></a></td/>
-                    <td><br><center>   <a href="/user/calls/images/{$value.idcall}" style="width: 100px;" class="btn btn-info btn-sm" >{if="numPhotos($value.idcall) == 1"}
+                    {if="namePhotos($value.idcall) == ''"}
+                    <td><br><center><b>Sem Fotos<b></td/>
+                    {else}
+                    <td><br><center>   <a href="/user/calls/images/{$value.idcall}" style="width: 100px;" class="btn btn-info btn-sm" >
+                      {if="numPhotos($value.idcall) == 1"}
                       <b>{function="numPhotos($value.idcall)"} Foto</b></a>
                       {else}
                       <b>{function="numPhotos($value.idcall)"} Fotos</b></a>
                       {/if}
                    </td/>
+                   {/if}
                     <td><br><center>{$value.priority}</td>
                     <td><br><center>
                       {if="$value.situation == 1"}<b style="color: #FF4000;">Pendente</b>

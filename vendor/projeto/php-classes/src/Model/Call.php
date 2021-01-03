@@ -150,7 +150,6 @@ class Call extends Model {
 	public function save()
 	{
 
-
 		$sql = new Sql();
 
 		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:priority, :situation)", array(
@@ -164,6 +163,7 @@ class Call extends Model {
 		$this->setData($results[0]);
 
 		Call::movePhotos();
+		Call::saveLocation();
 
 	}
 
@@ -181,6 +181,85 @@ class Call extends Model {
 		$this->setData($results[0]);	
 
 	}
+
+	public function saveLocation()
+	{
+
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL sp_locations_call_add(:idcall,:lng,:lat)", array(
+			":idcall"=>$this->getidcall(),
+			":lng"=>$this->getlng(),
+			":lat"=>$this->getlat()	
+		));	
+
+		$this->setData($results[0]);
+
+	}
+
+	public function latitude($idcall)
+	{
+
+		$sql = new Sql();
+
+	     $results  = $sql->select("SELECT * FROM tb_locations WHERE idcall = :idcall", [
+			':idcall'=>$idcall
+		]);
+
+		$this->setData($results[0]);
+
+		return ['value'=>(float)$results[0]["lat"]];
+
+	}
+
+	public function longitude($idcall)
+	{
+
+		$sql = new Sql();
+
+	     $results  = $sql->select("SELECT * FROM tb_locations WHERE idcall = :idcall", [
+			':idcall'=>$idcall
+		]);
+
+		$this->setData($results[0]);
+
+
+		return ['value'=>(float)$results[0]["lng"]];
+
+	}
+
+	public function locality($idcall)
+	{
+
+		$sql = new Sql();
+
+	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
+			':idcall'=>$idcall
+		]);
+
+		$this->setData($results[0]);
+
+
+		return ['value'=>$results[0]["locality"]];
+	}
+
+	public function observation($idcall)
+	{
+
+		$sql = new Sql();
+
+	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
+			':idcall'=>$idcall
+		]);
+
+		$this->setData($results[0]);
+
+
+		return ['value'=>$results[0]["observation"]];
+	}
+
+	
 
 	//Método que seleciona todos chamados passando a ID por parâmetro
 	public function get($idcall)
@@ -211,6 +290,19 @@ class Call extends Model {
 		$this->setData($results[0]);
 
 		return ['value'=>(int)$results[0]["situation"]];
+
+	}
+
+	public static function namePhotos($idcall)
+	{
+
+		$sql = new Sql();
+
+	     $results  = $sql->select("SELECT * FROM tb_callphotos WHERE idcall = :idcall", [
+			':idcall'=>$idcall
+		]);
+
+		return ['name'=>$results[0]["namephoto"]];
 
 	}
 

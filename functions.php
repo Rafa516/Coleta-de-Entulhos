@@ -64,6 +64,17 @@ use \Projeto\DB\Sql;
 	   	return  $total['photos'];
 
 	}
+
+	function namePhotos($idcall){
+
+		$total = Call::namePhotos($idcall);
+
+	   	return  $total['name'];
+	}
+
+
+
+
 	
 	
 	

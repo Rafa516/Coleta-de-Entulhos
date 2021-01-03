@@ -54,7 +54,13 @@
                     <td><br><center><?php echo $value1["locality"]; ?></td>
                     <td><br><center><?php echo $value1["observation"]; ?></td>
                     <td><br><center><a href="/user/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"> <b>Localização</b></a></td/>
-                    <td><br><center>   <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" ><?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
+                    <?php if( namePhotos($value1["idcall"]) == '' ){ ?>
+
+                    <td><br><center><b>Sem Fotos<b></td/>
+                    <?php }else{ ?>
+
+                    <td><br><center>   <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
+                      <?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
 
                       <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
                       <?php }else{ ?>
@@ -63,6 +69,8 @@
                       <?php } ?>
 
                    </td/>
+                   <?php } ?>
+
                     <td><br><center><?php echo $value1["priority"]; ?></td>
                     <td><br><center>
                       <?php if( $value1["situation"] == 1 ){ ?><b style="color: #FF4000;">Pendente</b>
