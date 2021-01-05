@@ -5,8 +5,6 @@ use \Projeto\Model\Call;
 use \Projeto\DB\Sql;
 
 
-
-
 	function formatDate($date)
 	{
 
@@ -74,6 +72,13 @@ use \Projeto\DB\Sql;
 		$total = Call::totalCallsFinished();
 
 	   return  $total['callsFinished'];
+	}
+
+	function totalMarkers(){
+
+		$total = Call::totalMarkers();
+
+	   return  $total['markersTotal'];
 	}
 
 	function numPhotos($idcall){

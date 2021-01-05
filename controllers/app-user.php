@@ -206,10 +206,24 @@ $app->get('/user/calls/maps/:idcall', function($idcall) {
 
 	$page->setTpl("map-calls-user",[
 		"call"=>$call->get((int)$idcall),
-		"lat"=>$call->latitude((float)$idcall),
-		"lng"=>$call->longitude((float)$idcall),
-		'locality'=>$call->locality($idcall),
-		'observation'=>$call->observation($idcall)
+		"markers"=>$call->listMarkersID($idcall)	
+	]);
+
+});
+
+//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS)----------------------//
+
+$app->get('/user/locations', function() {  
+
+
+	User::verifyLogin();
+
+	$call = new Call();
+
+	$page = new Page();
+
+	$page->setTpl("locations-user",[
+	"markers"=>$call::listAllMarkers()
 	]);
 
 });

@@ -4,7 +4,17 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Usuários Cadastrados</b></a>
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Usúários - 
+                          <?php if( totalUsers() == 0 ){ ?>
+
+                          Nenhum Usuário cadastrado
+                          <?php }elseif( totalUsers() == 1 ){ ?>
+
+                          <?php echo totalCalls(); ?> 1 Usuário cadastrado 
+                          <?php }else{ ?>
+
+                          <?php echo totalUsers(); ?> Usuários cadastrados 
+                          <?php } ?> </b></a>
                 </li>
             </ul>
          <button data-toggle="modal"  data-target="#registerModal"class="btn btn-primary"><b>Cadastrar Usuário</b> </button><br><br>
@@ -39,7 +49,7 @@
                     <th><center>Data de Nascimento</th>   
                     <th ><center>Administrador</th>
                     <th ><center>Data de Registro</th>
-                    <th ><center>Editar ou excluir</th>
+                    <th ><center>Editar ou Excluir</th>
                   </tr>
                 </thead>
                 <tbody>

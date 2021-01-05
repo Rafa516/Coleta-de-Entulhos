@@ -1,9 +1,13 @@
 {
-    "name": "projeto/coleta",
+    "name": "projeto/coleta-entulhos",
     "authors": [
         {
             "name": "Rafael Oliveira",
             "email": "rafaxvi@hotmail.com"
+        },
+        {
+            "name": "Adjair Nascimento",
+            "email": "adjair.nascimento.204010@gmail.com"
         }
         
     ],
@@ -14,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Projeto\\": "vendor\\projeto\\php-classes\\src"
+            "Projeto\\": "models\\projeto\\php-classes\\src"
         }
     }
 }

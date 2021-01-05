@@ -1,13 +1,13 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'No version set (parsed as 1.0.0)',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
-    'name' => 'projeto/coleta',
+    'reference' => 'cbc8e10f5f7442d38249663ff679d31a722b04b1',
+    'name' => 'projeto/coleta-entulhos',
   ),
   'versions' => 
   array (
@@ -20,14 +20,14 @@
       ),
       'reference' => '917ab212fa00dc6eacbb26e8bc387ebe40993bc1',
     ),
-    'projeto/coleta' => 
+    'projeto/coleta-entulhos' => 
     array (
-      'pretty_version' => 'No version set (parsed as 1.0.0)',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'cbc8e10f5f7442d38249663ff679d31a722b04b1',
     ),
     'rain/raintpl' => 
     array (

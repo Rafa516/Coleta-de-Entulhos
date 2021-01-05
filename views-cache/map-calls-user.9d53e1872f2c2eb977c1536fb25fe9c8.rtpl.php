@@ -24,7 +24,7 @@
     <script>
 
       function initMap() {
-        var coordenadas = {lat: <?php echo $lat["value"]; ?>, lng: <?php echo $lng["value"]; ?>};
+        var coordenadas = {lat: <?php echo $markers["valueLat"]; ?>, lng: <?php echo $markers["valueLng"]; ?>};
 
         var mapa = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
@@ -35,9 +35,9 @@
           '<div id="content">' +
           '<div id="siteNotice">' +
           "</div>" +
-          '<h5 id="firstHeading" class="firstHeading"><?php echo $locality["value"]; ?></h5>' +
+          '<h5 id="firstHeading" class="firstHeading"><?php echo $markers["valueLocality"]; ?></h5>' +
           '<div id="bodyContent">' +
-          "<p ><b style='font-size:17px;'><?php echo $observation["value"]; ?></b><b style='font-size:13px;'>Latitude: <?php echo $lat["value"]; ?><br>Longitude: <?php echo $lng["value"]; ?></b> </p>" +
+          "<p ><b style='font-size:17px;'><?php echo $markers["valueObservation"]; ?></b><b style='font-size:13px;'>Latitude: <?php echo $markers["valueLat"]; ?><br>Longitude: <?php echo $markers["valueLng"]; ?></b> </p>" +
           "</div>" +
           "</div>";
            const infowindow = new google.maps.InfoWindow({

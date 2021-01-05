@@ -159,6 +159,18 @@ class Call extends Model {
 		return ['photos'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
+	public static function totalMarkers()
+	{
+		
+		$sql = new Sql();
+		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_locations");
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+	
+		return ['markersTotal'=>(int)$resultTotal[0]["nrtotal"]];
+	}
+
 
 	//Método que busca os dados do procedimento e salva no tabela de chamados
 	public function save()
@@ -212,68 +224,33 @@ class Call extends Model {
 
 	}
 
-	public function latitude($idcall)
+	public static function listAllMarkers()
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_locations WHERE idcall = :idcall", [
-			':idcall'=>$idcall
-		]);
-
-		$this->setData($results[0]);
-
-		return ['value'=>(float)$results[0]["lat"]];
+			return   $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_calls b ON b.idcall = a.idcall");	
 
 	}
 
-	public function longitude($idcall)
+	public static function listMarkersID($idcall)
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_locations WHERE idcall = :idcall", [
-			':idcall'=>$idcall
-		]);
+			$results =  $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_calls b ON b.idcall = a.idcall WHERE b.idcall = :idcall",[
+					':idcall'=>$idcall
+			]);	
 
-		$this->setData($results[0]);
-
-
-		return ['value'=>(float)$results[0]["lng"]];
+		return  [
+				'valueLat'=>(float)$results[0]["lat"],
+				'valueLng'=>(float)$results[0]["lng"],
+				'valueLocality'=>$results[0]["locality"],
+				'valueObservation'=>$results[0]["observation"],
+			   ];
 
 	}
 
-	public function locality($idcall)
-	{
-
-		$sql = new Sql();
-
-	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
-			':idcall'=>$idcall
-		]);
-
-		$this->setData($results[0]);
-
-
-		return ['value'=>$results[0]["locality"]];
-	}
-
-	public function observation($idcall)
-	{
-
-		$sql = new Sql();
-
-	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
-			':idcall'=>$idcall
-		]);
-
-		$this->setData($results[0]);
-
-
-		return ['value'=>$results[0]["observation"]];
-	}
-
-	
 
 	//Método que seleciona todos chamados passando a ID por parâmetro
 	public function get($idcall)
@@ -442,9 +419,6 @@ class Call extends Model {
 
 	}
 
-	
-
-	
 
 
 }

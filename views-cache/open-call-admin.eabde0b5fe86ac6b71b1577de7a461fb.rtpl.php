@@ -45,7 +45,7 @@
 
                 <div class="form-group"><label class="small mb-1"><b
                       style="font-size:20px;color: #585858">Local</b></label>
-                  <input class="form-control py-1" type="text" name="locality" required />
+                  <input class="form-control py-1" placeholder="Preencha o Endereço e a Cidade" type="text" name="locality" required />
                 </div>
 
                 <div class="form-group"><label class="small mb-1"><b

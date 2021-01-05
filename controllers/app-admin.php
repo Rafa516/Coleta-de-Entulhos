@@ -309,10 +309,24 @@ $app->get('/admin/calls/maps/:idcall', function($idcall) {
 
 	$page->setTpl("map-calls-admin",[
 		"call"=>$call->get((int)$idcall),
-		"lat"=>$call->latitude((float)$idcall),
-		"lng"=>$call->longitude((float)$idcall),
-		'locality'=>$call->locality($idcall),
-		'observation'=>$call->observation($idcall)
+		"markers"=>$call->listMarkersID($idcall)
+	]);
+
+});
+
+//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS)----------------------//
+
+$app->get('/admin/locations', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$call = new Call();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("locations-admin",[
+	"markers"=>$call::listAllMarkers()
 	]);
 
 });
@@ -430,5 +444,8 @@ $app->post("/admin/users/register", function(){
 	exit;
 
 });
+
+
+
 
 ?>

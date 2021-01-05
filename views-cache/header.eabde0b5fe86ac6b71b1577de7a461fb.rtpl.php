@@ -62,6 +62,7 @@
       <a href="/admin/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
       <a href="/admin/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
       <a href="/admin/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
+       <a href="/admin/locations"><i class="fa fa-map-marker"></i><span>Localizações</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
       <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
@@ -92,6 +93,7 @@
     <a href="/admin/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
      <a href="/admin/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
      <a href="/admin/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
+     <a href="/admin/locations"><i class="fa fa-map-marker"></i><span>Localizações</span></a>
     <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
     <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
   </div>

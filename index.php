@@ -2,7 +2,7 @@
 session_start();
 
 //dependências
-require_once("vendor/autoload.php");
+require_once("models/autoload.php");
 
 //name space
 
@@ -10,9 +10,9 @@ $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
-require_once("app-user.php");
-require_once("app-admin.php");
-require_once("functions.php");
+require_once("controllers/app-user.php");
+require_once("controllers/app-admin.php");
+require_once("controllers/functions.php");
 
 
 
