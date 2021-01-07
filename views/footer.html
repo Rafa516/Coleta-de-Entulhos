@@ -13,7 +13,6 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-
 <script type="text/javascript" src="/res/user/js/ckeditor/ckeditor.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>

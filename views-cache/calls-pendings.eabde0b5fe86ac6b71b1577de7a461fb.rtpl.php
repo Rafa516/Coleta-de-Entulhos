@@ -34,7 +34,7 @@
                     <th ><center>Observação</th>
                     <th><center>Mapa</th>
                     <th><center>Fotos</th>
-                    <th><center>Prioridade</th>
+             
                     <th><center>Situação</th>
                     <th><center>Data de Registro</th>
                     <th><center>Excluir</th>
@@ -74,7 +74,7 @@
                       <?php } ?>
 
                    </td/>
-                    <td><br><center><?php echo $value1["priority"]; ?></td>
+                   
                     <td><br><center>
                       <?php if( $value1["situation"] == 1 ){ ?>
 

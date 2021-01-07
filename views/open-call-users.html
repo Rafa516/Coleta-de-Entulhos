@@ -50,14 +50,6 @@
                   <textarea  id="observation"  value=""  type="text" name="observation"> </textarea>
                 </div>
 
-                <div class="form-group"><label class="small mb-1"><b
-                      style="font-size:20px;color: #585858">Prioridade</b></label>
-                  <select class="form-control py-1" name="priority" id="city">
-                    <option value="Baixa">Baixa</option>
-                    <option value="Alta">Alta</option>
-                  </select>
-                </div>
-
 
 
                 <div class="form-group"><label class="small mb-1"><b b
@@ -93,64 +85,37 @@
 </div>
 </div>
 
+ <script data-require="leaflet@0.7.3" data-semver="0.7.3" src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="script.js"></script>
+
 <script>
-  var marker;          //Variável do marcador
-  var coords = {};    //Coordenadas
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
+});
 
-  //Função principal
-  initMap = function () {
+var map = new L.Map('map', {
+  'center': [-16.027876751643, -48.041942848535],
+  'zoom': 13,
+  'layers': [tileLayer]
+});
 
-    //API de geolocalização
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        coords = {
-          lng: position.coords.longitude,
-          lat: position.coords.latitude
-        };
-        setMapa(coords);
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
 
+    var muxiIcon = L.icon(muxiIconProperties);
 
-      }, function (error) { console.log(error); });
+var marker = L.marker([-16.027876751643, -48.041942848535],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
 
-  }
-
-  function setMapa(coords) {
-
-    var map = new google.maps.Map(document.getElementById('map'),
-      {
-        zoom: 13,
-        center: new google.maps.LatLng(coords.lat, coords.lng),
-
-      });
-
-    marker = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      position: new google.maps.LatLng(coords.lat, coords.lng),
-
-    });
-
-    marker.addListener('click', toggleBounce);
-
-    marker.addListener('dragend', function (event) {
-
-      document.getElementById("lat").value = this.getPosition().lat();
-      document.getElementById("lng").value = this.getPosition().lng();
-    });
-  }
-
-  function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-      marker.setAnimation(null);
-    } else {
-      marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-  }
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
 </script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=initMap">
-  </script>
 
 <script src="/res/user/js/functions.js"></script>
 

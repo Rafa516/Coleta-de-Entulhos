@@ -15,6 +15,11 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <!--magnific-popup-->
   <link rel="stylesheet" href="/res/user/css/magnific-popup.css">
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+   
+
 </head>
 
 <body>

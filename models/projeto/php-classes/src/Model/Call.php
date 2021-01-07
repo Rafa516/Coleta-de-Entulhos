@@ -178,11 +178,10 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:priority, :situation)", array(
+		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:situation)", array(
 			":iduser"=>$this->getiduser(),
 			":locality"=>$this->getlocality(),
 			":observation"=>$this->getobservation(),
-			":priority"=>$this->getpriority(),
 			":situation"=>$this->getsituation()
 		));
 

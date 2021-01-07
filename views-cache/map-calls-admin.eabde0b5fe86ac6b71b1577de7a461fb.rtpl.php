@@ -21,44 +21,44 @@
     </div>
 </div>
 
+       <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
+    </script>
+
     <script>
 
-       function initMap() {
-        var coordenadas = {lat: <?php echo $markers["valueLat"]; ?>, lng: <?php echo $markers["valueLng"]; ?>};
+      var initialCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>]; 
+      var initialZoomLevel = 16;
 
-        var mapa = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: coordenadas 
-        });
+      // create a map in the "map" div, set the view to a given place and zoom
+      var map = L.map('map').setView(initialCoordinates, initialZoomLevel);
 
-        const contentString =
-          '<div id="content">' +
-          '<div id="siteNotice">' +
-          "</div>" +
-          '<h5 id="firstHeading" class="firstHeading"><?php echo $markers["valueLocality"]; ?></h5>' +
-          '<div id="bodyContent">' +
-          "<p ><b style='font-size:17px;'><?php echo $markers["valueObservation"]; ?></b><b style='font-size:13px;'>Latitude: <?php echo $markers["valueLat"]; ?><br>Longitude: <?php echo $markers["valueLng"]; ?></b> </p>" +
-          "</div>" +
-          "</div>";
-           const infowindow = new google.maps.InfoWindow({
-          content: contentString,
-        });
-  
-        var marker = new google.maps.Marker({
-          position: coordenadas,
-          map: mapa,
-          title: 'Chamado <?php echo $call["value"]; ?>'
-        });
+      // add an OpenStreetMap tile layer
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; Contribuidores do <a href="http://osm.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+    
 
-        marker.addListener("click", () => {
-        infowindow.open(map, marker);
-       });
-        
-      }
+      var muxiCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>];
+      var muxiMarkerMessage = "<b style='font-size:16px;'><?php echo $markers["valueLocality"]; ?></b><br><?php echo $markers["valueObservation"]; ?><b>Latitude:</b><?php echo $markers["valueLat"]; ?><br><b>Longitude:</b><?php echo $markers["valueLng"]; ?>";
+
+      var muxiIconProperties = {
+        iconUrl: "/res/map/marker.png"
+      , iconSize: [44, 59]
+      , iconAnchor: [22, 59]
+      , popupAnchor: [0, -50]
+      };
+
+      var muxiIcon = L.icon(muxiIconProperties);
+
+      L.marker(muxiCoordinates, {icon: muxiIcon})
+        .addTo(map)
+        .bindPopup(muxiMarkerMessage)
+      ;
+            
+
+               
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ1RqQyxumXFMLKO2NG9isrbO8nXTPtxc&callback=initMap">
-    </script>
+
 
 
 

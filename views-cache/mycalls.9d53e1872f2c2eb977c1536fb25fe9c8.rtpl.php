@@ -40,9 +40,7 @@
               <th>
                 <center>Fotos
               </th>
-              <th>
-                <center>Prioridade
-              </th>
+             
               <th>
                 <center>Situação
               </th>
@@ -88,10 +86,7 @@
                    </td/>
                    <?php } ?>
 
-              <td><br>
-                <center><?php echo $value1["priority"]; ?>
-
-              </td>
+           
               <td><br>
                 <center>
                   <?php if( $value1["situation"] == 1 ){ ?><b style="color: #FF4000;">Pendente</b>

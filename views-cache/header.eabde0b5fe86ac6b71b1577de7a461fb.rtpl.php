@@ -17,6 +17,8 @@
   <!--magnific-popup-->
   <link rel="stylesheet" href="/../res/admin/css/magnific-popup.css">
 
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
 </head>
 
 <body>

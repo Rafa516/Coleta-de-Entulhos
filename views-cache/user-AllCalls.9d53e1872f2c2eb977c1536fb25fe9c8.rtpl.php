@@ -35,7 +35,7 @@
                     <th ><center>Observação</th>
                     <th><center>Mapa</th>
                     <th><center>Fotos</th>
-                    <th><center>Prioridade</th>
+           
                     <th><center>Situação</th>
                     <th><center>Data de Registro</th>
                   </tr>
@@ -82,7 +82,7 @@
                    </td/>
                    <?php } ?>
 
-                    <td><br><center><?php echo $value1["priority"]; ?></td>
+           
                     <td><br><center>
                       <?php if( $value1["situation"] == 1 ){ ?><b style="color: #FF4000;">Pendente</b>
                       <?php }elseif( $value1["situation"] == 2 ){ ?><b style="color: #D7DF01;">Em Andamento</b>
