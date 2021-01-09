@@ -1,15 +1,11 @@
 <center><img src="logo.png" width="350"></center>
 
-# Projeto - Sistema Web De Gerenciamento de Coleta de Entulhos.
+# Projeto - Sistema Web De Gerenciamento de Pontos de Entulhos.
 
 
 ## Descrição
 
 Projeto em andamento desenvolvido do zero, referente ao TCC do curso de Tecnologia em Sistemas para Internet.
-
-Esse projeto do Sistema Web de Gerenciamento de Coleta de Entulhos, visa melhorar o atendimento e a interação da população com o serviço de coleta 
-
-de entulhos realizado pelo SUMA – SERVICOS URBANOS E MEIO AMBIENTE - DF.
 
 O desenvolvimento do projeto é a partir do **PHP Orientado a Objetos**, com auxílio da estrutura **PDO**, para aumentar a produtividade. 
 

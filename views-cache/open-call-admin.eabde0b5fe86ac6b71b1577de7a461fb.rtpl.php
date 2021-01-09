@@ -5,8 +5,8 @@
     <div class="my-4">
       <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
         <li class="nav-item">
-          <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
-            role="tab" aria-controls="home" aria-selected="false"><b>Abertura de Chamado</b></a>
+          <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
+            role="tab" aria-controls="home" aria-selected="false"><b>Marcar local com Entulhos</b></a>
         </li>
       </ul>
       <?php if( $CallOpenMsg != '' ){ ?>
@@ -50,8 +50,39 @@
 
                 <div class="form-group"><label class="small mb-1"><b
                       style="font-size:20px;color: #585858">Observação</b></label>
-                  <textarea class="form-control py-1" value="" type="text" name="observation"> </textarea>
+                  <textarea class="form-control py-1" value="" type="text" name="observation" height="10"> </textarea>
                 </div>
+
+                <label class="small mb-1"><b
+                      style="font-size:20px;color: #585858">Tipo de Entulho</b></label>
+               <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Classe A" name="type1"multiple="multiple" >
+                <label class="form-check-label" >
+                  <b>Classe A:</b> resíduos recicláveis e passíveis de reutilização tais como: tijolos, blocos, telhas, placas de revestimento, argamassa e concreto.
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Classe B" name="type2"multiple="multiple">
+                <label class="form-check-label" >
+                 <b>Classe B:</b> resíduos recicláveis formados por plásticos, papéis, metais, vidros e madeiras em geral, incluindo gesso.
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Classe C" name="type3"multiple="multiple">
+                <label class="form-check-label" >
+                 <b>Classe C:</b> resíduos que não são passiveis de reciclagem ou recuperação por não possuir tecnologia desenvolvida para isso.
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Classe D" name="type4"multiple="multiple">
+                <label class="form-check-label" >
+                 <b>Classe D:</b> resíduos perigosos, tais como: tintas, solventes, óleos, amianto, produtos de demolições, reformas e reparos em clínicas radiológicas, instalações industriais e outras.
+                </label>
+              </div>
+
 
 
 
@@ -97,8 +128,8 @@ attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreet
 });
 
 var map = new L.Map('map', {
-  'center': [-16.027876751643, -48.041942848535],
-  'zoom': 13,
+  'center': [-15.792873001853433,-47.882795333862305],
+  'zoom': 11,
   'layers': [tileLayer]
 });
 
@@ -109,7 +140,7 @@ var map = new L.Map('map', {
 
     var muxiIcon = L.icon(muxiIconProperties);
 
-var marker = L.marker([-16.027876751643, -48.041942848535],{
+var marker = L.marker([-15.792873001853433,-47.882795333862305],{
   draggable: true,
   icon: muxiIcon
 }).addTo(map);

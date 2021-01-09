@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coleta de Entulhos - ADM</title>
+  <title>Pontos de Entulhos - ADM</title>
   <link href="/../res/admin/img/icon.png" rel="icon">
    <!--style--> 
   <link rel="stylesheet" href="/../res/admin/css/style.css">
@@ -30,7 +30,7 @@
       <i style="margin-top: -5px;" class="fas fa-bars" id="sidebar_btn"></i>
     </label>
     <div class="left_area">
-      <h3 style="font-size: 18px;">Coleta de Entulhos - ADM</h3>
+      <h3 style="font-size: 18px;">Pontos de Entulhos - ADM</h3>
     </div>
     <div class="right_area">
       <a href="/admin/logout" class="logout_btn">Sair</a>
@@ -61,9 +61,10 @@
     <div class="mobile_nav_items">
       <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
       <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
-      <a href="/admin/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-      <a href="/admin/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
-      <a href="/admin/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
+      <a href="/admin/open-call"><i class="fa fa-map-marker"></i><span>Marcar Local</span></a>
+      <a href="/admin/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
+      <a href="/admin/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
+      
        <a href="/admin/locations"><i class="fa fa-map-marker"></i><span>Localizações</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
       <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
@@ -90,13 +91,12 @@
 
       <h5 style="font-size: 18px;color: white;"><?php echo getUserName(); ?></h5>
     </div>
-    <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
-    <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
-    <a href="/admin/open-call"><i class="fas fa-address-card"></i><span>Abertura de Chamado</span></a>
-     <a href="/admin/my-calls/<?php echo $user["iduser"]; ?>"><i class="fas fa-table"></i><span>Meus Chamados</span></a>
-     <a href="/admin/all-calls"><i class="fa fa-list-alt"></i><span>Todos Chamados</span></a>
-     <a href="/admin/locations"><i class="fa fa-map-marker"></i><span>Localizações</span></a>
-    <a href="#"><i class="fas fa-th"></i><span>Relatórios</span></a>
-    <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+   <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
+      <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
+      <a href="/admin/open-call"><i class="fa fa-map-marker"></i><span>Marcar Local</span></a>
+      <a href="/admin/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
+      <a href="/admin/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
+      <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
   </div>
   <!--sidebar end-->
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -30,22 +30,22 @@
 			
 
 
-			{if="$profileMsg != ''"}
+			<?php if( $profileMsg != '' ){ ?>
 			<div class="alert alert-success">
-				{$profileMsg}
+				<?php echo $profileMsg; ?>
 			</div>
-			{/if}
-			{if="$error != ''"}
+			<?php } ?>
+			<?php if( $error != '' ){ ?>
 			<div class="alert alert-danger">
-				{$error}
+				<?php echo $error; ?>
 			</div>
-			{/if}
+			<?php } ?>
 
-			{if="$errorRegister != ''"}
+			<?php if( $errorRegister != '' ){ ?>
 			<div class="alert alert-danger">
-				{$errorRegister}
+				<?php echo $errorRegister; ?>
 			</div>
-			{/if}
+			<?php } ?>
 
 			<input    class="user-login" type="email" name="login" placeholder="Email" required>
 			<input class="user-login" type="password" name="despassword" placeholder="Senha" required>

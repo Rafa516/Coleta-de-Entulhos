@@ -17,9 +17,7 @@ body{
 
 
 .logo{
-  width: 340px;
-  height: 340px;
-  margin-bottom: 20px;
+  margin-top: -170%;
 
 }
 
@@ -47,6 +45,7 @@ body{
 
 .form .signup-form{
 	display: none;	
+	margin-top: 180%;
 	
 }
 .form .login-form{
@@ -164,14 +163,12 @@ body{
 
 	.form .login-form{
 	
-	margin-top: -100%;
+	margin-top: -70%;
 	}
 
 
 	.logo{
-	margin-top: 2%;
-	  width: 220px;
-	  height: 220px;
+	 margin-top: -140%;
 	}
 	.form .user-input{
 		width: 100%
@@ -180,4 +177,10 @@ body{
 	.form .btn{
 		width: 100%;
 	}
+
+	.form .signup-form{
+	display: none;	
+	margin-top: 100%;
+	
+}
 }

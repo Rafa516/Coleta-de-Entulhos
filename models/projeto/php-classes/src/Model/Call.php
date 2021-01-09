@@ -19,35 +19,7 @@ class Call extends Model {
 
 	}
 
-	//Método estático para selecionar somente os chamados pendentes
-	public static function listCallPendigs()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 1 ORDER BY b.dtregister DESC");
-
-	}
-
-	//Método estático para selecionar somente os chamados em andamento
-	public static function listCallProgress()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 2 ORDER BY b.dtregister DESC");
-
-	}
-
-	//Método estático para selecionar somente os chamados finalizados
-	public static function listCallFinished()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser WHERE situation = 3 ORDER BY b.dtregister DESC");
-
-	}
+	
 	
 	//Método com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro (Chamados relacionado ao usuário)
 
@@ -109,41 +81,6 @@ class Call extends Model {
 		return ['callsTotalID'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
-	//Método estático que verifica o total de chamados pedentes registrados
-	public static function totalCallsPendings()
-	{
-		
-		$sql = new Sql();
-		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls WHERE situation = 1");
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-	  
-		return ['callsPendings'=>(int)$resultTotal[0]["nrtotal"]];
-	}
-
-	//Método estático que verifica o total de chamados em andamento registrados
-	public static function totalCallsProgress()
-	{
-		
-		$sql = new Sql();
-		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls WHERE situation = 2");
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-	  
-		return ['callsProgress'=>(int)$resultTotal[0]["nrtotal"]];
-	}
-
-	//Método estático que verifica o total de chamados finalizados  registrados
-	public static function totalCallsFinished()
-	{
-		
-		$sql = new Sql();
-		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls WHERE situation = 3");
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-	  
-		return ['callsFinished'=>(int)$resultTotal[0]["nrtotal"]];
-	}
 
 	//Método estático para a verificação do total de fotos de cada chamado
 	public static function numPhotos($idcall)
@@ -178,11 +115,14 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:situation)", array(
+		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:type1,:type2,:type3,:type4)", array(
 			":iduser"=>$this->getiduser(),
 			":locality"=>$this->getlocality(),
 			":observation"=>$this->getobservation(),
-			":situation"=>$this->getsituation()
+			":type1"=>$this->gettype1(),
+			":type2"=>$this->gettype2(),
+			":type3"=>$this->gettype3(),
+			":type4"=>$this->gettype4(),
 		));
 
 		$this->setData($results[0]);

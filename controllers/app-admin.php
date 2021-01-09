@@ -61,7 +61,7 @@ $app->get("/admin/users/delete/:iduser",function($iduser){
 });
 
 
-//---------ROTA PARA DELETAR O CHAMADO ----------------------//
+//---------ROTA PARA DELETAR O LOCAL ----------------------//
 
 $app->get("/admin/calls/delete/:idcall",function($idcall){
 
@@ -71,7 +71,7 @@ $app->get("/admin/calls/delete/:idcall",function($idcall){
 
 	$call->delete();
 
-	User::setSuccess("Chamado removido com sucesso.");
+	User::setSuccess("Local removido com sucesso.");
 
 	header("Location: /admin/all-calls");
  	exit;
@@ -101,61 +101,9 @@ $app->get('/admin', function() {
 
 });
 
-//---------ROTA PARA A PÁGINA DE TODOS CHAMADOS PENDENTES----------------------//
-
-$app->get('/admin/calls-pendings', function() {  
 
 
-	User::verifyLoginAdmin();
-
-	$call = new Call();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("calls-pendings",[
-	"callPendings"=>$call::listCallPendigs(),
-	"total"=>$call::totalCallsPendings()
-	]);
-
-});
-
-//---------ROTA PARA A PÁGINA DE TODOS CHAMADOS EM ANDAMENTO----------------------//
-
-$app->get('/admin/calls-progress', function() {  
-
-
-	User::verifyLoginAdmin();
-
-	$call = new Call();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("calls-progress",[
-	"callProgress"=>$call::listCallProgress(),
-	"total"=>$call::totalCallsProgress()
-	]);
-
-});
-
-//---------ROTA PARA A PÁGINA DE TODOS CHAMADOS FINALIZADOS----------------------//
-
-$app->get('/admin/calls-finished', function() {  
-
-
-	User::verifyLoginAdmin();
-
-	$call = new Call();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("calls-finished",[
-	"callFinished"=>$call::listCallFinished(),
-	"total"=>$call::totalCallsFinished()
-	]);
-
-});
-
-//---------ROTA PARA A PÁGINA DE ABERTURA DOS CHAMADOS----------------------//
+//---------ROTA PARA A PÁGINA DE MARCAÇÃO DOS LOCAIS----------------------//
 
 $app->get('/admin/open-call', function() {  
 
@@ -193,7 +141,7 @@ $app->post("/admin/open-call/submit", function(){
 
 	$call->save();
 
-	User::setSuccess("Chamado registrado com sucesso!!");
+	User::setSuccess("Local registrado com sucesso!!");
 
 	header("Location: /admin/open-call");
 	exit;
@@ -201,29 +149,8 @@ $app->post("/admin/open-call/submit", function(){
 
 });
 
-//---------ROTA PARA A PÁGINA DOS MEUS CHAMADOS----------------------//
 
-$app->get('/admin/my-calls/:iduser', function($iduser) {  
-
-
-	User::verifyLoginAdmin();
-
-	$user = User::getFromSession();
-
-	$call = new Call();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("mycalls-admin",[
-		'user'=>$user->getValues(),
-		'images'=>$call->showPhotos($iduser),
-		'calls'=>$call->getCallsID($iduser)
-
-	]);
-
-});
-
-//---------ROTA PARA A PÁGINA DE TODOS OS CHAMADOS ---------------------//
+//---------ROTA PARA A PÁGINA DE TODOS OS LOCAIS ---------------------//
 
 $app->get('/admin/all-calls', function() {  
 
@@ -241,42 +168,7 @@ $app->get('/admin/all-calls', function() {
 
 });
 
-//---------ROTA PARA A PÁGINA DE SITUAÇÃO DOS CHAMADOS ---------------------//
 
-$app->get('/admin/call-situation/:idcall', function($idcall) {  
-
-
-	User::verifyLoginAdmin();
-
-	$call = new Call();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("call-situation",[
-		"idcall"=>$call->get((int)$idcall),
-		"callSituation"=>$call->valueSituation((int)$idcall),
-
-	]);
-
-});
-
-//---------ROTA PARA A ALTERAÇÃO DOS CHAMADOS ---------------------//
-
-$app->post("/admin/calls/update-situation/:idcall",function($idcall){
-
-	$call = new Call();
-
-	$call->get((int)$idcall);
-
-	$call->setData($_POST);
-
-	$call->updateSituation();
-
-	User::setSuccess("Situação alterada com Sucesso");
-
-	header("Location: /admin/all-calls");
- 	exit;
-});
 
 
 //---------ROTA PARA A PÁGINA DAS IMAGENS---------------------//
@@ -292,7 +184,7 @@ $app->get('/admin/calls/images/:idcall', function($idcall) {
 
 	$page->setTpl("image-calls-admin",[
 		'images'=>$call->showPhotos($idcall),
-		"call"=>$call->get((int)$idcall)
+		"markers"=>$call->listMarkersID($idcall)
 	]);
 
 });
@@ -314,7 +206,7 @@ $app->get('/admin/calls/maps/:idcall', function($idcall) {
 
 });
 
-//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS)----------------------//
+//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS----------------------//
 
 $app->get('/admin/locations', function() {  
 

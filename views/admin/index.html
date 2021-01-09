@@ -3,69 +3,29 @@
         <div class="my-4">
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab"
+                    <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
                         data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Painel de Controle<b></a>
                 </li>
             </ul>
+             <center><img src="res/user/img/logo.png"  alt="">
 
-              <a href="/admin/calls-pendings"><div class="card-body color" style="background-color:#FE642E">
-                <div class="float-left">
-                    <h3>
-                      <center><span class="count">Chamados Pendentes</span></center>
-                    </h3>
-                    <br><center> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i></center>
-                    {if="totalCallPendings() == 0"}
-                         <center><p style="font-size: 20px;">Nenhum Chamado</p></center>
-                        
-                        {elseif="totalCallPendings() == 1"}
-                         <center><p style="font-size: 20px;">{function="totalCallPendings()"} Chamado</p></center>
-                        
-                        {else}
-                         <center><p style="font-size: 20px;">{function="totalCallPendings()"} Chamados</p></center>
-                        
-                        {/if}
-                </div>
-
-            </div></a>
-            <!--Widget End-->
+          <center>
             <!--Widget Start-->
-            <a href="/admin/calls-progress"> <div class="card-body color" style="background-color:#D7DF01">
+             <a href="/admin/all-calls"><div class="card-body color" style="background-color:#FF4000">
                 <div class="float-left">
                     <h3>
                         <h3>
-                            <center><span class="count">Chamados em Andamento</span></center>
+                            <center><span class="count">Pontos de Entulhos</span></center>
                         </h3>
-                        <br><center> <i class="fas fa-hourglass-half" aria-hidden="true"></i></center>
-                         {if="totalCallProgress() == 0"}
-                         <center><p style="font-size: 20px;">Nenhum Chamado</p></center>
+                        <br><center> <i class="fa fa-globe" aria-hidden="true"></i></center>
+                        {if="totalCalls() == 0"}
+                         <center><p style="font-size: 20px;">Nenhum Registrado</p></center>
                         
-                        {elseif="totalCallProgress() == 1"}
-                         <center><p style="font-size: 20px;">{function="totalCallProgress()"} Chamado</p></center>
+                        {elseif="totalCalls() == 1"}
+                         <center><p style="font-size: 20px;">{function="totalCalls()"} Registrado</p></center>
                         
                         {else}
-                         <center><p style="font-size: 20px;">{function="totalCallProgress()"} Chamados</p></center>
-                        
-                        {/if}
-                </div>
-
-            </div></a>
-            <!--Widget End-->
-            <!--Widget Start-->
-             <a href="/admin/calls-finished"><div class="card-body color" style="background-color:#00C292">
-                <div class="float-left">
-                    <h3>
-                        <h3>
-                            <center><span class="count">Chamados Finalizados</span></center>
-                        </h3>
-                        <br><center> <i class="fas fa-check-square" aria-hidden="true"></i></center>
-                        {if="totalCallFinished() == 0"}
-                         <center><p style="font-size: 20px;">Nenhum Chamado</p></center>
-                        
-                        {elseif="totalCallFinished() == 1"}
-                         <center><p style="font-size: 20px;">{function="totalCallFinished()"} Chamado</p></center>
-                        
-                        {else}
-                         <center><p style="font-size: 20px;">{function="totalCallFinished()"} Chamados</p></center>
+                         <center><p style="font-size: 20px;">{function="totalCalls()"} Registrados</p></center>
                         
                         {/if}
                 </div>
@@ -94,6 +54,7 @@
 
             </div></a>
             <!--Widget End-->
+        </center>
 
             <hr class="my-4" />
 

@@ -3,8 +3,8 @@
       <div class="my-4">
          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
             <li class="nav-item">
-               <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
-                  role="tab" aria-controls="home" aria-selected="false"><b>Localizações -  
+               <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
+                  role="tab" aria-controls="home" aria-selected="false"><b>Locais Marcados -  
                    <?php if( totalMarkers() == 0 ){ ?>
 
                           Nenhum Ponto de Entulho marcado no Mapa
@@ -18,7 +18,7 @@
             </li>
          </ul>
 
-         <div id="map"></div>
+         <div id="map1" class="mapa"></div>
 
          <hr class="my-4" />
 
@@ -35,11 +35,11 @@
     
 
    var planes = [
-      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcall"]; ?>],<?php } ?>
 
       ];
 
-        var map = L.map('map').setView([-16.027876751643, -48.041942848535], 13);
+        var map = L.map('map1').setView([-15.792873001853433,-47.882795333862305], 11);
         mapLink = 
             '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
@@ -59,7 +59,7 @@
 
       for (var i = 0; i < planes.length; i++) {
          marker = new L.marker([planes[i][2],planes[i][3]],{icon: muxiIcon})
-            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3])
+            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3]+"<center><br><a href='/admin/calls/images/"+planes[i][4]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
             .addTo(map);
 
             

@@ -107,7 +107,7 @@ $app->get('/user', function() {
 
 });
 
-//---------ROTA PARA A PÁGINA DE ABERTURA DOS CHAMADOS----------------------//
+//---------ROTA PARA A PÁGINA DE MARCAÇÕES DOS LOCAIS----------------------//
 
 $app->get('/user/open-call', function() {  
 
@@ -144,7 +144,7 @@ $app->post("/user/open-call/submit", function(){
 
 	$call->save();
 
-	User::setSuccess("Chamado registrado com sucesso!!");
+	User::setSuccess("Local registrado com sucesso!!");
 
 	header("Location: /user/open-call");
 	exit;
@@ -153,29 +153,8 @@ $app->post("/user/open-call/submit", function(){
 });
 
 
-//---------ROTA PARA A PÁGINA DOS MEUS CHAMADOS----------------------//
 
-$app->get('/user/my-calls/:iduser', function($iduser) {  
-
-
-	User::verifyLogin();
-
-	$user = User::getFromSession();
-
-	$call = new Call();
-
-	$page = new Page();
-
-	$page->setTpl("mycalls",[
-		'user'=>$user->getValues(),
-		'images'=>$call->showPhotos($iduser),
-		'calls'=>$call->getCallsID($iduser)
-
-	]);
-
-});
-
-//---------ROTA PARA A PÁGINA DAS IMAGENS DOS CHAMADOS----------------------//
+//---------ROTA PARA A PÁGINA DAS IMAGENS DOS LOCAIS----------------------//
 
 $app->get('/user/calls/images/:idcall', function($idcall) {  
 
@@ -188,7 +167,7 @@ $app->get('/user/calls/images/:idcall', function($idcall) {
 
 	$page->setTpl("image-calls-user",[
 		'images'=>$call->showPhotos($idcall),
-		"call"=>$call->get((int)$idcall)
+		"markers"=>$call->listMarkersID($idcall)
 	]);
 
 });
@@ -211,7 +190,7 @@ $app->get('/user/calls/maps/:idcall', function($idcall) {
 
 });
 
-//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS)----------------------//
+//---------ROTA PARA A PÁGINA DO MAPA COM TODOS LOCAIS MARCADOS----------------------//
 
 $app->get('/user/locations', function() {  
 

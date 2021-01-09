@@ -5,8 +5,8 @@
     <div class="my-4">
       <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
         <li class="nav-item">
-          <a style="background-color: #5FB404;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
-            role="tab" aria-controls="home" aria-selected="false"><b>Perfil<b></a>
+          <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
+            role="tab" aria-controls="home" aria-selected="false"><b>Meu Perfil<b></a>
         </li>
       </ul>
 

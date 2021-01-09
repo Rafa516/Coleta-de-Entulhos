@@ -9,7 +9,7 @@
                         data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Início</b></a>
                 </li>
             </ul>
-              <center><img src="res/user/img/logo.png" class="logo" alt="">
+              <center><img src="res/user/img/logo.png"  alt="">
             
             <p>Bem vindo <b><?php echo getUserName(); ?></b> ao Sistema Web de Gerenciamento de Pontos de Entulhos.</p></center>
 
