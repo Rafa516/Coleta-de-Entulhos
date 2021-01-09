@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/01/2021 às 23:31
+-- Tempo de geração: 09/01/2021 às 17:05
 -- Versão do servidor: 5.7.32-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -18,19 +18,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_coleta_entulhos`
+-- Banco de dados: `db_pontos_entulhos`
 --
 
 DELIMITER $$
 --
 -- Procedimentos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_call_save` (IN `piduser` INT(11), IN `plocality` VARCHAR(128), IN `pobservation` TEXT, IN `ppriority` VARCHAR(64), IN `psituation` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_call_save` (IN `piduser` INT(11), IN `plocality` VARCHAR(128), IN `pobservation` TEXT, IN `ptype1` VARCHAR(60), IN `ptype2` VARCHAR(60), IN `ptype3` VARCHAR(60), IN `ptype4` VARCHAR(60))  NO SQL
 BEGIN
    
-    INSERT INTO tb_calls (iduser,locality,observation,priority,situation)
+    INSERT INTO tb_calls (iduser,locality,observation,type1,type2,type3,type4)
     
-    VALUES(piduser,plocality,pobservation,ppriority,psituation);
+    VALUES(piduser,plocality,pobservation,ptype1,ptype2,ptype3,ptype4);
     
     
   SELECT * FROM tb_calls  WHERE idcall = LAST_INSERT_ID();
@@ -128,28 +128,6 @@ CREATE TABLE `tb_callphotos` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `tb_callphotos`
---
-
-INSERT INTO `tb_callphotos` (`idphoto`, `idcall`, `iduser`, `namephoto`, `dtregister`) VALUES
-(121, 66, 16, 'Captura de tela de 2020-12-18 11-36-30.png', '2021-01-05 02:08:26'),
-(122, 66, 16, 'Captura de tela de 2020-12-18 11-36-06.png', '2021-01-05 02:08:26'),
-(123, 66, 16, 'Captura de tela de 2020-12-18 11-34-30.png', '2021-01-05 02:08:26'),
-(124, 67, 20, 'Captura de tela de 2020-12-18 11-37-00.png', '2021-01-05 02:10:34'),
-(125, 67, 20, 'Captura de tela de 2020-12-18 11-36-44.png', '2021-01-05 02:10:34'),
-(126, 68, 18, 'Captura de tela de 2020-12-18 11-36-49.png', '2021-01-05 02:13:41'),
-(127, 68, 18, 'Captura de tela de 2020-12-18 11-36-01.png', '2021-01-05 02:13:41'),
-(132, 70, 1, 'Captura de tela de 2020-12-18 11-37-05.png', '2021-01-05 02:27:19'),
-(133, 70, 1, 'Captura de tela de 2020-12-18 11-37-00.png', '2021-01-05 02:27:19'),
-(134, 70, 1, 'Captura de tela de 2020-12-18 11-36-55.png', '2021-01-05 02:27:19'),
-(135, 70, 1, 'Captura de tela de 2020-12-18 11-36-49.png', '2021-01-05 02:27:19'),
-(136, 70, 1, 'Captura de tela de 2020-12-18 11-36-44.png', '2021-01-05 02:27:20'),
-(137, 70, 1, 'Captura de tela de 2020-12-18 11-36-30.png', '2021-01-05 02:27:20'),
-(138, 70, 1, 'Captura de tela de 2020-12-18 11-36-06.png', '2021-01-05 02:27:20'),
-(139, 70, 1, 'Captura de tela de 2020-12-18 11-36-01.png', '2021-01-05 02:27:20'),
-(140, 70, 1, 'Captura de tela de 2020-12-18 11-34-30.png', '2021-01-05 02:27:20');
-
 -- --------------------------------------------------------
 
 --
@@ -161,20 +139,12 @@ CREATE TABLE `tb_calls` (
   `iduser` int(11) NOT NULL,
   `locality` varchar(128) NOT NULL,
   `observation` text,
-  `priority` varchar(64) NOT NULL,
-  `situation` int(11) NOT NULL,
+  `type1` varchar(60) DEFAULT NULL,
+  `type2` varchar(60) DEFAULT NULL,
+  `type3` varchar(60) DEFAULT NULL,
+  `type4` varchar(60) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `tb_calls`
---
-
-INSERT INTO `tb_calls` (`idcall`, `iduser`, `locality`, `observation`, `priority`, `situation`, `dtregister`) VALUES
-(66, 16, 'Quadra 516 Santa Maria', '<p>Pr&oacute;ximo a Igreja</p>', 'Alta', 3, '2021-01-05 02:27:56'),
-(67, 20, 'Quadra 312 Santa Maria', '<p>Perto do posto de gasolina</p>', 'Baixa', 2, '2021-01-05 02:17:27'),
-(68, 18, 'Quadra 416 Santa Maria', '<p>Pr&oacute;ximo ao VIP G&aacute;s</p>', 'Baixa', 1, '2021-01-05 02:13:41'),
-(70, 1, 'Setor Leste quadra 8 Gama', '<p>Pr&oacute;ximo a Igreja</p>', 'Baixa', 1, '2021-01-05 02:27:19');
 
 -- --------------------------------------------------------
 
@@ -189,16 +159,6 @@ CREATE TABLE `tb_locations` (
   `lat` double NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `tb_locations`
---
-
-INSERT INTO `tb_locations` (`idlocation`, `idcall`, `lng`, `lat`, `dtregister`) VALUES
-(21, 66, -47.98936082300721, -16.019029048975515, '2021-01-05 02:08:26'),
-(22, 67, -48.00142003473817, -16.01472880006557, '2021-01-05 02:10:34'),
-(23, 68, -47.99452675756989, -16.014718487606714, '2021-01-05 02:13:41'),
-(25, 70, -48.04677082476197, -16.010562523321475, '2021-01-05 02:27:20');
 
 -- --------------------------------------------------------
 
@@ -273,19 +233,19 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT de tabela `tb_callphotos`
 --
 ALTER TABLE `tb_callphotos`
-  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_calls`
 --
 ALTER TABLE `tb_calls`
-  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_locations`
 --
 ALTER TABLE `tb_locations`
-  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_users`
