@@ -1,3 +1,4 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 
 <div class="content">
     <div class="content-inside">
@@ -5,7 +6,7 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Localização - Ponto de Entulhos,  {$markers.valueLocality}</b></a>
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Localização - Ponto de Entulhos,  <?php echo $markers["valueLocality"]; ?></b></a>
                 </li>
             </ul>
             
@@ -25,7 +26,7 @@
 
     <script>
 
-      var initialCoordinates = [{$markers.valueLat}, {$markers.valueLng}]; 
+      var initialCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>]; 
       var initialZoomLevel = 16;
 
       // create a map in the "map" div, set the view to a given place and zoom
@@ -37,8 +38,8 @@
       }).addTo(map);
     
 
-      var muxiCoordinates = [{$markers.valueLat}, {$markers.valueLng}];
-      var muxiMarkerMessage = "<b style='font-size:16px;'>{$markers.valueLocality}</b><br>{$markers.valueObservation}<b>Latitude:</b>{$markers.valueLat}<br><b>Longitude:</b>{$markers.valueLng}";
+      var muxiCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>];
+      var muxiMarkerMessage = "<b style='font-size:16px;'><?php echo $markers["valueLocality"]; ?></b><br><?php echo $markers["valueObservation"]; ?><b>Latitude:</b><?php echo $markers["valueLat"]; ?><br><b>Longitude:</b><?php echo $markers["valueLng"]; ?>";
 
       var muxiIconProperties = {
         iconUrl: "/res/map/marker.png"
