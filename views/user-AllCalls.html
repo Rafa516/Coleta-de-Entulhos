@@ -16,8 +16,6 @@
 
                 </li>
             </ul>
-
-
            
 
              {if="totalCalls() != 0"}
@@ -34,7 +32,7 @@
                  
                     <th><center>Tipos de Entulhos</th>
                     <th><center>Data de Registro</th>
-                    <th><center>Excluir</th>
+                  
 
                   </tr>
                 </thead>
@@ -46,6 +44,9 @@
                     <td><br><center>{$value.observation}</td>
                     <td><br><center><a href="/user/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
                    
+                    {if="namePhotos($value.idcall) == ''"}
+                       <td><br><center><b>Sem Fotos</b></td>
+                        {else}
                     <td><br><center>   <a href="/user/calls/images/{$value.idcall}" style="width: 100px;" class="btn btn-info btn-sm" >
                       {if="numPhotos($value.idcall) == 1"}
                       <b>{function="numPhotos($value.idcall)"} Foto</b></a>
@@ -53,20 +54,19 @@
                       <b>{function="numPhotos($value.idcall)"} Fotos</b></a>
                       {/if}
                    </td/>
+                      {/if}
                  
                    </td/>
 
                     <td><br><center>
-                      {$value.type1} &ensp; 
-                      {$value.type2} &ensp;
-                      {$value.type3} &ensp;
-                      {$value.type4}
-                      
+                      {$value.type1} 
+                      {$value.type2} 
+                      {$value.type3} 
+                      {$value.type4}  
                       </td>
 
                     <td><br><center>{function="formatDate($value.dtregister)"}</td>
-                    <td><br><center> <a style="width: 80px;" href="/user/calls/delete/{$value.idcall}"  onclick="return confirm('Deseja realmente excluir o registro do local: {$value.locality}?')" class="btn btn-danger btn-sm"> Excluir</a></td>
-                   
+                  
                    
                   </tr>
                   

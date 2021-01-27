@@ -40,7 +40,7 @@
             <div class="col-md-10">
               <p class="text-muted">
 
-              <form class="form-group" action="/user/open-call/submit" method="post" enctype="multipart/form-data"><br>
+              <form class="form-group" action="/admin/open-call/submit" method="post" enctype="multipart/form-data"><br>
 
 
                 <div class="form-group"><label class="small mb-1"><b

@@ -16,9 +16,15 @@
 
                     {loop="$images"}
 
+                     {if="namePhotos($value.idcall) == ''"}
+
+                       <a class="image-link" href="/res/ft_call/noPhoto.png"> <img style="height: 15em;width: 15em" class="photo"
+                            id="image-preview" src="/res/ft_call/noPhoto.png" ></a>
+
+                     {else}
                     <a class="image-link" href="{$value.desphoto}"> <img style="height: 15em;width: 15em" class="photo"
                             id="image-preview" src="{$value.desphoto}"></a>
-
+                    {/if}
                     {/loop}
 
                 </div>

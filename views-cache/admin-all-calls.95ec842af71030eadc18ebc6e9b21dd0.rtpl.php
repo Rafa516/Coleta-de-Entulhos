@@ -20,7 +20,15 @@
 
                 </li>
             </ul>
-           
+
+
+            <?php if( $profileMsg != '' ){ ?>
+
+            <div class="alert alert-success">
+                <b><?php echo $profileMsg; ?></b>
+            </div>
+            <?php } ?>
+
 
              <?php if( totalCalls() != 0 ){ ?>
 
@@ -37,7 +45,7 @@
                  
                     <th><center>Tipos de Entulhos</th>
                     <th><center>Data de Registro</th>
-                  
+                    <th><center>Excluir</th>
 
                   </tr>
                 </thead>
@@ -48,14 +56,14 @@
                    
                     <td><br><center><?php echo $value1["locality"]; ?></td>
                     <td><br><center><?php echo $value1["observation"]; ?></td>
-                    <td><br><center><a href="/user/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
+                    <td><br><center><a href="/admin/calls/maps/<?php echo $value1["idcall"]; ?>"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
                    
                     <?php if( namePhotos($value1["idcall"]) == '' ){ ?>
 
                        <td><br><center><b>Sem Fotos</b></td>
                         <?php }else{ ?>
 
-                    <td><br><center>   <a href="/user/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
+                    <td><br><center>   <a href="/admin/calls/images/<?php echo $value1["idcall"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
                       <?php if( numPhotos($value1["idcall"]) == 1 ){ ?>
 
                       <b><?php echo numPhotos($value1["idcall"]); ?> Foto</b></a>
@@ -71,14 +79,17 @@
                    </td/>
 
                     <td><br><center>
-                      <?php echo $value1["type1"]; ?> 
+                      <?php echo $value1["type1"]; ?>  
                       <?php echo $value1["type2"]; ?> 
                       <?php echo $value1["type3"]; ?> 
-                      <?php echo $value1["type4"]; ?>  
+                      <?php echo $value1["type4"]; ?>
+
+                      
                       </td>
 
                     <td><br><center><?php echo formatDate($value1["dtregister"]); ?></td>
-                  
+                    <td><br><center> <a style="width: 80px;" href="/admin/calls/delete/<?php echo $value1["idcall"]; ?>"  onclick="return confirm('Deseja realmente excluir o registro do local: <?php echo $value1["locality"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a></td>
+                   
                    
                   </tr>
                   

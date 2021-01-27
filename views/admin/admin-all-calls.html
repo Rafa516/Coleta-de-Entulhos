@@ -50,6 +50,9 @@
                     <td><br><center>{$value.observation}</td>
                     <td><br><center><a href="/admin/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
                    
+                    {if="namePhotos($value.idcall) == ''"}
+                       <td><br><center><b>Sem Fotos</b></td>
+                        {else}
                     <td><br><center>   <a href="/admin/calls/images/{$value.idcall}" style="width: 100px;" class="btn btn-info btn-sm" >
                       {if="numPhotos($value.idcall) == 1"}
                       <b>{function="numPhotos($value.idcall)"} Foto</b></a>
@@ -57,13 +60,14 @@
                       <b>{function="numPhotos($value.idcall)"} Fotos</b></a>
                       {/if}
                    </td/>
+                      {/if}
                  
                    </td/>
 
                     <td><br><center>
-                      {$value.type1} &ensp; 
-                      {$value.type2} &ensp;
-                      {$value.type3} &ensp;
+                      {$value.type1}  
+                      {$value.type2} 
+                      {$value.type3} 
                       {$value.type4}
                       
                       </td>
