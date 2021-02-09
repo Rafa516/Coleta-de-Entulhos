@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 09/01/2021 às 17:05
+-- Tempo de geração: 27/01/2021 às 22:24
 -- Versão do servidor: 5.7.32-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -38,11 +38,11 @@ BEGIN
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_image_call_add` (IN `pidcall` INT(11), IN `piduser` INT(11), IN `pnamephoto` VARCHAR(64))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_image_call_add` (IN `pidcall` INT(11), IN `pnamephoto` VARCHAR(64))  NO SQL
 BEGIN
 
-INSERT INTO tb_callphotos (idcall,iduser,namephoto)
-    VALUES(pidcall,piduser,pnamephoto);
+INSERT INTO tb_callphotos (idcall,namephoto)
+    VALUES(pidcall,pnamephoto);
    
 
  END$$
@@ -123,7 +123,6 @@ DELIMITER ;
 CREATE TABLE `tb_callphotos` (
   `idphoto` int(11) NOT NULL,
   `idcall` int(11) NOT NULL,
-  `iduser` int(11) NOT NULL,
   `namephoto` varchar(64) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -201,8 +200,7 @@ INSERT INTO `tb_users` (`iduser`, `person`, `email`, `phone`, `born_date`, `city
 --
 ALTER TABLE `tb_callphotos`
   ADD PRIMARY KEY (`idphoto`),
-  ADD KEY `fk_callphotos_calls` (`idcall`),
-  ADD KEY `fk_callphotos_users` (`iduser`);
+  ADD KEY `fk_callphotos_calls` (`idcall`);
 
 --
 -- Índices de tabela `tb_calls`
@@ -222,8 +220,7 @@ ALTER TABLE `tb_locations`
 -- Índices de tabela `tb_users`
 --
 ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`iduser`),
-  ADD KEY `iduser` (`iduser`);
+  ADD PRIMARY KEY (`iduser`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
@@ -233,19 +230,19 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT de tabela `tb_callphotos`
 --
 ALTER TABLE `tb_callphotos`
-  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_calls`
 --
 ALTER TABLE `tb_calls`
-  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_locations`
 --
 ALTER TABLE `tb_locations`
-  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_users`
@@ -261,8 +258,7 @@ ALTER TABLE `tb_users`
 -- Restrições para tabelas `tb_callphotos`
 --
 ALTER TABLE `tb_callphotos`
-  ADD CONSTRAINT `fk_callphotos_calls` FOREIGN KEY (`idcall`) REFERENCES `tb_calls` (`idcall`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_callphotos_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_callphotos_calls` FOREIGN KEY (`idcall`) REFERENCES `tb_calls` (`idcall`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `tb_calls`

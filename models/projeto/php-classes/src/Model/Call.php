@@ -132,20 +132,7 @@ class Call extends Model {
 
 	}
 
-	//Método para atualizar a situação dos chamados
-	public function updateSituation()
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("CALL sp_update_situation(:idcall,:situation)", [
-			':idcall'=>$this->getidcall(),
-			':situation'=>$this->getsituation()	
-		]);
-
-		$this->setData($results[0]);	
-
-	}
+	
 
 	public function saveLocation()
 	{
@@ -294,9 +281,9 @@ class Call extends Model {
 					
 			   
 					    $sql = new Sql();
-					    $sql->select("CALL sp_image_call_add(:idcall,:iduser, :namephoto)", array(
+					    $sql->select("CALL sp_image_call_add(:idcall,:namephoto)", array(
 							":idcall"=>$this->getidcall(),
-							":iduser"=>$this->getiduser(),
+							
 							":namephoto"=>$namePhoto ));
 		      
 					    move_uploaded_file($file['tmp_name'][$cont], $directory);
