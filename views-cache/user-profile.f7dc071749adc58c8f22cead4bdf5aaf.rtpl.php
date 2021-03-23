@@ -132,7 +132,7 @@
             <select class="form-control " name="city" id="city">
               <option value="<?php echo $user["city"]; ?>"><?php echo $user["city"]; ?></option>
               <option value="Brasília - DF">Brasília - DF</option>
-              <option value=" Gama - DF">Gama - DF</option>
+              <option value="Gama - DF">Gama - DF</option>
               <option value="Taguatinga - DF">Taguatinga - DF</option>
               <option value="Brazlândia - DF">Brazlândia - DF</option>
               <option value="Sobradinho - DF">Sobradinho - DF</option>

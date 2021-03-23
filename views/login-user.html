@@ -93,7 +93,7 @@
 			Cidade
 			<select class="user-input" name="city" id="city">
 				<option value="Brasília - DF">Brasília - DF</option>
-				<option value=" Gama - DF">Gama - DF</option>
+				<option value="Gama - DF">Gama - DF</option>
 				<option value="Taguatinga - DF">Taguatinga - DF</option>
 				<option value="Brazlândia - DF">Brazlândia - DF</option>
 				<option value="Sobradinho - DF">Sobradinho - DF</option>

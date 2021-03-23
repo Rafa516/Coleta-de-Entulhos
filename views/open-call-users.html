@@ -90,10 +90,10 @@
                 <input class="form-control py-1" value="{$user.iduser}" name="iduser" type="hidden">
 
 
-                <input class="form-control py-1" id="lat" type="hidden" name="lat">
+                <input class="form-control py-1" id="lat" type="text" name="lat">
 
 
-                <input class="form-control py-1" id="lng" type="hidden" name="lng">
+                <input class="form-control py-1" id="lng" type="text" name="lng">
 
 
                 <center><input style="width: 100%;" class="btn btn-primary btn " type="submit" value="Enviar"></center>
@@ -116,14 +116,19 @@
 <script data-require="leaflet@0.7.3" data-semver="0.7.3" src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <script src="script.js"></script>
 
+
+<!-- BRASÍLIA--> 
+
+{if="$user.city == 'Brasília - DF'"}
+
 <script>
   var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; Pontos de Entulhos - DF'
 });
 
 var map = new L.Map('map', {
-  'center': [-15.792873001853433,-47.882795333862305],
-  'zoom': 11,
+  'center': [-15.79291429721882,-47.88494110107422],
+  'zoom': 13,
   'layers': [tileLayer]
 });
 
@@ -134,7 +139,7 @@ var map = new L.Map('map', {
 
     var muxiIcon = L.icon(muxiIconProperties);
 
-var marker = L.marker([-15.792873001853433,-47.882795333862305],{
+var marker = L.marker([-15.79291429721882,-47.88494110107422],{
   draggable: true,
   icon: muxiIcon
 }).addTo(map);
@@ -144,6 +149,214 @@ marker.on('dragend', function (e) {
   document.getElementById('lng').value = marker.getLatLng().lng;
 });
 </script>
+{/if}
+
+<!-- GAMA --> 
+
+{if="$user.city == 'Gama - DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-16.013888502191303,-48.064413070678704],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-16.013888502191303,-48.064413070678704],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
+
+<!-- TAGUATINGA --> 
+
+{if="$user.city == 'Taguatinga - DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-15.832553961950342,-48.05488586425781],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-15.832553961950342,-48.05488586425781],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
+
+<!-- BRAZLÂNDIA --> 
+
+{if="$user.city == 'Brazlândia - DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-15.668990420812593,-48.197879791259766],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-15.668990420812593,-48.197879791259766],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
+
+
+<!-- SOBRADINHO --> 
+
+{if="$user.city == 'Sobradinho - DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-15.645849615729336,-47.79945373535156],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-15.645849615729336,-47.79945373535156],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
+
+<!-- PLANALTINA --> 
+
+{if="$user.city == 'Planaltina - DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-15.614936028740939,-47.65525817871094],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-15.614936028740939,-47.65525817871094],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
+
+
+
+<!-- SANTA MARIA--> 
+
+{if="$user.city == 'Santa Maria- DF'"}
+
+<script>
+  var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; Pontos de Entulhos - DF'
+});
+
+var map = new L.Map('map', {
+  'center': [-16.01562099500949,-48.01403045654297],
+  'zoom': 14,
+  'layers': [tileLayer]
+});
+
+  var muxiIconProperties = {
+      iconUrl: "/res/map/marker.png"
+    , iconSize: [44, 59]
+    };
+
+    var muxiIcon = L.icon(muxiIconProperties);
+
+var marker = L.marker([-16.01562099500949,-48.01403045654297],{
+  draggable: true,
+  icon: muxiIcon
+}).addTo(map);
+
+marker.on('dragend', function (e) {
+  document.getElementById('lat').value = marker.getLatLng().lat;
+  document.getElementById('lng').value = marker.getLatLng().lng;
+});
+</script>
+{/if}
 
 <script src="/res/admin/js/functions.js"></script>
 <script type="text/javascript">observation()</script>  

@@ -24,6 +24,8 @@
        <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
     </script>
 
+ 
+
     <script>
 
       var initialCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>]; 
