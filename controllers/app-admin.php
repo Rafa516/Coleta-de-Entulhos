@@ -159,15 +159,39 @@ $app->get('/admin/all-calls', function() {
 
 	$call = new Call();
 
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	if ($search != '') {
+
+		$pagination = $call::getPageSearch($search, $page);
+
+	} else {
+
+		$pagination = $call::getPage($page);
+
+	}
+
+	$pages = [];
+
+	for ($i=1; $i <= $pagination['pages']; $i++) { 
+		array_push($pages, [
+			'link'=>'/admin/all-calls?page='.$i,
+			'page'=>$i,
+			'search'=>$search,
+		]);
+	}
+
 	$page = new PageAdmin();
 
 	$page->setTpl("admin-all-calls",[
-	 "allCalls"=>$call::listAll(),
+	 "search"=>$search,
+	 "pages"=>$pages,
+	 "allCalls"=>$pagination['data'],
 	 'profileMsg'=>User::getSuccess()
 	]);
 
 });
-
 
 
 

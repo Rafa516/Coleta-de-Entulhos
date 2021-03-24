@@ -16,7 +16,7 @@
                           <?php }else{ ?>
 
                           <?php echo totalCalls(); ?> Locais Registrados
-                          <?php } ?>  <b></a>
+                          <?php } ?>  </b></a>
 
                 </li>
             </ul>
@@ -33,6 +33,17 @@
              <?php if( totalCalls() != 0 ){ ?>
 
              <div class="table-responsive">
+                <div style="float: right">
+                  <form  action="/admin/all-calls" method="get" >
+                        <div class="input-group">
+                          <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
+                              <span  class="input-group-btn">
+                                <button  class="btn btn" style="background-color: #088A08;color: white" type="submit"  id="search-btn"  ><i class="fa fa-search"style="font-size:13px;" > PESQUISAR</i>
+                                </button>
+                              </span>
+                        </div>
+                      </form>
+                 </div><br><br>
             <table class="table table-hover  table-bordered">
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
@@ -97,6 +108,24 @@
 
                 </tbody>
               </table>
+                <br>
+              <center>
+            <div class="box-footer clearfix">
+              <ul class="pagination">
+               <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+
+                          <?php if( $pages == $value1["link"] ){ ?> 
+                       <li> <a class="active"href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                        <?php }else{ ?>
+
+                        <li><a href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                          <?php } ?>
+
+                        <?php } ?>
+
+              </ul>
+            </div>
+          </center>
           </div>
            <?php } ?>
 

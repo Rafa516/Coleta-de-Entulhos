@@ -220,6 +220,8 @@ $app->get('/user/profile', function() {
 
 });
 
+//---------ROTA PARA  A PÁGINA DE TABELAS DE TODOS CHAMADOS----------------------//
+
 $app->get('/user/all-calls', function() {  
 
 
