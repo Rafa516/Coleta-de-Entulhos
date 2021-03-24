@@ -278,17 +278,42 @@ $app->get('/admin/users', function() {
 
 	User::verifyLoginAdmin();
 
-	$users = User::listAll();
+	$user = new User();
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	if ($search != '') {
+
+		$pagination = $user::getPageSearch($search, $page);
+
+	} else {
+
+		$pagination = $user::getPage($page);
+
+	}
+
+	$pages = [];
+
+	for ($i=1; $i <= $pagination['pages']; $i++) { 
+		array_push($pages, [
+			'link'=>'/admin/users?page='.$i,
+			'page'=>$i,
+			'search'=>$search,
+		]);
+	}
+
 
 	$page = new PageAdmin();
-	
-	
-	$page->setTpl("users", array(	
-		"users"=>$users,
-		'profileMsg'=>User::getSuccess(),
-		'errorRegister'=>User::getErrorRegister()
-		
-	));
+
+	$page->setTpl("users",[
+	 "search"=>$search,
+	 "pages"=>$pages,
+	 "users"=>$pagination['data'],
+	 'profileMsg'=>User::getSuccess(),
+	 'errorRegister'=>User::getErrorRegister()
+	]);
+
 
 });
 

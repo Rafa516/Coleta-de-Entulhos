@@ -409,6 +409,59 @@ class User extends Model {
 
 	}
 
+	//PAGINAÇÃO DA PÁGINA de USUÁRIOS
+	public  static function getPage($page = 1, $itemsPerPage = 5)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM  tb_users ORDER BY dtregister DESC
+			LIMIT $start, $itemsPerPage");
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
+
+	//BUSCA DA PÁGINA DE USUÁRIOS
+
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 5)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_users 
+			WHERE iduser LIKE :search OR person LIKE :search OR email LIKE :search OR phone LIKE :search
+			OR born_date LIKE :search OR city LIKE :search OR address LIKE :search OR login LIKE :search 
+			ORDER BY dtregister DESC
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
 
 	
 }

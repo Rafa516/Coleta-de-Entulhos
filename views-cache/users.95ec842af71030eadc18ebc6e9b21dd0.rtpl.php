@@ -17,7 +17,7 @@
                           <?php } ?> </b></a>
                 </li>
             </ul>
-         <button data-toggle="modal"  data-target="#registerModal"class="btn btn-primary"><b>Cadastrar Usuário</b> </button><br><br>
+        
 
          <?php if( $profileMsg != '' ){ ?>
 
@@ -35,6 +35,18 @@
             <?php } ?>
 
         <div class="table-responsive">
+           <button data-toggle="modal"  data-target="#registerModal"class="btn btn-primary"><b>Cadastrar Usuário</b> </button>
+           <div style="float: right">
+                  <form  action="/admin/users" method="get" >
+                        <div class="input-group">
+                          <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
+                              <span  class="input-group-btn">
+                                <button  class="btn btn" style="background-color: #088A08;color: white" type="submit"  id="search-btn"  ><i class="fa fa-search"style="font-size:13px;" > PESQUISAR</i>
+                                </button>
+                              </span>
+                        </div>
+                      </form>
+                 </div><br><br>
             <table class="table table-hover  table-bordered">
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
@@ -100,6 +112,27 @@
 
                 </tbody>
               </table>
+                <br>
+              <center>
+            <div class="box-footer clearfix">
+              <ul class="pagination">
+               <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+
+                          <?php if( $pages == $value1["link"] ){ ?> 
+                       <li> <a class="active"href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                        <?php }else{ ?>
+
+                        <li><a href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                          <?php } ?>
+
+                        <?php } ?>
+
+              </ul>
+            </div>
+          </center>
+          </div>
+          
+          <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
           </div>
 
           
@@ -168,7 +201,7 @@
             <select class="form-control " name="city" id="city">
               <option value="<?php echo $user["city"]; ?>"><?php echo $user["city"]; ?></option>
               <option value="Brasília - DF">Brasília - DF</option>
-              <option value=" Gama - DF">Gama - DF</option>
+              <option value="Gama - DF">Gama - DF</option>
               <option value="Taguatinga - DF">Taguatinga - DF</option>
               <option value="Brazlândia - DF">Brazlândia - DF</option>
               <option value="Sobradinho - DF">Sobradinho - DF</option>

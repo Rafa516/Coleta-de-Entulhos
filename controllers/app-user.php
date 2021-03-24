@@ -232,7 +232,7 @@ $app->get('/user/all-calls', function() {
 
 	if ($search != '') {
 
-		$pagination = $call::getPageSearcH($search, $page);
+		$pagination = $call::getPageSearch($search, $page);
 
 	} else {
 
