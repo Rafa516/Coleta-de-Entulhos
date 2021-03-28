@@ -14,7 +14,8 @@
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script type="text/javascript" src="/../res/admin/js/ckeditor/ckeditor.js"></script>
+
+
 
 
 <script src="/../res/admin/js/functions.js"></script>

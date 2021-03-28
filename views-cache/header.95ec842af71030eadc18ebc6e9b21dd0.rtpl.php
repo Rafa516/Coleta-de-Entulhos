@@ -59,11 +59,13 @@
       <i class="fa fa-bars nav_btn"></i>
     </div>
     <div class="mobile_nav_items">
+      <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
+      <a href="/admin/users"><i class="fas fa-info-circle"></i><span>Informações</span></a>
        <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
       <a href="/admin/open-call"><i class="fa fa-map-marker"></i><span>Marcar Local</span></a>
       <a href="/admin/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
       <a href="/admin/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
-      <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+      <a href="/admin/profile"><i class="fas fa-user"></i><span>Meu Perfil</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -88,11 +90,12 @@
       <h5 style="font-size: 18px;color: white;"><?php echo getUserName(); ?></h5>
     </div>
    <a href="/admin"><i class="fas fa-desktop"></i><span>Painel de Controle</span></a>
+   <a href="/admin/informations"><i class="fas fa-info-circle"></i><span>Informações</span></a>
       <a href="/admin/users"><i class="fas fa-users"></i><span>Usuários</span></a>
       <a href="/admin/open-call"><i class="fa fa-map-marker"></i><span>Marcar Local</span></a>
       <a href="/admin/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
       <a href="/admin/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
-      <a href="/admin/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+      <a href="/admin/profile"><i class="fas fa-user"></i><span>Meu Perfil</span></a>
   </div>
   <!--sidebar end-->
 

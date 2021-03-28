@@ -58,6 +58,14 @@ function observation()
 }
 
 
+/*CK editor text área*/
+function informations()
+{
+	   window.onload = function()  {
+        CKEDITOR.replace( 'informations' );
+      };
+}
+
 
 
 
