@@ -119,6 +119,7 @@ $app->get('/admin', function() {
 
 });
 
+//---------ROTA PARA A PÁGINA DE INFORMAÇÕES ----------------------//
 
 $app->get('/admin/informations', function() {  
 
@@ -164,6 +165,8 @@ $app->get('/admin/informations', function() {
 
 });
 
+//---------ROTA PARA A PÁGINA DE REGISTRO DE INFORMAÇÕES ----------------------//
+
 $app->get('/admin/informations/register', function() {  
 
 
@@ -176,6 +179,9 @@ $app->get('/admin/informations/register', function() {
 	]);
 
 });
+
+
+//---------ROTA POST DO FORMULÁRIO DE REGISTRO DE INFORMAÇÕES  ----------------------//
 
 $app->post("/admin/informations/submit", function(){
 
@@ -225,6 +231,9 @@ $app->get('/admin/informations/update/:idinf', function($idinf){
     ));
  
 });
+
+
+//---------ROTA POST DO FORMULÁRIO PARA A PÁGINA DE EDIÇÃO DAS INFORMAÇÕES----------------------//
 
 $app->post("/admin/informations/update/:idinf", function($idinf){
 

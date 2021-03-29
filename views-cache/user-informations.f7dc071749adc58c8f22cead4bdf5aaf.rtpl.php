@@ -9,16 +9,9 @@
                 </li>
             </ul>
         
-             <?php if( $informationsOpenMsg != '' ){ ?>
-
-            <div class="alert alert-success">
-                <b><?php echo $informationsOpenMsg; ?></b>
-            </div>
-            <?php } ?>
-
+      
 
       
-            <a href="/admin/informations/register" class="btn btn-primary"><b>Nova Informação</b></a>
            <div style="float: right">
                   <form  action="" method="get" >
                         <div class="input-group">
@@ -41,12 +34,9 @@
                  <h2><?php echo $value1["title"]; ?></h2><br>
                  <?php echo $value1["informations"]; ?><br><br>
 
-                  <center><a style="width: 80px;" href="/admin/informations/update/<?php echo $value1["idinf"]; ?>"  class="btn btn-success btn-sm"><b>Alterar</b></a>
-
-                    <a style="width: 80px;" href="/admin/informations/delete/<?php echo $value1["idinf"]; ?>"  onclick="return confirm('Deseja realmente excluir a informação <?php echo $value1["title"]; ?>??')" class="btn btn-danger btn-sm"> <b>Excluir</b></a></center>
+            
 
                 <hr class="my-4" />
-
 
                  <?php } ?>
 

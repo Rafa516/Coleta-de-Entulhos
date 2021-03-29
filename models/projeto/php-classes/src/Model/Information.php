@@ -117,7 +117,7 @@ class Information extends Model {
 	
 	
 
-	public  static function getPage($page = 1, $itemsPerPage = 3)
+	public  static function getPage($page = 1, $itemsPerPage = 2)
 	{
 
 		$start = ($page - 1) * $itemsPerPage;
@@ -144,7 +144,7 @@ class Information extends Model {
 
 
 
-	public static function getPageSearch($search, $page = 1, $itemsPerPage = 3)
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 2)
 	{
 
 		$start = ($page - 1) * $itemsPerPage;

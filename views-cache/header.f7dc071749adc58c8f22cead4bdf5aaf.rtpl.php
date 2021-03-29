@@ -61,9 +61,10 @@
     </div>
     <div class="mobile_nav_items">
       <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="/user/informations"><i class="fas fa-info-circle"></i><span>Informações</span></a>
       <a href="/user/open-call"><i class="fa fa-map-marker"></i><span>Marcar local</span></a>
       <a href="/user/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
-      <a href="/user/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
+      <a href="/user/all-calls"><i class="fa fa-user"></i><span>Tabela com Locais</span></a>
       
       <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
@@ -90,10 +91,11 @@
       <center><b style="font-size: 18px;color: white;"><?php echo getUserName(); ?></b></center>
     </div>
     <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="/user/informations"><i class="fas fa-info-circle"></i><span>Informações</span></a>
     <a href="/user/open-call"><i class="fa fa-map-marker"></i><span>Marcar local</span></a>
     <a href="/user/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
     <a href="/user/all-calls"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
-    <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
+    <a href="/user/profile"><i class="fas fa-user"></i><span>Meu Perfil</span></a>
   </div>
   <!--sidebar end-->
 
