@@ -6,28 +6,22 @@
                 <li class="nav-item">
                     <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
                         data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Tabela com Locais -   
-                          {if="totalCalls() == 0"}
-                          Nenhum Local Registrado
-                          {elseif="totalCalls() == 1"}
-                          {function="totalCalls()"} Local Registrado
+                          {if="totalMarkers() == 0"}
+                          Nenhum Local Resgistrado
+                          {elseif="totalMarkers() == 1"}
+                          {function="totalMarkers()"} Local Registrado
                           {else}
-                          {function="totalCalls()"} Locais Registrados
+                          {function="totalMarkers()"} Locais Registrados
                           {/if}  </b></a>
-
+                      
                 </li>
+                     
             </ul>
 
-
-            {if="$profileMsg != ''"}
-            <div class="alert alert-success">
-                <b>{$profileMsg}</b>
-            </div>
-            {/if}
-
-             {if="totalCalls() != 0"}
+             {if="totalMarkers() != 0"}
              <div class="table-responsive">
-                <div style="float: right">
-                  <form  action="/admin/all-calls" method="get" >
+              <div style="float: right">
+                  <form  action="/user/all-markers" method="get" >
                         <div class="input-group">
                           <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
                               <span  class="input-group-btn">
@@ -49,26 +43,26 @@
                  
                     <th><center>Tipos de Entulhos</th>
                     <th><center>Data de Registro</th>
-                    <th><center>Excluir</th>
+                  
 
                   </tr>
                 </thead>
                 <tbody>
-                  {loop="$allCalls"}
+                  {loop="$allmarkers"}
                   <tr style="font-size: 15px;font-weight: normal;">
                    
                     <td><br><center>{$value.locality}</td>
                     <td><br><center>{$value.observation}</td>
-                    <td><br><center><a href="/admin/calls/maps/{$value.idcall}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
+                    <td><br><center><a href="/user/markers/maps/{$value.idmarker}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
                    
-                    {if="namePhotos($value.idcall) == ''"}
+                    {if="namePhotos($value.idmarker) == ''"}
                        <td><br><center><b>Sem Fotos</b></td>
                         {else}
-                    <td><br><center>   <a href="/admin/calls/images/{$value.idcall}" style="width: 100px;" class="btn btn-info btn-sm" >
-                      {if="numPhotos($value.idcall) == 1"}
-                      <b>{function="numPhotos($value.idcall)"} Foto</b></a>
+                    <td><br><center>   <a href="/user/markers/images/{$value.idmarker}" style="width: 100px;" class="btn btn-info btn-sm" >
+                      {if="numPhotos($value.idmarker) == 1"}
+                      <b>{function="numPhotos($value.idmarker)"} Foto</b></a>
                       {else}
-                      <b>{function="numPhotos($value.idcall)"} Fotos</b></a>
+                      <b>{function="numPhotos($value.idmarker)"} Fotos</b></a>
                       {/if}
                    </td/>
                       {/if}
@@ -76,23 +70,21 @@
                    </td/>
 
                     <td><br><center>
-                      {$value.type1}  
+                      {$value.type1} 
                       {$value.type2} 
                       {$value.type3} 
-                      {$value.type4}
-                      
+                      {$value.type4}  
                       </td>
 
                     <td><br><center>{function="formatDate($value.dtregister)"}</td>
-                    <td><br><center> <a style="width: 80px;" href="/admin/calls/delete/{$value.idcall}"  onclick="return confirm('Deseja realmente excluir o registro do local: {$value.locality}?')" class="btn btn-danger btn-sm"> Excluir</a></td>
-                   
+                  
                    
                   </tr>
                   
                   {/loop}
                 </tbody>
               </table>
-                <br>
+              <br>
               <center>
             <div class="box-footer clearfix">
               <ul class="pagination">

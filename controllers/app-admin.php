@@ -2,7 +2,7 @@
 
 use \Projeto\PageAdmin;
 use \Projeto\Model\User;
-use \Projeto\Model\Call;
+use \Projeto\Model\Marker;
 use \Projeto\Model\Information;
 
 //------------------ROTA DA PÁGINA DE LOGIN--------------------------------//
@@ -64,17 +64,17 @@ $app->get("/admin/users/delete/:iduser",function($iduser){
 
 //---------ROTA PARA DELETAR O LOCAL ----------------------//
 
-$app->get("/admin/calls/delete/:idcall",function($idcall){
+$app->get("/admin/markers/delete/:idmarker",function($idmarker){
 
-	$call = new Call();
+	$marker = new Marker();
 
-	$call->get((int)$idcall);
+	$marker->get((int)$idmarker);
 
-	$call->delete();
+	$marker->delete();
 
 	User::setSuccess("Local removido com sucesso.");
 
-	header("Location: /admin/all-calls");
+	header("Location: /admin/all-markers");
  	exit;
 });
 
@@ -257,45 +257,92 @@ $app->post("/admin/informations/update/:idinf", function($idinf){
 
 //---------ROTA PARA A PÁGINA DE MARCAÇÃO DOS LOCAIS----------------------//
 
-$app->get('/admin/open-call', function() {  
+$app->get('/admin/open-marker', function() {  
 
 
 	User::verifyLoginAdmin();
 
 	$page = new PageAdmin();
 
-	$page->setTpl("open-call-admin",[
-		'CallOpenMsg'=>User::getSuccess(),
+	$page->setTpl("open-marker-admin",[
+		'markerOpenMsg'=>User::getSuccess(),
 		'errorRegister'=>User::getErrorRegister()
 
 	]);
 
 });
 
-//---------ROTA PARA O REGISTRO DO CHAMADO ---------------------//
+//---------ROTA PARA O REGISTRO DAS MARCAÇÕES ---------------------//
 
 
-$app->post("/admin/open-call/submit", function(){
+$app->post("/admin/open-marker/submit", function(){
 
 	User::verifyLoginAdmin();
 
-	$call = new Call();
+	$marker = new Marker();
 
 	if ($_POST['lat'] == '' &&  $_POST['lng'] == '') {
 
 			User::setErrorRegister("Marque um local no mapa");
-			header("Location: /admin/open-call");
+			header("Location: /admin/open-marker");
 			exit;
 
 	}
 
-	$call->setData($_POST);
+	$marker->setData($_POST);
 
-	$call->save();
+	$marker->save();
+	var_dump($marker);
 
 	User::setSuccess("Local registrado com sucesso!!");
 
-	header("Location: /admin/open-call");
+	header("Location: /admin/open-marker");
+	exit;
+
+
+});
+
+
+//---------ROTA PARA A PÁGINA DOS PONTOS DE COLETA
+
+$app->get('/admin/add-collect', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("add-collect",[
+		'markerOpenMsg'=>User::getSuccess(),
+		'errorRegister'=>User::getErrorRegister()
+
+	]);
+
+});
+
+
+//---------ROTA PARA O REGISTRO DOS PONTOS DE COLETA ---------------------//
+$app->post("/admin/add-collect/submit", function(){
+
+	User::verifyLoginAdmin();
+
+	$marker = new Marker();
+
+	if ($_POST['lat'] == '' &&  $_POST['lng'] == '') {
+
+			User::setErrorRegister("Marque um local no mapa");
+			header("Location: /admin/open-marker");
+			exit;
+
+	}
+
+	$marker->setData($_POST);
+
+	$marker->save();
+
+	User::setSuccess("Ponto de Coleta registrado com sucesso!!");
+
+	header("Location: /admin/add-collect");
 	exit;
 
 
@@ -304,23 +351,23 @@ $app->post("/admin/open-call/submit", function(){
 
 //---------ROTA PARA A PÁGINA DE TODOS OS LOCAIS ---------------------//
 
-$app->get('/admin/all-calls', function() {  
+$app->get('/admin/all-markers', function() {  
 
 
 	User::verifyLoginAdmin();
 
-	$call = new Call();
+	$marker = new Marker();
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
 	if ($search != '') {
 
-		$pagination = $call::getPageSearch($search, $page);
+		$pagination = $marker::getPageSearch($search, $page);
 
 	} else {
 
-		$pagination = $call::getPage($page);
+		$pagination = $marker::getPage($page);
 
 	}
 
@@ -328,7 +375,7 @@ $app->get('/admin/all-calls', function() {
 
 	for ($i=1; $i <= $pagination['pages']; $i++) { 
 		array_push($pages, [
-			'link'=>'/admin/all-calls?page='.$i,
+			'link'=>'/admin/all-markers?page='.$i,
 			'page'=>$i,
 			'search'=>$search,
 		]);
@@ -336,10 +383,10 @@ $app->get('/admin/all-calls', function() {
 
 	$page = new PageAdmin();
 
-	$page->setTpl("admin-all-calls",[
+	$page->setTpl("admin-all-markers",[
 	 "search"=>$search,
 	 "pages"=>$pages,
-	 "allCalls"=>$pagination['data'],
+	 "allMarkers"=>$pagination['data'],
 	 'profileMsg'=>User::getSuccess()
 	]);
 
@@ -349,35 +396,35 @@ $app->get('/admin/all-calls', function() {
 
 //---------ROTA PARA A PÁGINA DAS IMAGENS---------------------//
 
-$app->get('/admin/calls/images/:idcall', function($idcall) {  
+$app->get('/admin/markers/images/:idmarker', function($idmarker) {  
 
 
 	User::verifyLoginAdmin();
 
-	$call = new Call();
+	$marker = new Marker();
 
 	$page = new PageAdmin();
 
-	$page->setTpl("image-calls-admin",[
-		'images'=>$call->showPhotos($idcall),
-		"markers"=>$call->listMarkersID($idcall)
+	$page->setTpl("image-markers-admin",[
+		'images'=>$marker->showPhotos($idmarker),
+		"markers"=>$marker->listMarkersID($idmarker)
 	]);
 
 });
 
 //---------ROTA PARA A PÁGINA DE LOCALIZAÇÃO NO MAPA----------------------//
 
-$app->get('/admin/calls/maps/:idcall', function($idcall) {  
+$app->get('/admin/markers/maps/:idmarker', function($idmarker) {  
 
 	User::verifyLoginAdmin();
 
-	$call = new Call();
+	$marker = new marker();
 
 	$page = new PageAdmin();
 
-	$page->setTpl("map-calls-admin",[
-		"call"=>$call->get((int)$idcall),
-		"markers"=>$call->listMarkersID($idcall)
+	$page->setTpl("map-markers-admin",[
+		"marker"=>$marker->get((int)$idmarker),
+		"markers"=>$marker->listMarkersID($idmarker)
 	]);
 
 });
@@ -389,12 +436,12 @@ $app->get('/admin/locations', function() {
 
 	User::verifyLoginAdmin();
 
-	$call = new Call();
+	$marker = new marker();
 
 	$page = new PageAdmin();
 
 	$page->setTpl("locations-admin",[
-	"markers"=>$call::listAllMarkers()
+	"markers"=>$marker::listAllMarkers()
 	]);
 
 });

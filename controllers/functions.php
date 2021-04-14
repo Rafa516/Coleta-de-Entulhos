@@ -1,7 +1,7 @@
 <?php
 
 use \Projeto\Model\User;
-use \Projeto\Model\Call;
+use \Projeto\Model\Marker;
 use \Projeto\DB\Sql;
 
 
@@ -32,66 +32,61 @@ use \Projeto\DB\Sql;
 
 	}
 
-	function totalCalls(){
-
-		$total = Call::totalCall();
-	
-
-	   return  $total['callsTotal'];
-
-	}
-
-	function totalCallsID($iduser){
-
-		$total = Call::totalCallID($iduser);
-	
-
-	   return  $total['callsTotalID'];
-
-	}
-
-
-	function totalCallPendings(){
-
-		$total = Call::totalCallsPendings();
-
-	   return  $total['callsPendings'];
-
-	}
-
-	function totalCallProgress(){
-
-		$total = Call::totalCallsProgress();
-
-	   return  $total['callsProgress'];
-
-	}
-
-	function totalCallFinished(){
-
-		$total = Call::totalCallsFinished();
-
-	   return  $total['callsFinished'];
-	}
-
 	function totalMarkers(){
 
-		$total = Call::totalMarkers();
+		$total = Marker::totalMarker();
+	
 
 	   return  $total['markersTotal'];
+
 	}
 
-	function numPhotos($idcall){
+	function totalMarkersID($iduser){
 
-		$total = Call::numPhotos($idcall);
+		$total = Marker::totalMarkerID($iduser);
+	
+
+	   return  $total['markersTotalID'];
+
+	}
+
+
+	function totalMarkerPendings(){
+
+		$total = Marker::totalMarkersPendings();
+
+	   return  $total['markersPendings'];
+
+	}
+
+	function totalMarkerProgress(){
+
+		$total = Marker::totalMarkersProgress();
+
+	   return  $total['markersProgress'];
+
+	}
+
+	function totalMarkerFinished(){
+
+		$total = Marker::totalMarkersFinished();
+
+	   return  $total['markersFinished'];
+	}
+
+	
+
+	function numPhotos($idmarker){
+
+		$total = Marker::numPhotos($idmarker);
 
 	   	return  $total['photos'];
 
 	}
 
-	function namePhotos($idcall){
+	function namePhotos($idmarker){
 
-		$total = Call::namePhotos($idcall);
+		$total = Marker::namePhotos($idmarker);
 
 	   	return  $total['name'];
 	}

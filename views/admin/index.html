@@ -11,21 +11,21 @@
 
           <center>
             <!--Widget Start-->
-             <a href="/admin/all-calls"><div class="card-body color" style="background-color:#FF4000">
+             <a href="/admin/all-markers"><div class="card-body color" style="background-color:#FF4000">
                 <div class="float-left">
                     <h3>
                         <h3>
                             <center><span class="count">Pontos de Entulhos</span></center>
                         </h3>
                         <br><center> <i class="fa fa-globe" aria-hidden="true"></i></center>
-                        {if="totalCalls() == 0"}
+                        {if="totalMarkers() == 0"}
                          <center><p style="font-size: 20px;">Nenhum Registrado</p></center>
                         
-                        {elseif="totalCalls() == 1"}
-                         <center><p style="font-size: 20px;">{function="totalCalls()"} Registrado</p></center>
+                        {elseif="totalMarkers() == 1"}
+                         <center><p style="font-size: 20px;">{function="totalMarkers()"} Registrado</p></center>
                         
                         {else}
-                         <center><p style="font-size: 20px;">{function="totalCalls()"} Registrados</p></center>
+                         <center><p style="font-size: 20px;">{function="totalMarkers()"} Registrados</p></center>
                         
                         {/if}
                 </div>

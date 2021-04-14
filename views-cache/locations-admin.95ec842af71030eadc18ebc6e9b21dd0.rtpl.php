@@ -35,7 +35,7 @@
     
 
    var planes = [
-      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcall"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idmarker"]; ?>],<?php } ?>
 
       ];
 
@@ -59,7 +59,7 @@
 
       for (var i = 0; i < planes.length; i++) {
          marker = new L.marker([planes[i][2],planes[i][3]],{icon: muxiIcon})
-            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3]+"<center><br><a href='/admin/calls/images/"+planes[i][4]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
+            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3]+"<center><br><a href='/admin/markers/images/"+planes[i][4]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
             .addTo(map);
 
             

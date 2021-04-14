@@ -32,7 +32,7 @@
     
 
    var planes = [
-      {loop="$markers"}["{$value.locality}","{$value.observation}",{$value.lat},{$value.lng},{$value.idcall}],{/loop}
+      {loop="$markers"}["{$value.locality}","{$value.observation}",{$value.lat},{$value.lng},{$value.idmarker}],{/loop}
       ];
 
         var map = L.map('map1').setView([-15.792873001853433,-47.882795333862305], 11);
@@ -55,7 +55,7 @@
 
       for (var i = 0; i < planes.length; i++) {
          marker = new L.marker([planes[i][2],planes[i][3]],{icon: muxiIcon})
-            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3]+"<center><br><a href='/user/calls/images/"+planes[i][4]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
+            .bindPopup("<b style='font-size:16px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][2]+"<br><b>Longitude:</b>"+planes[i][3]+"<center><br><a href='/user/markers/images/"+planes[i][4]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
             .addTo(map);
 
             

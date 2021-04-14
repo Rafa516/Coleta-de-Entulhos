@@ -5,31 +5,31 @@ namespace Projeto\Model;
 use \Projeto\DB\Sql;
 use \Projeto\Model;
 
-//Classe Call(Chamados, com seus métodos específicos)
-class Call extends Model {
+//Classe marker(marcações, com seus métodos específicos)
+class Marker extends Model {
 
-	//Método estático com a query que seleciona  todos dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente
+	//Método estático com a query que seleciona  todos dados da tabela tb_markers e tb_users relacionada pela coluna de idusers em ordem decrescente
 
 	public static function listAll()
 	{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_calls b ON b.iduser = a.iduser  ORDER BY b.dtregister DESC");
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN  tb_markers b ON b.iduser = a.iduser  ORDER BY b.dtregister DESC");
 
 	}
 
 	
 	
-	//Método com a query que seleciona dados da tabela tb_calls e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro (Chamados relacionado ao usuário)
+	//Método com a query que seleciona dados da tabela tb_markers e tb_users relacionada pela coluna de idusers em ordem decrescente, passando o iduser por parâmetro (marcações relacionado ao usuário)
 
-	public function getCallsID($iduser)
+	public function getMarkersID($iduser)
 	{
 
 		$sql = new Sql();
 
 		return $sql->select("
-			SELECT * FROM tb_users a INNER JOIN tb_calls b ON a.iduser = b.iduser WHERE b.iduser = :iduser ORDER BY b.dtregister DESC
+			SELECT * FROM tb_users a INNER JOIN tb_markers b ON a.iduser = b.iduser WHERE b.iduser = :iduser ORDER BY b.dtregister DESC
 		", [	 
 
 			':iduser'=>$iduser
@@ -44,7 +44,7 @@ class Call extends Model {
 
 		foreach ($list as &$row) {
 			
-			$p = new Call();
+			$p = new Marker();
 			$p->setData($row);
 			$row = $p->getValues();
 
@@ -54,42 +54,42 @@ class Call extends Model {
 
 	}
 
-	//Método estático que verifica o total de chamados registrados
-	public static function totalCall()
+	//Método estático que verifica o total de marcações registrados
+	public static function totalMarker()
 	{
 		
 		$sql = new Sql();
 		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls");
+			FROM tb_markers");
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
 	
-		return ['callsTotal'=>(int)$resultTotal[0]["nrtotal"]];
+		return ['markersTotal'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
-	public static function totalCallID($iduser)
+	public static function totalMarkerID($iduser)
 	{
 		
 		$sql = new Sql();
 		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls WHERE iduser = :iduser",[
+			FROM tb_markers WHERE iduser = :iduser",[
 				':iduser'=>$iduser
 				]);
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
 	
-		return ['callsTotalID'=>(int)$resultTotal[0]["nrtotal"]];
+		return ['markersTotalID'=>(int)$resultTotal[0]["nrtotal"]];
 	}
 
 
-	//Método estático para a verificação do total de fotos de cada chamado
-	public static function numPhotos($idcall)
+	//Método estático para a verificação do total de fotos de cada marcação
+	public static function numPhotos($idmarker)
 	{
 		
 		$sql = new Sql();
 		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM  tb_callphotos WHERE idcall = :idcall",[
-			':idcall'=>$idcall
+			FROM  tb_markerphotos WHERE idmarker = :idmarker",[
+			':idmarker'=>$idmarker
 			]);
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 	  
@@ -109,13 +109,13 @@ class Call extends Model {
 	}
 
 
-	//Método que busca os dados do procedimento e salva no tabela de chamados
+	//Método que busca os dados do procedimento e salva no tabela de marcações
 	public function save()
 	{
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_call_save(:iduser,:locality, :observation,:type1,:type2,:type3,:type4)", array(
+		$results = $sql->select("CALL sp_marker_save(:iduser,:locality, :observation,:type1,:type2,:type3,:type4)", array(
 			":iduser"=>$this->getiduser(),
 			":locality"=>$this->getlocality(),
 			":observation"=>$this->getobservation(),
@@ -127,8 +127,8 @@ class Call extends Model {
 
 		$this->setData($results[0]);
 
-		Call::movePhotos();
-		Call::saveLocation();
+		marker::movePhotos();
+		marker::saveLocation();
 
 	}
 
@@ -140,8 +140,8 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_locations_call_add(:idcall,:lng,:lat)", array(
-			":idcall"=>$this->getidcall(),
+		$results = $sql->select("CALL sp_locations_marker_add(:idmarker,:lng,:lat)", array(
+			":idmarker"=>$this->getidmarker(),
 			":lng"=>$this->getlng(),
 			":lat"=>$this->getlat()	
 		));	
@@ -155,17 +155,17 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-			return   $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_calls b ON b.idcall = a.idcall");	
+			return   $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_markers b ON b.idmarker = a.idmarker");	
 
 	}
 
-	public static function listMarkersID($idcall)
+	public static function listMarkersID($idmarker)
 	{
 
 		$sql = new Sql();
 
-			$results =  $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_calls b ON b.idcall = a.idcall WHERE b.idcall = :idcall",[
-					':idcall'=>$idcall
+			$results =  $sql->select("SELECT * FROM tb_locations a INNER JOIN  tb_markers b ON b.idmarker = a.idmarker WHERE b.idmarker = :idmarker",[
+					':idmarker'=>$idmarker
 			]);	
 
 		return  [
@@ -178,30 +178,30 @@ class Call extends Model {
 	}
 
 
-	//Método que seleciona todos chamados passando a ID por parâmetro
-	public function get($idcall)
+	//Método que seleciona todas marcações passando a ID por parâmetro
+	public function get($idmarker)
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
-			':idcall'=>$idcall
+	     $results  = $sql->select("SELECT * FROM tb_markers WHERE idmarker = :idmarker", [
+			':idmarker'=>$idmarker
 		]);
 
 		$this->setData($results[0]);
 
-		return ['value'=>(int)$results[0]["idcall"]];
+		return ['value'=>(int)$results[0]["idmarker"]];
 
 	}
 
-	//Método que seleciona todos chamados passando a ID por parâmetro e verificando o valor da situação de cada chamado
-	public function valueSituation($idcall)
+	//Método que seleciona todas marcações passando a ID por parâmetro e verificando o valor da situação de cada marcação
+	public function valueSituation($idmarker)
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_calls WHERE idcall = :idcall", [
-			':idcall'=>$idcall
+	     $results  = $sql->select("SELECT * FROM tb_markers WHERE idmarker = :idmarker", [
+			':idmarker'=>$idmarker
 		]);
 
 		$this->setData($results[0]);
@@ -210,13 +210,13 @@ class Call extends Model {
 
 	}
 
-	public static function namePhotos($idcall)
+	public static function namePhotos($idmarker)
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_callphotos WHERE idcall = :idcall", [
-			':idcall'=>$idcall
+	     $results  = $sql->select("SELECT * FROM tb_markerphotos WHERE idmarker = :idmarker", [
+			':idmarker'=>$idmarker
 		]);
 
 		return ['name'=>$results[0]["namephoto"]];
@@ -225,20 +225,20 @@ class Call extends Model {
 
 	
 	
-	//Método para deletar um chamado
+	//Método para deletar um marcação
 	public function delete()
 	{
 
 		$sql = new Sql();
 
-		$sql->query("DELETE FROM tb_calls WHERE idcall = :idcall", [
-			':idcall'=>$this->getidcall()
+		$sql->query("DELETE FROM tb_markers WHERE idmarker = :idmarker", [
+			':idmarker'=>$this->getidmarker()
 		]);
 
 
 		 /*$img = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 				"res" . DIRECTORY_SEPARATOR . 
-				"ft_call" . DIRECTORY_SEPARATOR . 
+				"ft_marker" . DIRECTORY_SEPARATOR . 
 				$this->getnamephoto();
 				unlink($img);*/
 
@@ -272,7 +272,7 @@ class Call extends Model {
 
 					$directory = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
 						"res" . DIRECTORY_SEPARATOR . 
-						"ft_call" . DIRECTORY_SEPARATOR . 
+						"ft_marker" . DIRECTORY_SEPARATOR . 
 						
 						 $file['name'][$cont];
 
@@ -281,8 +281,8 @@ class Call extends Model {
 					
 			   
 					    $sql = new Sql();
-					    $sql->select("CALL sp_image_call_add(:idcall,:namephoto)", array(
-							":idcall"=>$this->getidcall(),
+					    $sql->select("CALL sp_image_marker_add(:idmarker,:namephoto)", array(
+							":idmarker"=>$this->getidmarker(),
 							
 							":namephoto"=>$namePhoto ));
 		      
@@ -293,14 +293,14 @@ class Call extends Model {
 		
 	}
 
-	//Método para listar as imagens referentes a cada chamado
-	public function showPhotos($idcall)
+	//Método para listar as imagens referentes a cada marcação
+	public function showPhotos($idmarker)
 	{
 	     $sql = new Sql();
 	    
 	    
-	     $resultsExistPhoto = $sql->select("SELECT * FROM tb_callphotos WHERE idcall = :idcall ", [
-	         ':idcall'=>$idcall
+	     $resultsExistPhoto = $sql->select("SELECT * FROM tb_markerphotos WHERE idmarker = :idmarker ", [
+	         ':idmarker'=>$idmarker
 	     ]);
 
 	     $countResultsPhoto = count($resultsExistPhoto);
@@ -310,7 +310,7 @@ class Call extends Model {
 	         {
 	             foreach ($result as $key => $value) {
 	                 if ($key === "namephoto") {
-	                     $result["desphoto"] = '/res/ft_call/'. $result['namephoto'];
+	                     $result["desphoto"] = '/res/ft_marker/'. $result['namephoto'];
 	                 }
 	             }
 	         } 
@@ -321,13 +321,13 @@ class Call extends Model {
 	 	 }
 	}
 	
-	//Método para listar todos as fotos de cada chamado e passar pro parâmetro a ID
+	//Método para listar todos as fotos de cada marcação e passar pro parâmetro a ID
 	public  function getPhotos($idphoto)
 	{
 
 		$sql = new Sql();
 
-	     $results  = $sql->select("SELECT * FROM tb_callphotos WHERE idphoto = :idphoto", [
+	     $results  = $sql->select("SELECT * FROM tb_markerphotos WHERE idphoto = :idphoto", [
 			':idphoto'=>$idphoto	
 		]);	
 
@@ -339,7 +339,7 @@ class Call extends Model {
 
 		$sql = new Sql();
 
-	 	 $sql->query("DELETE FROM tb_callphotos WHERE idphoto = :idphoto", [
+	 	 $sql->query("DELETE FROM tb_markerphotos WHERE idphoto = :idphoto", [
 			':idphoto'=>$idphoto
 		]);
 
@@ -355,7 +355,7 @@ class Call extends Model {
 
 		$results = $sql->select("
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM  tb_calls ORDER BY dtregister DESC
+			FROM  tb_markers ORDER BY dtregister DESC
 			LIMIT $start, $itemsPerPage");
 
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
@@ -380,8 +380,8 @@ class Call extends Model {
 
 		$results = $sql->select("
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_calls 
-			WHERE idcall LIKE :search  OR locality LIKE :search OR observation LIKE :search OR type1 LIKE :search
+			FROM tb_markers 
+			WHERE idmarker LIKE :search  OR locality LIKE :search OR observation LIKE :search OR type1 LIKE :search
 			OR type2 LIKE :search OR type3 LIKE :search OR type4 LIKE :search
 			ORDER BY dtregister DESC
 			LIMIT $start, $itemsPerPage;
