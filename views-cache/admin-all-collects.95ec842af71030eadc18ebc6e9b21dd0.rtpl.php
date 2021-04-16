@@ -6,16 +6,16 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Pontos de Entulhos -   
-                          <?php if( totalMarkers() == 0 ){ ?>
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Pontos de Coletas -   
+                          <?php if( totalCollects() == 0 ){ ?>
 
                           Nenhum Local Registrado
-                          <?php }elseif( totalMarkers() == 1 ){ ?>
+                          <?php }elseif( totalCollects() == 1 ){ ?>
 
-                          <?php echo totalMarkers(); ?> Local Registrado
+                          <?php echo totalCollects(); ?> Local Registrado
                           <?php }else{ ?>
 
-                          <?php echo totalMarkers(); ?> Locais Registrados
+                          <?php echo totalCollects(); ?> Locais Registrados
                           <?php } ?>  </b></a>
 
                 </li>
@@ -30,7 +30,7 @@
             <?php } ?>
 
 
-             <?php if( totalMarkers() != 0 ){ ?>
+             <?php if( totalCollects() != 0 ){ ?>
 
              <div class="table-responsive">
                 <div style="float: right">
@@ -50,37 +50,41 @@
                     
                   
                     <th  ><center>Local<b></th>
-                    <th ><center>Observação</th>
+                    <th ><center>Contato</th>
+                    <th><center>E-mail</th>
+                    <th><center>Serviço</th>
+                    <th><center>Informações</th>
                     <th><center>Localização</th>
                     <th><center>Fotos</th>
-                 
-                    <th><center>Tipos de Entulhos</th>
                     <th><center>Data de Registro</th>
                     <th><center>Excluir</th>
 
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $counter1=-1;  if( isset($allMarkers) && ( is_array($allMarkers) || $allMarkers instanceof Traversable ) && sizeof($allMarkers) ) foreach( $allMarkers as $key1 => $value1 ){ $counter1++; ?>
+                  <?php $counter1=-1;  if( isset($allCollects) && ( is_array($allCollects) || $allCollects instanceof Traversable ) && sizeof($allCollects) ) foreach( $allCollects as $key1 => $value1 ){ $counter1++; ?>
 
                   <tr style="font-size: 15px;font-weight: normal;">
                    
                     <td><br><center><?php echo $value1["locality"]; ?></td>
-                    <td><br><center><?php echo $value1["observation"]; ?></td>
-                    <td><br><center><a href="/admin/markers/maps/<?php echo $value1["idmarker"]; ?>"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
+                    <td><br><center><?php echo $value1["phone"]; ?></td>
+                    <td><br><center><?php echo $value1["email"]; ?></td>
+                    <td><br><center><?php echo $value1["service"]; ?> </td>
+                    <td><br><center><?php echo $value1["informations"]; ?> </td>
+                    <td><br><center><a href="/admin/collects/maps/<?php echo $value1["idcollect"]; ?>"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
                    
-                    <?php if( namePhotos($value1["idmarker"]) == '' ){ ?>
+                    <?php if( namePhotosCollects($value1["idcollect"]) == '' ){ ?>
 
                        <td><br><center><b>Sem Fotos</b></td>
                         <?php }else{ ?>
 
-                    <td><br><center>   <a href="/admin/markers/images/<?php echo $value1["idmarker"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
-                      <?php if( numPhotos($value1["idmarker"]) == 1 ){ ?>
+                    <td><br><center>   <a href="/admin/collects/images/<?php echo $value1["idcollect"]; ?>" style="width: 100px;" class="btn btn-info btn-sm" >
+                      <?php if( numPhotosCollects($value1["idcollect"]) == 1 ){ ?>
 
-                      <b><?php echo numPhotos($value1["idmarker"]); ?> Foto</b></a>
+                      <b><?php echo numPhotosCollects($value1["idcollect"]); ?> Foto</b></a>
                       <?php }else{ ?>
 
-                      <b><?php echo numPhotos($value1["idmarker"]); ?> Fotos</b></a>
+                      <b><?php echo numPhotosCollects($value1["idcollect"]); ?> Fotos</b></a>
                       <?php } ?>
 
                    </td/>
@@ -88,18 +92,8 @@
 
                  
                    </td/>
-
-                    <td><br><center>
-                      <?php echo $value1["type1"]; ?>  
-                      <?php echo $value1["type2"]; ?> 
-                      <?php echo $value1["type3"]; ?> 
-                      <?php echo $value1["type4"]; ?>
-
-                      
-                      </td>
-
                     <td><br><center><?php echo formatDate($value1["dtregister"]); ?></td>
-                    <td><br><center> <a style="width: 80px;" href="/admin/markers/delete/<?php echo $value1["idmarker"]; ?>"  onclick="return confirm('Deseja realmente excluir o registro do local: <?php echo $value1["locality"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a></td>
+                    <td><br><center> <a style="width: 80px;" href="/admin/collects/delete/<?php echo $value1["idcollect"]; ?>"  onclick="return confirm('Deseja realmente excluir o registro do Ponto de Coleta: <?php echo $value1["locality"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a></td>
                    
                    
                   </tr>

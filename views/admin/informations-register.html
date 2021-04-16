@@ -4,7 +4,7 @@
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
-                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Registrar Informação
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Cadastrar Informação
                           </b></a>
                 </li>
             </ul>

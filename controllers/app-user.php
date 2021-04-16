@@ -4,6 +4,7 @@ use \Projeto\Page;
 use \Projeto\Model\User;
 use \Projeto\Model\Marker;
 use \Projeto\Model\Information;
+use \Projeto\Model\Collect;
 
 //------------------ROTA DA PÁGINA DE LOGIN--------------------------------//
 

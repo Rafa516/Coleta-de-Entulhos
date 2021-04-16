@@ -2,6 +2,7 @@
 
 use \Projeto\Model\User;
 use \Projeto\Model\Marker;
+use \Projeto\Model\Collect;
 use \Projeto\DB\Sql;
 
 
@@ -34,10 +35,19 @@ use \Projeto\DB\Sql;
 
 	function totalMarkers(){
 
-		$total = Marker::totalMarker();
+		$total = Marker::totalMarkers();
 	
 
 	   return  $total['markersTotal'];
+
+	}
+
+	function totalCollects(){
+
+		$total = Collect::totalCollects();
+	
+
+	   return  $total['collectsTotal'];
 
 	}
 
@@ -84,12 +94,29 @@ use \Projeto\DB\Sql;
 
 	}
 
+
+	function numPhotosCollects($idcollect){
+
+		$total = Collect::numPhotos($idcollect);
+
+	   	return  $total['photos'];
+
+	}
+
 	function namePhotos($idmarker){
 
 		$total = Marker::namePhotos($idmarker);
 
 	   	return  $total['name'];
 	}
+
+	function namePhotosCollects($idcollect){
+
+		$total = Collect::namePhotos($idcollect);
+
+	   	return  $total['name'];
+	}
+
 
 
 	

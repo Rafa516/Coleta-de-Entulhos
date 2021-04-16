@@ -4,6 +4,7 @@ use \Projeto\PageAdmin;
 use \Projeto\Model\User;
 use \Projeto\Model\Marker;
 use \Projeto\Model\Information;
+use \Projeto\Model\Collect;
 
 //------------------ROTA DA PÁGINA DE LOGIN--------------------------------//
 
@@ -303,7 +304,7 @@ $app->post("/admin/open-marker/submit", function(){
 });
 
 
-//---------ROTA PARA A PÁGINA DOS PONTOS DE COLETA
+//---------ROTA PARA A PÁGINA DOS PONTOS DE COLETA-------------------//
 
 $app->get('/admin/add-collect', function() {  
 
@@ -326,19 +327,21 @@ $app->post("/admin/add-collect/submit", function(){
 
 	User::verifyLoginAdmin();
 
-	$marker = new Marker();
+	$collect = new Collect();
 
 	if ($_POST['lat'] == '' &&  $_POST['lng'] == '') {
 
 			User::setErrorRegister("Marque um local no mapa");
-			header("Location: /admin/open-marker");
+			header("Location: /admin/add-collect");
 			exit;
 
 	}
 
-	$marker->setData($_POST);
+	$collect->setData($_POST);
 
-	$marker->save();
+
+
+	$collect->save();
 
 	User::setSuccess("Ponto de Coleta registrado com sucesso!!");
 
@@ -387,6 +390,47 @@ $app->get('/admin/all-markers', function() {
 	 "search"=>$search,
 	 "pages"=>$pages,
 	 "allMarkers"=>$pagination['data'],
+	 'profileMsg'=>User::getSuccess()
+	]);
+
+});
+
+$app->get('/admin/all-collects', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$collect = new Collect();
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	if ($search != '') {
+
+		$pagination = $collect::getPageSearch($search, $page);
+
+	} else {
+
+		$pagination = $collect::getPage($page);
+
+	}
+
+	$pages = [];
+
+	for ($i=1; $i <= $pagination['pages']; $i++) { 
+		array_push($pages, [
+			'link'=>'/admin/all-collects?page='.$i,
+			'page'=>$i,
+			'search'=>$search,
+		]);
+	}
+
+	$page = new PageAdmin();
+
+	$page->setTpl("admin-all-collects",[
+	 "search"=>$search,
+	 "pages"=>$pages,
+	 "allCollects"=>$pagination['data'],
 	 'profileMsg'=>User::getSuccess()
 	]);
 
@@ -442,6 +486,27 @@ $app->get('/admin/locations', function() {
 
 	$page->setTpl("locations-admin",[
 	"markers"=>$marker::listAllMarkers()
+	]);
+
+});
+
+//---------ROTA PARA A PÁGINA DO MAPA COM TODOS PONTOS DE COLETAS----------------------//
+
+$app->get('/admin/locations-collects', function() {  
+
+
+	User::verifyLoginAdmin();
+
+	$collect = new Collect();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("locations-collects-admin",[
+	"serviceOne"=>$collect::serviceOne(),
+	"serviceTwo"=>$collect::serviceTwo(),
+	"serviceThree"=>$collect::serviceThree(),
+	"serviceFour"=>$collect::serviceFour(),
+	"collect"=>$collect->listServices()	
 	]);
 
 });

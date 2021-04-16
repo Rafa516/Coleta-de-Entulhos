@@ -18,7 +18,7 @@
 
 
       
-            <a href="/admin/informations/register" class="btn btn-primary"><b>Nova Informação</b></a>
+            <a href="/admin/informations/register" class="btn btn-primary"><b>Cadastrar Informação</b></a>
            <div style="float: right">
                   <form  action="" method="get" >
                         <div class="input-group">

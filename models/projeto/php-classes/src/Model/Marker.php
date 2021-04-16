@@ -54,18 +54,7 @@ class Marker extends Model {
 
 	}
 
-	//Método estático que verifica o total de marcações registrados
-	public static function totalMarker()
-	{
-		
-		$sql = new Sql();
-		$total = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_markers");
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-
 	
-		return ['markersTotal'=>(int)$resultTotal[0]["nrtotal"]];
-	}
 
 	public static function totalMarkerID($iduser)
 	{

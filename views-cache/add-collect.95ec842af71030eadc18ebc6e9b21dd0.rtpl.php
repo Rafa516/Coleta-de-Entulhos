@@ -9,10 +9,10 @@
             role="tab" aria-controls="home" aria-selected="false"><b>Incluir Ponto de Coleta</b></a>
         </li>
       </ul>
-      <?php if( $CallOpenMsg != '' ){ ?>
+      <?php if( $markerOpenMsg != '' ){ ?>
 
             <div class="alert alert-success">
-                <b><?php echo $CallOpenMsg; ?></b>
+                <b><?php echo $markerOpenMsg; ?></b>
             </div>
             <?php } ?>
 
@@ -62,9 +62,11 @@
                   <b style="font-size:20px;color: #585858">Tipo de Serviço</b></label>
                   <select class="form-control py-1" name="service" id="service">
                   <option value="Papa Entulho (GDF)">Papa Entulho (GDF)</option>
-                  <option value="Coleta de Materiais Recicláveis">Coleta de Materiais Recicláveis</option>
                   <option value="Coleta de Vidros">Coleta de Vidros</option>
                   <option value="Coleta de Eletrônicos">Coleta de Eletrônicos</option>
+                  <option value="Coleta de Materiais Recicláveis">Coleta de Materiais Recicláveis</option>
+                  
+                  
                   </select>
             </div>
 
@@ -84,8 +86,6 @@
                 </div>
 
                 <input class="form-control py-1" value="<?php echo $user["iduser"]; ?>" name="iduser" type="hidden">
-
-                <input class="form-control py-1" value="1" name="situation" type="hidden">
 
 
                 <input class="form-control py-1" id="lat" type="hidden" name="lat">

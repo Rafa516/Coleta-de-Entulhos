@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/04/2021 às 22:27
+-- Tempo de geração: 16/04/2021 às 12:52
 -- Versão do servidor: 5.7.33-0ubuntu0.18.04.1
 -- Versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -25,6 +25,28 @@ DELIMITER $$
 --
 -- Procedimentos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_collect_save` (IN `piduser` INT(11), IN `plocality` VARCHAR(128), IN `pphone` BIGINT(20), IN `pemail` VARCHAR(60), IN `pservice` VARCHAR(60), IN `pinformations` TEXT)  NO SQL
+BEGIN
+   
+    INSERT INTO tb_collects
+    (iduser,locality,phone,email,service,informations)
+    
+    VALUES(piduser,plocality,pphone,pemail,pservice,pinformations);
+    
+    
+  SELECT * FROM tb_collects  WHERE idcollect = LAST_INSERT_ID();
+    
+    
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_image_collect_add` (IN `pidcollect` INT(11), IN `pnamephoto` VARCHAR(64))  BEGIN
+
+INSERT INTO tb_collectphotos (idcollect,namephoto)
+    VALUES(pidcollect,pnamephoto);
+   
+
+ END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_image_marker_add` (IN `pidmarker` INT(11), IN `pnamephoto` VARCHAR(64))  NO SQL
 BEGIN
 
@@ -56,6 +78,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_informations_update` (IN `pidinf
 	WHERE idinf = pidinf;
     
  END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_locations_collect_add` (IN `pidcollect` INT(11), IN `plng` FLOAT(25), IN `plat` FLOAT(25))  BEGIN
+   
+    INSERT INTO tb_locations_collects (idcollect,lng,lat)
+    
+    VALUES(pidcollect,plng,plat); 
+    
+      SELECT * FROM tb_locations_collects  WHERE idlocation = LAST_INSERT_ID();
+    
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_locations_marker_add` (IN `pidmarker` INT(11), IN `plng` FLOAT(25), IN `plat` FLOAT(25))  BEGIN
    
@@ -140,6 +172,51 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tb_collectphotos`
+--
+
+CREATE TABLE `tb_collectphotos` (
+  `idphoto` int(11) NOT NULL,
+  `idcollect` int(11) NOT NULL,
+  `namephoto` varchar(64) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_collectphotos`
+--
+
+INSERT INTO `tb_collectphotos` (`idphoto`, `idcollect`, `namephoto`, `dtregister`) VALUES
+(16, 17, 'Captura de tela de 2021-04-15 08-44-54.png', '2021-04-16 15:42:00'),
+(17, 17, 'Captura de tela de 2021-04-13 10-07-35.png', '2021-04-16 15:42:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_collects`
+--
+
+CREATE TABLE `tb_collects` (
+  `idcollect` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `locality` varchar(128) NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `service` varchar(60) NOT NULL,
+  `informations` text NOT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_collects`
+--
+
+INSERT INTO `tb_collects` (`idcollect`, `iduser`, `locality`, `phone`, `email`, `service`, `informations`, `dtregister`) VALUES
+(17, 1, 'Quadra 516 conjunto c casa 10', 6191441738, 'eduardo@gmail.com', 'Papa Entulho (GDF)', '', '2021-04-16 15:42:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tb_informations`
 --
 
@@ -180,7 +257,31 @@ CREATE TABLE `tb_locations` (
 
 INSERT INTO `tb_locations` (`idlocation`, `idmarker`, `lng`, `lat`, `dtregister`) VALUES
 (15, 15, -48.00750732421875, -15.842462663871935, '2021-04-14 01:07:19'),
-(16, 16, -47.66066551208496, -15.60865355312066, '2021-04-14 01:18:39');
+(16, 16, -47.66066551208496, -15.60865355312066, '2021-04-14 01:18:39'),
+(17, 17, -47.882537841796875, -15.790932110184853, '2021-04-15 00:08:36'),
+(18, 18, -47.907257080078125, -15.697747481750769, '2021-04-15 00:09:59'),
+(19, 19, -47.87086486816406, -15.744014694514961, '2021-04-15 00:10:39');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_locations_collects`
+--
+
+CREATE TABLE `tb_locations_collects` (
+  `idlocation` int(11) NOT NULL,
+  `idcollect` int(11) NOT NULL,
+  `lng` double NOT NULL,
+  `lat` double NOT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_locations_collects`
+--
+
+INSERT INTO `tb_locations_collects` (`idlocation`, `idcollect`, `lng`, `lat`, `dtregister`) VALUES
+(12, 17, -47.9827880859375, -15.993014907400743, '2021-04-16 15:42:00');
 
 -- --------------------------------------------------------
 
@@ -202,7 +303,10 @@ CREATE TABLE `tb_markerphotos` (
 INSERT INTO `tb_markerphotos` (`idphoto`, `idmarker`, `namephoto`, `dtregister`) VALUES
 (13, 15, 'Captura de tela de 2020-12-18 11-36-06.png', '2021-04-14 01:07:19'),
 (14, 15, 'Captura de tela de 2020-12-18 11-34-30.png', '2021-04-14 01:07:19'),
-(15, 16, '', '2021-04-14 01:18:39');
+(15, 16, '', '2021-04-14 01:18:39'),
+(16, 17, '', '2021-04-15 00:08:36'),
+(17, 18, '', '2021-04-15 00:09:59'),
+(18, 19, '', '2021-04-15 00:10:39');
 
 -- --------------------------------------------------------
 
@@ -228,7 +332,10 @@ CREATE TABLE `tb_markers` (
 
 INSERT INTO `tb_markers` (`idmarker`, `iduser`, `locality`, `observation`, `type1`, `type2`, `type3`, `type4`, `dtregister`) VALUES
 (15, 1, 'Quadra 516 conjunto c casa 20', '<p>Perto da igreja</p>', 'Classe A', 'Classe B', NULL, NULL, '2021-04-14 01:07:19'),
-(16, 16, 'ss', '<p>ssss</p>', NULL, NULL, NULL, 'Classe D', '2021-04-14 01:18:39');
+(16, 16, 'ss', '<p>ssss</p>', NULL, NULL, NULL, 'Classe D', '2021-04-14 01:18:39'),
+(17, 1, 'Quadra 516 conjunto c casa 10', NULL, NULL, NULL, NULL, NULL, '2021-04-15 00:08:36'),
+(18, 1, 'Quadra 516 conjunto c casa 10', NULL, NULL, NULL, NULL, NULL, '2021-04-15 00:09:59'),
+(19, 1, 'Quadra 516 conjunto c casa 10', NULL, NULL, NULL, NULL, NULL, '2021-04-15 00:10:39');
 
 -- --------------------------------------------------------
 
@@ -267,6 +374,20 @@ INSERT INTO `tb_users` (`iduser`, `person`, `email`, `phone`, `born_date`, `city
 --
 
 --
+-- Índices de tabela `tb_collectphotos`
+--
+ALTER TABLE `tb_collectphotos`
+  ADD PRIMARY KEY (`idphoto`),
+  ADD KEY `idcollect` (`idcollect`);
+
+--
+-- Índices de tabela `tb_collects`
+--
+ALTER TABLE `tb_collects`
+  ADD PRIMARY KEY (`idcollect`),
+  ADD KEY `iduser` (`iduser`);
+
+--
 -- Índices de tabela `tb_informations`
 --
 ALTER TABLE `tb_informations`
@@ -278,6 +399,13 @@ ALTER TABLE `tb_informations`
 ALTER TABLE `tb_locations`
   ADD PRIMARY KEY (`idlocation`),
   ADD KEY `fk_locations_calls` (`idmarker`);
+
+--
+-- Índices de tabela `tb_locations_collects`
+--
+ALTER TABLE `tb_locations_collects`
+  ADD PRIMARY KEY (`idlocation`),
+  ADD KEY `idcollect` (`idcollect`);
 
 --
 -- Índices de tabela `tb_markerphotos`
@@ -304,6 +432,18 @@ ALTER TABLE `tb_users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `tb_collectphotos`
+--
+ALTER TABLE `tb_collectphotos`
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de tabela `tb_collects`
+--
+ALTER TABLE `tb_collects`
+  MODIFY `idcollect` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT de tabela `tb_informations`
 --
 ALTER TABLE `tb_informations`
@@ -313,19 +453,25 @@ ALTER TABLE `tb_informations`
 -- AUTO_INCREMENT de tabela `tb_locations`
 --
 ALTER TABLE `tb_locations`
-  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de tabela `tb_locations_collects`
+--
+ALTER TABLE `tb_locations_collects`
+  MODIFY `idlocation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `tb_markerphotos`
 --
 ALTER TABLE `tb_markerphotos`
-  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idphoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `tb_markers`
 --
 ALTER TABLE `tb_markers`
-  MODIFY `idmarker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idmarker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `tb_users`
@@ -338,10 +484,28 @@ ALTER TABLE `tb_users`
 --
 
 --
+-- Restrições para tabelas `tb_collectphotos`
+--
+ALTER TABLE `tb_collectphotos`
+  ADD CONSTRAINT `fk_collectphotos_collects` FOREIGN KEY (`idcollect`) REFERENCES `tb_collects` (`idcollect`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `tb_collects`
+--
+ALTER TABLE `tb_collects`
+  ADD CONSTRAINT `fk_collects_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Restrições para tabelas `tb_locations`
 --
 ALTER TABLE `tb_locations`
   ADD CONSTRAINT `fk_locations_marker` FOREIGN KEY (`idmarker`) REFERENCES `tb_markers` (`idmarker`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `tb_locations_collects`
+--
+ALTER TABLE `tb_locations_collects`
+  ADD CONSTRAINT `fk_locations_collects_collects` FOREIGN KEY (`idcollect`) REFERENCES `tb_collects` (`idcollect`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `tb_markerphotos`
