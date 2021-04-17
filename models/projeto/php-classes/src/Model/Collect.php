@@ -197,18 +197,18 @@ class Collect extends Model {
 
 	}
 
-	public function listServices()
+	public function listServices($idcollect)
 	{
 
 		$sql = new Sql();
 
-			$results =  $sql->select("SELECT * FROM tb_collects");	
+			$results =  $sql->select("SELECT * FROM tb_collects WHERE idcollect = :idcollect",[
+					':idcollect'=>$idcollect
+			]);	
 
 			$this->setData($results[0]);
 
-		return  [	
-				'service'=>$results[0]["service"],
-			   ];
+		return  ['service'=>$results[0]["service"]];
 
 	}
 

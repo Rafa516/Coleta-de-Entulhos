@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Projeto\\": "models\\projeto\\php-classes\\src"
+            "Projeto\\": "model\\projeto\\php-classes\\src"
         }
     }
 }

@@ -13,13 +13,13 @@ class Page {
 	private $defaults = [
 		"header"=>true,
 		"footer"=>true,
-		"data"=>["dir_url" => "https://www.coleta-entulhos.com.br/"  // variável
+		"data"=>["dir_url" => "https://www.pontos-entulhos.com.br/"  // variável
 		]
 
 	];
 
 	//Método Construtor para redirecionar as páginas do diretório views 
-	public function __construct($opts = array(),$tpl_dir = "/views/")
+	public function __construct($opts = array(),$tpl_dir = "/view/")
 	{
 
 		$this->options = array_merge($this->defaults, $opts);

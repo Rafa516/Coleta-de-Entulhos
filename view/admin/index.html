@@ -10,12 +10,34 @@
              <center><img src="res/user/img/logo.png"  alt="">
 
           <center>
+              <!--Widget Start-->
+             <a href="/admin/all-collects"><div class="card-body color" style="background-color:#088A08">
+                <div class="float-left">
+                    <h3>
+                        <h3>
+                            <center><span class="count">Pontos de &nbsp;&nbsp;Coletas</span><center>
+                        </h3>
+                        <br><center> <i class="fas fa-recycle" aria-hidden="true"></i></center>
+                        {if="totalCollects() == 0"}
+                         <center><p style="font-size: 20px;">Nenhum Registrado</p></center>
+                        
+                        {elseif="totalMarkers() == 1"}
+                         <center><p style="font-size: 20px;">{function="totalCollects()"} Registrado</p></center>
+                        
+                        {else}
+                         <center><p style="font-size: 20px;">{function="totalCollects()"} Registrados</p></center>
+                        
+                        {/if}
+                </div>
+
+            </div></a>
+            <!--Widget End-->
             <!--Widget Start-->
              <a href="/admin/all-markers"><div class="card-body color" style="background-color:#FF4000">
                 <div class="float-left">
                     <h3>
                         <h3>
-                            <center><span class="count">Pontos de Entulhos</span></center>
+                            <span class="count">Pontos de Entulhos</span>
                         </h3>
                         <br><center> <i class="fa fa-globe" aria-hidden="true"></i></center>
                         {if="totalMarkers() == 0"}
@@ -37,7 +59,7 @@
                 <div class="float-left">
                     <h3>
                         <h3>
-                            <center><span class="count">Usuários Cadastrados</span></center>
+                            <span class="count">Usuários Cadastrados</span>
                         </h3>
                         <br><center> <i class="fas fa-users" aria-hidden="true"></i></center>
                         {if="totalUsers() == 0"}
