@@ -1,0 +1,117 @@
+
+<div class="content">
+    <div class="content-inside">
+        <div class="my-4">
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab"
+                        data-toggle="tab" role="tab" aria-controls="home" aria-selected="false"><b>Pontos de Coletas -   
+                          {if="totalCollects() == 0"}
+                          Nenhum Local Registrado
+                          {elseif="totalCollects() == 1"}
+                          {function="totalCollects()"} Local Registrado
+                          {else}
+                          {function="totalCollects()"} Locais Registrados
+                          {/if}  </b></a>
+
+                </li>
+            </ul>
+
+
+            {if="$profileMsg != ''"}
+            <div class="alert alert-success">
+                <b>{$profileMsg}</b>
+            </div>
+            {/if}
+
+             {if="totalCollects() != 0"}
+             <div class="table-responsive">
+                <div style="float: right">
+                  <form  action="/user/all-collects" method="get" >
+                        <div class="input-group">
+                          <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
+                              <span  class="input-group-btn">
+                                <button  class="btn btn" style="background-color: #088A08;color: white" type="submit"  id="search-btn"  ><i class="fa fa-search"style="font-size:13px;" > PESQUISAR</i>
+                                </button>
+                              </span>
+                        </div>
+                      </form>
+                 </div><br><br>
+            <table class="table table-hover  table-bordered">
+                <thead style="background-color: #D8D8D8">
+                  <tr style="font-size: 16px; font-weight: bold; " >
+                    
+                  
+                    <th  ><center>Local<b></th>
+                    <th ><center>Contato</th>
+                    <th><center>E-mail</th>
+                    <th><center>Serviço</th>
+                    <th><center>Informações</th>
+                    <th><center>Localização</th>
+                    <th><center>Fotos</th>
+                    <th><center>Data de Registro</th>
+                  
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$allCollects"}
+                  <tr style="font-size: 15px;font-weight: normal;">
+                   
+                    <td><br><center>{$value.locality}</td>
+                    <td><br><center>{$value.phone}</td>
+                    <td><br><center>{$value.email}</td>
+                    <td><br><center>{$value.service} </td>
+                    <td><br><center>{$value.informations} </td>
+                    <td><br><center><a href="/user/collects/maps/{$value.idcollect}"  class="btn btn-info btn-sm"></i><b>Localização</b></a></td/>
+                   
+                    {if="namePhotosCollects($value.idcollect) == ''"}
+                       <td><br><center><b>Sem Fotos</b></td>
+                        {else}
+                    <td><br><center>   <a href="/user/collects/images/{$value.idcollect}" style="width: 100px;" class="btn btn-info btn-sm" >
+                      {if="numPhotosCollects($value.idcollect) == 1"}
+                      <b>{function="numPhotosCollects($value.idcollect)"} Foto</b></a>
+                      {else}
+                      <b>{function="numPhotosCollects($value.idcollect)"} Fotos</b></a>
+                      {/if}
+                   </td/>
+                      {/if}
+                 
+                   </td/>
+                    <td><br><center>{function="formatDate($value.dtregister)"}</td>
+                
+                   
+                  </tr>
+                  
+                  {/loop}
+                </tbody>
+              </table>
+                <br>
+              <center>
+            <div class="box-footer clearfix">
+              <ul class="pagination">
+               {loop="$pages"}
+                          {if="$pages == $value.link"} 
+                       <li> <a class="active"href="{$value.link}">{$value.page}</a></li>
+                        {else}
+                        <li><a href="{$value.link}">{$value.page}</a></li>
+                          {/if}
+                        {/loop}
+              </ul>
+            </div>
+          </center>
+          </div>
+           {/if}
+          <a href="javascript:history.back()" class="btn btn-info btn-xs">Voltar</a>
+
+
+            <hr class="my-4" />
+
+
+        </div>
+    </div>
+</div>
+
+
+
+      

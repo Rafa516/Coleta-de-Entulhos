@@ -62,9 +62,11 @@
     <div class="mobile_nav_items">
       <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
         <a href="/user/informations"><i class="fas fa-info-circle"></i><span>Informações</span></a>
-      <a href="/user/open-marker"><i class="fa fa-map-marker"></i><span>Marcar local</span></a>
-      <a href="/user/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
-      <a href="/user/all-markers"><i class="fa fa-user"></i><span>Tabela com Locais</span></a>
+      <a href="/user/open-marker"><i class="fa fa-map-marker"></i><span>Marcar Ponto de Entulho</span></a>
+      <a href="/user/locations"><i class="fas fa-map-marked"></i><span>Mapa com Pontos de Entulhos</span></a>
+      <a href="/user/locations-collects"><i class="fas fa-map-marked-alt"></i><span>Mapa com Pontos de Coleta</span></a>
+      <a href="/user/all-markers"><i class="fas fa-trash"></i><span>Pontos de Entulhos</span></a>
+      <a href="/user/all-collects"><i class="fas fa-recycle"></i><span>Pontos de Coletas</span></a>
       
       <a href="/user/profile"><i class="fas fa-info-circle"></i><span>Meu Perfil</span></a>
     </div>
@@ -92,9 +94,11 @@
     </div>
     <a href="/user"><i class="fas fa-home"></i><span>Home</span></a>
     <a href="/user/informations"><i class="fas fa-info-circle"></i><span>Informações</span></a>
-    <a href="/user/open-marker"><i class="fa fa-map-marker"></i><span>Marcar local</span></a>
-    <a href="/user/locations"><i class="fa fa-globe"></i><span>Locais Marcados</span></a>
-    <a href="/user/all-markers"><i class="fa fa-table"></i><span>Tabela com Locais</span></a>
+    <a href="/user/open-marker"><i class="fa fa-map-marker"></i><span>Marcar Ponto de Entulho</span></a>
+    <a href="/user/locations"><i class="fas fa-map-marked"></i><span>Mapa com Pontos de Entulhos</span></a>
+    <a href="/user/locations-collects"><i class="fas fa-map-marked-alt"></i><span>Mapa com Pontos de Coleta</span></a>
+   	<a href="/user/all-markers"><i class="fas fa-trash"></i><span>Pontos de Entulhos</span></a>
+   	<a href="/user/all-collects"><i class="fas fa-recycle"></i><span>Pontos de Coletas</span></a>
     <a href="/user/profile"><i class="fas fa-user"></i><span>Meu Perfil</span></a>
   </div>
   <!--sidebar end-->

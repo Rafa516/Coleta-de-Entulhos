@@ -7,14 +7,14 @@
                   role="tab" aria-controls="home" aria-selected="false"><b>Mapa com Pontos de Entulhos -  
                    <?php if( totalMarkers() == 0 ){ ?>
 
-                          Nenhum marcado Mapa
+                          Nenhum local Marcado
                           <?php }elseif( totalMarkers() == 1 ){ ?>
 
-                          <?php echo totalMarkers(); ?> Local Marcado no Mapa
+                          <?php echo totalMarkers(); ?> Local Marcado 
                           <?php }else{ ?>
 
-                          <?php echo totalMarkers(); ?> Locais Marcados no Mapa
-                          <?php } ?></b></a>
+                          <?php echo totalMarkers(); ?> Locais Marcados 
+                    <?php } ?></b></a>
             </li>
          </ul>
 

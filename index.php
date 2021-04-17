@@ -15,6 +15,9 @@ require_once("controller/app-admin.php");
 require_once("controller/app-admin-marker.php");
 require_once("controller/app-admin-informations.php");
 require_once("controller/app-admin-collects.php");
+require_once("controller/app-user-marker.php");
+require_once("controller/app-user-informations.php");
+require_once("controller/app-user-collects.php");
 require_once("controller/functions.php");
 
 

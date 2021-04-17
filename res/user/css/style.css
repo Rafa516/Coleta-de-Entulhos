@@ -90,7 +90,7 @@ header{
   z-index: 1;
   position: fixed;
   background:#22242A;
-  padding: 10px;
+  padding: 20px;
   width: calc(100% - 0%);
   top: 0;
   height: 70px;
@@ -139,7 +139,7 @@ header{
   padding-top: 30px;
   position: fixed;
   left: 0;
-  width: 250px;
+  width: 285px;
   height: calc(100%);
   transition: 0.5s;
   transition-property: left;
@@ -172,7 +172,7 @@ header{
   width: 100%;
   line-height: 60px;
   
-  padding-left: 40px;
+  padding-left: 20px;
   box-sizing: border-box;
   transition: 0.5s;
   transition-property: background;
@@ -207,6 +207,7 @@ label #sidebar_btn:hover{
 
 #check:checked ~ .sidebar{
   left: -185px;
+  width: 245px;
 }
 
 #check:checked ~ .sidebar a span{
@@ -217,6 +218,7 @@ label #sidebar_btn:hover{
   font-size: 20px;
   margin-left: 165px;
   width: 100%;
+  padding-left: 40px;
 }
 
 
@@ -340,6 +342,8 @@ img {
   .mobile_nav{
     display: block;
     width: calc(100% - 0%);
+      z-index: 1;
+    position: fixed;
   }
 
   .nav_bar{

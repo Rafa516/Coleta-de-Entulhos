@@ -391,6 +391,10 @@ img {
   .mobile_nav{
     display: block;
     width: calc(100% - 0%);
+     z-index: 1;
+    position: fixed;
+    top: 0;
+   
   }
 
   .nav_bar{
@@ -401,6 +405,7 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+
   }
 
   .nav_bar .mobile_profile_image{
@@ -424,6 +429,7 @@ img {
   .mobile_nav_items{
     background: #2f323a;
     display: none;
+
   }
 
   .mobile_nav_items a{
@@ -467,6 +473,11 @@ img {
 
   #addPhotoProfile{
     font-size: 14px;
+  }
+
+  .infomation img{
+  
+    width: 10%;
   }
   
 }

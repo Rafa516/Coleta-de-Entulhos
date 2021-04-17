@@ -1,4 +1,4 @@
-<div class="content">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="content">
     <div class="content-inside">
         <div class="my-4">
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
@@ -9,14 +9,9 @@
                 </li>
             </ul>
         
-             {if="$informationsOpenMsg != ''"}
-            <div class="alert alert-success">
-                <b>{$informationsOpenMsg}</b>
-            </div>
-            {/if}
+      
 
       
-            <a href="/admin/informations/register" class="btn btn-primary"><b>Cadastrar Informação</b></a>
            <div style="float: right">
                   <form  action="" method="get" >
                         <div class="input-group">
@@ -30,23 +25,21 @@
                  </div><br><br><br><br>
 
 
-                 {loop="$informations"}
+                 <?php $counter1=-1;  if( isset($informations) && ( is_array($informations) || $informations instanceof Traversable ) && sizeof($informations) ) foreach( $informations as $key1 => $value1 ){ $counter1++; ?>
 
-                <h5><b>Autor: {$value.person}</b></h5> 
-                <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;{function="formatDate($value.dtregister)"}<br><br>
 
-                 <h2>{$value.title}</h2><br>
-                 
-                 <div class="information">{$value.informations}<br><br></div>
+                <h5><b>Autor: <?php echo $value1["person"]; ?></b></h5> 
+                <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;<?php echo formatDate($value1["dtregister"]); ?><br><br>
 
-                  <center><a style="width: 80px;" href="/admin/informations/update/{$value.idinf}"  class="btn btn-success btn-sm"><b>Alterar</b></a>
+                 <h2><?php echo $value1["title"]; ?></h2><br>
+                 <?php echo $value1["informations"]; ?><br><br>
 
-                    <a style="width: 80px;" href="/admin/informations/delete/{$value.idinf}"  onclick="return confirm('Deseja realmente excluir a informação {$value.title}??')" class="btn btn-danger btn-sm"> <b>Excluir</b></a></center>
+            
 
                 <hr class="my-4" />
 
+                 <?php } ?>
 
-                 {/loop}
 
              
 
@@ -54,13 +47,17 @@
                   <center>
             <div class="box-footer clearfix">
               <ul class="pagination">
-               {loop="$pages"}
-                          {if="$pages == $value.link"} 
-                       <li> <a class="active"href="{$value.link}">{$value.page}</a></li>
-                        {else}
-                        <li><a href="{$value.link}">{$value.page}</a></li>
-                          {/if}
-                        {/loop}
+               <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+
+                          <?php if( $pages == $value1["link"] ){ ?> 
+                       <li> <a class="active"href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                        <?php }else{ ?>
+
+                        <li><a href="<?php echo $value1["link"]; ?>"><?php echo $value1["page"]; ?></a></li>
+                          <?php } ?>
+
+                        <?php } ?>
+
               </ul>
             </div>
           </center>

@@ -1,17 +1,20 @@
-<div class="content">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="content">
    <div class="content-inside">
       <div class="my-4">
          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
             <li class="nav-item">
                <a style="background-color: #088A08;color: white" class="nav-link active" id="home-tab" data-toggle="tab"
                   role="tab" aria-controls="home" aria-selected="false"><b>Locais Marcados -  
-                   {if="totalMarkers() == 0"}
+                   <?php if( totalMarkers() == 0 ){ ?>
+
                           Nenhum Ponto de Entulho marcado 
-                          {elseif="totalMarkers() == 1"}
-                          {function="totalMarkers()"} Ponto de Entulho Marcado 
-                          {else}
-                          {function="totalMarkers()"} Pontos de Entulhos Marcados 
-                          {/if}</b></a>
+                          <?php }elseif( totalMarkers() == 1 ){ ?>
+
+                          <?php echo totalMarkers(); ?> Ponto de Entulho Marcado
+                          <?php }else{ ?>
+
+                          <?php echo totalMarkers(); ?> Pontos de Entulhos Marcados 
+                          <?php } ?></b></a>
             </li>
          </ul>
 
@@ -32,7 +35,8 @@
     
 
    var planes = [
-      {loop="$markers"}["{$value.locality}","{$value.observation}",{$value.lat},{$value.lng},{$value.idmarker}],{/loop}
+      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idmarker"]; ?>],<?php } ?>
+
       ];
 
         var map = L.map('map1').setView([-15.792873001853433,-47.882795333862305], 11);
