@@ -10,7 +10,7 @@
                           Nenhum Ponto de Entulho marcado 
                           <?php }elseif( totalMarkers() == 1 ){ ?>
 
-                          <?php echo totalMarkers(); ?> Ponto de Entulho Marcado
+                          <?php echo totalMarkers(); ?> Ponto de Entulho Marcado 
                           <?php }else{ ?>
 
                           <?php echo totalMarkers(); ?> Pontos de Entulhos Marcados 
@@ -35,7 +35,7 @@
     
 
    var planes = [
-      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["observation"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idmarker"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($markers) && ( is_array($markers) || $markers instanceof Traversable ) && sizeof($markers) ) foreach( $markers as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>",'<?php echo $value1["observation"]; ?>',<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idmarker"]; ?>],<?php } ?>
 
       ];
 

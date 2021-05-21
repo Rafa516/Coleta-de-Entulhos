@@ -42,7 +42,7 @@
     
 
       var muxiCoordinates = [<?php echo $collects["valueLat"]; ?>, <?php echo $collects["valueLng"]; ?>];
-      var muxiMarkerMessage = "<b style='font-size:20px;'><?php echo $collects["valueService"]; ?></b><br><br><b style='font-size:16px;'><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>";
+      var muxiMarkerMessage = '<b style="font-size:20px;"><?php echo $collects["valueService"]; ?></b><br><br><b style="font-size:16px;"><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/papa_entulho.png"
@@ -81,7 +81,7 @@
     
 
       var muxiCoordinates = [<?php echo $collects["valueLat"]; ?>, <?php echo $collects["valueLng"]; ?>];
-      var muxiMarkerMessage = "<b style='font-size:20px;'><?php echo $collects["valueService"]; ?></b><br><br><b style='font-size:16px;'><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>";
+     var muxiMarkerMessage = '<b style="font-size:20px;"><?php echo $collects["valueService"]; ?></b><br><br><b style="font-size:16px;"><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/vidros.png"
@@ -120,7 +120,7 @@
     
 
       var muxiCoordinates = [<?php echo $collects["valueLat"]; ?>, <?php echo $collects["valueLng"]; ?>];
-      var muxiMarkerMessage = "<b style='font-size:20px;'><?php echo $collects["valueService"]; ?></b><br><br><b style='font-size:16px;'><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>";
+    var muxiMarkerMessage = '<b style="font-size:20px;"><?php echo $collects["valueService"]; ?></b><br><br><b style="font-size:16px;"><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/eletronicos.png"
@@ -159,7 +159,7 @@
     
 
       var muxiCoordinates = [<?php echo $collects["valueLat"]; ?>, <?php echo $collects["valueLng"]; ?>];
-      var muxiMarkerMessage = "<b style='font-size:20px;'><?php echo $collects["valueService"]; ?></b><br><br><b style='font-size:16px;'><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>";
+    var muxiMarkerMessage = '<b style="font-size:20px;"><?php echo $collects["valueService"]; ?></b><br><br><b style="font-size:16px;"><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/reciclaveis.png"

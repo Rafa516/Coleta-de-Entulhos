@@ -36,21 +36,21 @@
     <script>
     
    var planes = [
-      <?php $counter1=-1;  if( isset($serviceOne) && ( is_array($serviceOne) || $serviceOne instanceof Traversable ) && sizeof($serviceOne) ) foreach( $serviceOne as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["informations"]; ?>","<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($serviceOne) && ( is_array($serviceOne) || $serviceOne instanceof Traversable ) && sizeof($serviceOne) ) foreach( $serviceOne as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>",'<?php echo $value1["informations"]; ?>',"<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
 
       ];
    var planesTwo = [
-      <?php $counter1=-1;  if( isset($serviceTwo) && ( is_array($serviceTwo) || $serviceTwo instanceof Traversable ) && sizeof($serviceTwo) ) foreach( $serviceTwo as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["informations"]; ?>","<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($serviceTwo) && ( is_array($serviceTwo) || $serviceTwo instanceof Traversable ) && sizeof($serviceTwo) ) foreach( $serviceTwo as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>",'<?php echo $value1["informations"]; ?>',"<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
 
       ];
 
     var planesThree = [
-      <?php $counter1=-1;  if( isset($serviceThree) && ( is_array($serviceThree) || $serviceThree instanceof Traversable ) && sizeof($serviceThree) ) foreach( $serviceThree as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["informations"]; ?>","<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($serviceThree) && ( is_array($serviceThree) || $serviceThree instanceof Traversable ) && sizeof($serviceThree) ) foreach( $serviceThree as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>",'<?php echo $value1["informations"]; ?>',"<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
 
       ];
 
    var planesFour = [
-      <?php $counter1=-1;  if( isset($serviceFour) && ( is_array($serviceFour) || $serviceFour instanceof Traversable ) && sizeof($serviceFour) ) foreach( $serviceFour as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>","<?php echo $value1["informations"]; ?>","<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
+      <?php $counter1=-1;  if( isset($serviceFour) && ( is_array($serviceFour) || $serviceFour instanceof Traversable ) && sizeof($serviceFour) ) foreach( $serviceFour as $key1 => $value1 ){ $counter1++; ?>["<?php echo $value1["locality"]; ?>",'<?php echo $value1["informations"]; ?>',"<?php echo $value1["service"]; ?>",<?php echo $value1["lat"]; ?>,<?php echo $value1["lng"]; ?>,<?php echo $value1["idcollect"]; ?>],<?php } ?>
 
       ];    
    

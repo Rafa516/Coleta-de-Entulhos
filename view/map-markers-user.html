@@ -23,8 +23,6 @@
        <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
     </script>
 
- 
-
     <script>
 
       var initialCoordinates = [{$markers.valueLat}, {$markers.valueLng}]; 
@@ -40,7 +38,7 @@
     
 
       var muxiCoordinates = [{$markers.valueLat}, {$markers.valueLng}];
-      var muxiMarkerMessage = "<b style='font-size:16px;'>{$markers.valueLocality}</b><br>{$markers.valueObservation}<b>Latitude:</b>{$markers.valueLat}<br><b>Longitude:</b>{$markers.valueLng}";
+      var muxiMarkerMessage = '<b style="font-size:16px;">{$markers.valueLocality}</b><br>{$markers.valueObservation}<b>Latitude:</b>{$markers.valueLat}<br><b>Longitude:</b>{$markers.valueLng}';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/marker.png"

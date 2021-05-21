@@ -39,7 +39,7 @@
     
 
       var muxiCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>];
-      var muxiMarkerMessage = "<b style='font-size:16px;'><?php echo $markers["valueLocality"]; ?></b><br><?php echo $markers["valueObservation"]; ?><b>Latitude:</b><?php echo $markers["valueLat"]; ?><br><b>Longitude:</b><?php echo $markers["valueLng"]; ?>";
+      var muxiMarkerMessage = '<b style="font-size:16px;"><?php echo $markers["valueLocality"]; ?></b><br><?php echo $markers["valueObservation"]; ?><b>Latitude:</b><?php echo $markers["valueLat"]; ?><br><b>Longitude:</b><?php echo $markers["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/marker.png"

@@ -5,6 +5,7 @@ namespace Projeto\Model;
 
 use \Projeto\Model;
 use \Projeto\DB\Sql;
+use \Projeto\Mailer;
 
 //Classe User(Usuários, com seus métodos específicos)
 class User extends Model {
@@ -13,6 +14,8 @@ class User extends Model {
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
 	const SUCCESS = "UserSucesss";
+	const SECRET = "Php7_Secret";
+	const SECRET_IV = "Php7_Secret_IV";
 
 	
 
@@ -28,7 +31,7 @@ class User extends Model {
 		)); 
 
 		if (count($results) === 0) {
-			throw new \Exception("Falha na sua tentativa de login.Conta não cadastrada");
+			throw new \Exception("Falha na sua tentativa de login. Conta não cadastrada");
 		}
 
 
@@ -463,7 +466,128 @@ class User extends Model {
 
 	}
 
-	
+
+public static function getForgot($email,$inadmin = true)
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM  tb_users  WHERE email = :email", 
+			array(
+				":email"=>$email
+
+		));
+
+		if(count($results) === 0)
+		{
+
+		throw new \Exception("E-mail não cadastrado no sistema");
+			
+		}
+		else
+		{
+			$data = $results[0];
+
+			$results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser,:desip)",array(
+				":iduser"=>$data["iduser"],
+				":desip"=>$_SERVER["REMOTE_ADDR"]
+			));
+			
+			if(count($results2) === 0)
+			{
+				throw new \Exception("Não foi possível recuperar a senha.");
+				
+			}
+			else
+			{
+				$dataRecovery = $results2[0];
+
+				$code = openssl_encrypt($dataRecovery['idrecovery'], 'AES-128-CBC', pack("a16", User::SECRET), 0, pack("a16", User::SECRET_IV));
+
+				$code = base64_encode($code);
+		
+
+					$link = "http://www.pontos-entulhos.com.br/forgot/reset?code=$code";
+					
+						
+
+				$mailer = new Mailer($data['email'], $data['person'], "Redefinir sua senha", "forgot", array(
+					"name"=>$data['person'],
+					"link"=>$link
+				));				
+
+				$mailer->send();
+
+				return $link;
+			
+			}
+		}
+	} 
+
+	public static function validForgotDecrypt($code)
+	{
+
+		$code = base64_decode($code);
+
+		$idrecovery = openssl_decrypt($code, 'AES-128-CBC', pack("a16", User::SECRET), 0, pack("a16", User::SECRET_IV));
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT *
+			FROM tb_userspasswordsrecoveries a
+			INNER JOIN tb_users b USING(iduser)
+			WHERE
+				a.idrecovery = :idrecovery
+				AND
+				a.dtrecovery IS NULL
+				AND
+				DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();
+		", array(
+			":idrecovery"=>$idrecovery
+		));
+
+		if (count($results) === 0)
+		{
+
+			header("Location: /forgot/reset/error");
+			exit;
+
+		}
+		else
+		{
+
+			return $results[0];
+
+		}
+
+	}
+
+	public static function setForgotUsed($idrecovery)
+	{
+
+		$sql = new Sql();
+
+		$sql->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE idrecovery = :idrecovery", array(
+			":idrecovery"=>$idrecovery
+		));
+
+	}
+
+	public function setPassword($password)
+	{
+
+		$sql = new Sql();
+
+		$sql->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", array(
+			":password"=>$password,
+			":iduser"=>$this->getiduser()
+		));
+
+	}
+
+
+
 }
+
 
  ?>

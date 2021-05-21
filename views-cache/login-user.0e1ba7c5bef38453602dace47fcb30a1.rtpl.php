@@ -51,7 +51,7 @@
 			<input class="user-login" type="password" name="despassword" placeholder="Senha" required>
 			<div class="options-01">
 				<label class="remember-me"><input type="checkbox" name="">Lembrar</label>
-				<a href="#">Esqueceu a senha</a>
+				<a href="/forgot">Esqueceu a senha</a>
 			</div>
 			<input class="btn" type="submit" name="" value="Acessar">
 			<div class="options-02">

@@ -93,7 +93,7 @@
 
                 <input class="form-control py-1" value="<?php echo $user["iduser"]; ?>" name="iduser" type="hidden">
 
-                <input class="form-control py-1" value="1" name="situation" type="hidden">
+             
 
 
                 <input class="form-control py-1" id="lat" type="hidden" name="lat">

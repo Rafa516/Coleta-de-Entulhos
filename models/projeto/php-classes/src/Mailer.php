@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
  
-require 'vendor/autoload.php';
+require 'models/autoload.php';
  
 use Rain\Tpl;
  
@@ -14,9 +14,9 @@ use Rain\Tpl;
  
 class Mailer{
  
-    const USERNAME = "";
-    const PASSWORD = "";
-    const NAME_FROM = "";
+   const USERNAME = "suporteaplicacoes@gmail.com";
+    const PASSWORD = "khosmos28";
+    const NAME_FROM = "Pontos de Entulhos";
  
  
  
@@ -29,7 +29,7 @@ class Mailer{
  
         $config = array(
  
-            "tpl_dir"    => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
+            "tpl_dir"    => $_SERVER["DOCUMENT_ROOT"]."/view/email/",
             "cache_dir"  => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
             "debug"      => false
  
@@ -53,6 +53,8 @@ class Mailer{
  
 //$this->mail = new \PHPMailer;
 $this->mail = new PHPMailer();
+
+$this->mail->CharSet = 'UTF-8';
  
 //Tell PHPMailer to use SMTP
 $this->mail->isSMTP();

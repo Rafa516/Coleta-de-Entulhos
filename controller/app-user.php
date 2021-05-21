@@ -84,6 +84,104 @@ $app->post('/login', function() {
 
 });
 
+//---------ROTA DA PÁGINA RECUPERAR SENHA ----------------------//
+
+$app->get("/forgot", function() {
+
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("forgot",[
+		'error'=>user::getError(),
+		'profileMsg'=>User::getSuccess()
+
+	]);	
+
+});
+
+//---------ROTA DA PÁGINA RECUPERAR SENHA  ENVIO DO FORMULÁRIO (POST)----------------------//
+
+$app->post("/forgot", function(){
+
+	try {
+
+		User::getForgot($_POST["email"]);
+
+	} catch(Exception $e) {
+
+		User::setError($e->getMessage());
+
+		header("Location: /forgot");
+		exit;
+	}
+
+	User::setSuccess("E-mail enviado!
+	Verifique as instruções no seu e-mail.");
+
+	header("Location: /forgot");
+	exit;
+	
+});
+
+//---------ROTA DA PÁGINA ALTERAR SENHA ----------------------//
+
+$app->get("/forgot/reset", function() {
+
+	$user = User::validForgotDecrypt($_GET["code"]);
+
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("forgot-reset",[
+		'error'=>user::getError(),
+		'profileMsg'=>User::getSuccess(),
+		'name'=>$user["person"],
+		'code'=>$_GET["code"]
+
+	]);	
+
+});
+
+//---------ROTA DA PÁGINA ALTERAR SENHA (POST)----------------------//
+$app->post("/forgot/reset", function(){
+
+	$forgot = User::validForgotDecrypt($_POST["code"]);	
+
+
+	User::setForgotUsed($forgot["idrecovery"]);
+
+	$user = new User();
+
+	$user->get((int)$forgot["iduser"]);
+
+	$password = User::getPasswordHash($_POST["despassword"]);
+
+	$user->setPassword($password);
+
+	User::setSuccess("Senha Alterada com succeso!");
+
+	header("Location: /");
+	exit;
+
+	
+
+});
+//---------ROTA DA PÁGINA DE ERRO AO ALTERAR SENHA----------------------//
+$app->get("/forgot/reset/error", function() {
+
+	
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("forgot-reset-error");	
+
+});
 //---------ROTA PARA ENCERRAR A SESSÃO----------------------//
 
 $app->get('/user/logout', function() {

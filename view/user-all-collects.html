@@ -50,7 +50,7 @@
                     <th><center>Localização</th>
                     <th><center>Fotos</th>
                     <th><center>Data de Registro</th>
-                  
+                    <th><center>Excluir</th>
 
                   </tr>
                 </thead>
@@ -79,7 +79,8 @@
                  
                    </td/>
                     <td><br><center>{function="formatDate($value.dtregister)"}</td>
-                
+                    <td><br><center> <a style="width: 80px;" href="/user/collects/delete/{$value.idcollect}"  onclick="return confirm('Deseja realmente excluir o registro do Ponto de Coleta: {$value.locality}?')" class="btn btn-danger btn-sm"> Excluir</a></td>
+                   
                    
                   </tr>
                   
