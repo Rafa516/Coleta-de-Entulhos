@@ -49,9 +49,10 @@
 
 			<input    class="user-login" type="email" name="login" placeholder="Email" required>
 			<input class="user-login" type="password" name="despassword" placeholder="Senha" required>
-			<div class="options-01">
-				<label class="remember-me"><input type="checkbox" name="">Lembrar</label>
-				<a href="/forgot">Esqueceu a senha</a>
+			<div class="options-02">
+				
+				<center><p><a href="/forgot">Recuperar senha</a></p></center>
+
 			</div>
 			<input class="btn" type="submit" name="" value="Acessar">
 			<div class="options-02">
