@@ -227,6 +227,45 @@ $app->post("/admin/users/register", function(){
 
 });
 
+$app->get('/admin/users/update/:iduser', function($iduser){
+ 
+   User::verifyLoginAdmin();
+ 
+   $user = new User();
+ 
+   $user->get((int)$iduser);
+ 
+   $page = new PageAdmin();
+ 
+   $page ->setTpl("admin-user-update", array(
+        "user"=>$user->getValues(),
+        'profileMsg'=>User::getSuccess(),
+        'errorRegister'=>User::getErrorRegister()  
+    ));
+ 
+});
+
+
+$app->post("/admin/users/update/:iduser",function($iduser){
+
+	
+
+	$user = new User();
+
+
+	$user->get((int)$iduser);
+ 
+  	$user->setData($_POST);
+
+  	$user->update();
+
+  	User::setSuccess("Dados alterados com Sucesso");
+
+  	header("Location: /admin/users");
+  	exit;
+
+
+});
 
 
 

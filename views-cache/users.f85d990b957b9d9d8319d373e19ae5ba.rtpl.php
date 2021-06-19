@@ -61,7 +61,7 @@
                     <th><center>Data de Nascimento</th>   
                     <th ><center>Administrador</th>
                     <th ><center>Data de Registro</th>
-                    <th ><center>Editar ou Excluir</th>
+                    <th ><center>Editar/Excluir</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,14 +97,11 @@
                     <td><br>
                       <center>
                       
-                      <?php if( $value1["iduser"] == $user["iduser"] ){ ?>
-
-                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary btn-sm"></i> Editar</button>
-                      <?php }else{ ?>
-
+                 
+                    <a style="width: 80px;" href="/admin/users/update/<?php echo $value1["iduser"]; ?>"  class="btn btn-success btn-sm"> Editar</a>
+                   <br>  <br>  
                     <a style="width: 80px;" href="/admin/users/delete/<?php echo $value1["iduser"]; ?>"  onclick="return confirm('Deseja realmente excluir o usuário <?php echo $value1["person"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a>
-                      <?php } ?>
-
+                      
 
                     </td>
                   </tr>

@@ -54,7 +54,7 @@
                     <th><center>Data de Nascimento</th>   
                     <th ><center>Administrador</th>
                     <th ><center>Data de Registro</th>
-                    <th ><center>Editar ou Excluir</th>
+                    <th ><center>Editar/Excluir</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,11 +84,11 @@
                     <td><br>
                       <center>
                       
-                      {if="$value.iduser == $user.iduser"}
-                    <button style="width: 80px;"   data-toggle="modal" onclick="alertAlterarDados()"  data-target="#dateModal"class="btn btn-primary btn-sm"></i> Editar</button>
-                      {else}
+                 
+                    <a style="width: 80px;" href="/admin/users/update/{$value.iduser}"  class="btn btn-success btn-sm"> Editar</a>
+                   <br>  <br>  
                     <a style="width: 80px;" href="/admin/users/delete/{$value.iduser}"  onclick="return confirm('Deseja realmente excluir o usuário {$value.person}?')" class="btn btn-danger btn-sm"> Excluir</a>
-                      {/if}
+                      
 
                     </td>
                   </tr>
