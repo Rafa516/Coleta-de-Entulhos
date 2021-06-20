@@ -154,11 +154,13 @@
         <form class="form-group" action="/admin/profile/update/<?php echo $user["iduser"]; ?>" method="post"><br>
 
 
-          <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Nome</b></label>
             <input class="form-control py-1" value='<?php echo getUserName(); ?>' type="text" name="person" required />
           </div>
 
-           <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+           <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Gênero</b></label>
             <select class="form-control py-1" name="genre" id="genre">
             <?php if( $user["genre"] == 1 ){ ?>
 
@@ -181,12 +183,14 @@
             </select>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Telefone</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Telefone</b></label>
             <input class="form-control py-1" value="<?php echo $user["phone"]; ?>" type="tel" name="phone" maxlength="13"
               pattern="[0-9]+$" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Endereço</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Endereço</b></label>
             <input class="form-control py-1" value="<?php echo $user["address"]; ?>" type="text" name="address" required>
           </div>
 
@@ -194,7 +198,8 @@
             <input class="form-control py-1" value="<?php echo $user["born_date"]; ?>" type="date" name="born_date" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Cidade</label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Cidade</label>
             <select class="form-control " name="city" id="city">
               <option value="<?php echo $user["city"]; ?>"><?php echo $user["city"]; ?></option>
               <option value="Brasília - DF">Brasília - DF</option>
@@ -257,11 +262,13 @@
         <form class="form-group" action="/admin/users/register" method="post"><br>
 
 
-          <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Nome</b></label>
             <input class="form-control py-1" type="text" name="person" placeholder="Digite o nome do usuário" required />
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Gênero</b></label>
             <select class="form-control py-1" name="genre" id="genre">
             <?php if( $user["genre"] == 1 ){ ?>
 
@@ -284,11 +291,13 @@
             </select>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Login</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Login</b></label>
             <input class="form-control py-1"  type="text" name="login" placeholder="Digite o login do usuário"required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>E-mail</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">E-mail</b></label>
             <input class="form-control py-1"  type="email" name="email" placeholder="Digite o e-mail do usuário"required>
           </div>
 
@@ -298,15 +307,18 @@
               pattern="[0-9]+$" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Endereço</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Endereço</b></label>
             <input class="form-control py-1"  type="text" name="address" placeholder="Digite o endereço do usuário" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Data de Nascimento</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Data de Nascimento</b></label>
             <input class="form-control py-1"  type="date" name="born_date" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Cidade</label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Cidade</label>
             <select class="form-control " name="city" id="city">
               <option value="Brasília - DF">Brasília - DF</option>
               <option value=" Gama - DF">Gama - DF</option>
@@ -345,7 +357,8 @@
             </select>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Senha</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Senha</b></label>
             <input class="form-control py-1"  type="password" name="despassword" placeholder="Digite a senha do usuário"required>
           </div>
 

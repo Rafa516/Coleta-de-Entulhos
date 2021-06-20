@@ -237,7 +237,11 @@ $app->get('/user/profile', function() {
 
 	$page = new Page();
 
-	$page->setTpl("user-profile");
+	$page->setTpl("user-profile",[
+	'changePassError'=>User::getError(),
+	'changePassSuccess'=>User::getSuccess()
+
+	]);
 
 });
 
@@ -273,6 +277,40 @@ $app->post("/user/profile/update_image/:iduser", function ($iduser) {
 	$user->updateImage();
 
 	header('Location: /');
+	exit;
+
+});
+
+$app->post("/profile/change-password", function(){
+
+
+	
+
+	if ($_POST['current_pass'] === $_POST['new_pass']) {
+
+		User::setError("A sua nova senha deve ser diferente da atual.");
+		header("Location: /user/profile");
+		exit;		
+
+	}
+
+	$user = User::getFromSession();
+
+	if (!password_verify($_POST['current_pass'], $user->getdespassword())) {
+
+		User::setError("A senha atual está inválida.");
+		header("Location: /user/profile");
+		exit;			
+
+	}
+
+	$user->setdespassword($_POST['new_pass']);
+
+	$user->update();
+
+	User::setSuccess("Senha alterada com sucesso.");
+
+	header("Location: /user/profile");
 	exit;
 
 });

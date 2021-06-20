@@ -97,7 +97,11 @@ $app->get('/admin/profile', function() {
 
 	$page = new PageAdmin();
 
-	$page->setTpl("admin-profile");
+	$page->setTpl("admin-profile",[
+	'changePassError'=>User::getError(),
+	'changePassSuccess'=>User::getSuccess()
+
+	]);
 
 });
 
@@ -248,7 +252,6 @@ $app->get('/admin/users/update/:iduser', function($iduser){
 
 $app->post("/admin/users/update/:iduser",function($iduser){
 
-	
 
 	$user = new User();
 
@@ -264,6 +267,40 @@ $app->post("/admin/users/update/:iduser",function($iduser){
   	header("Location: /admin/users");
   	exit;
 
+
+});
+
+$app->post("/profile/change-password-adm", function(){
+
+
+	
+
+	if ($_POST['current_pass'] === $_POST['new_pass']) {
+
+		User::setError("A sua nova senha deve ser diferente da atual.");
+		header("Location: /admin/profile");
+		exit;		
+
+	}
+
+	$user = User::getFromSession();
+
+	if (!password_verify($_POST['current_pass'], $user->getdespassword())) {
+
+		User::setError("A senha atual está inválida.");
+		header("Location: /admin/profile");
+		exit;			
+
+	}
+
+	$user->setdespassword($_POST['new_pass']);
+
+	$user->update();
+
+	User::setSuccess("Senha alterada com sucesso.");
+
+	header("Location: /admin/profile");
+	exit;
 
 });
 

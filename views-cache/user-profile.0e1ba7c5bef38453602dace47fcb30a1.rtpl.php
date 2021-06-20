@@ -10,6 +10,25 @@
         </li>
       </ul>
 
+        <?php if( $changePassError != '' ){ ?>
+
+                <div class="alert alert-danger">
+                    <?php echo $changePassError; ?>
+
+                </div>
+                <?php } ?>
+
+
+                <?php if( $changePassSuccess != '' ){ ?>
+
+                <div class="alert alert-success">
+                    <?php echo $changePassSuccess; ?>
+
+                </div>
+                <?php } ?>
+
+                
+
       <div class="row mt-5 align-items-center">
         <div class="col-md-3 text-center mb-5">
           <div class="avatar avatar-xl">
@@ -63,7 +82,9 @@
 
       </div>
       <center><button data-toggle="modal" onclick="alertAlterarDados()" data-target="#dateModal"
-          class="btn btn-primary"><b>Alterar Dados</b> </button></center>
+          class="btn btn-primary"><b>Alterar Dados</b> </button> 
+          <button data-toggle="modal" data-target="#dateModal1"
+          class="btn btn-primary"><b>Alterar senha</b> </button></center>
       <hr class="my-4" />
 
     </div>
@@ -88,11 +109,13 @@
         <form class="form-group" action="/user/profile/update/<?php echo $user["iduser"]; ?>" method="post"><br>
 
 
-          <div class="form-group"><label class="small mb-1"><b>Nome</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Nome</b></label>
             <input class="form-control py-1" value='<?php echo getUserName(); ?>' type="text" name="person" required />
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Gênero</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Gênero</b></label>
             <select class="form-control py-1" name="genre" id="genre">
             <?php if( $user["genre"] == 1 ){ ?>
 
@@ -115,20 +138,24 @@
             </select>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Telefone</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Telefone</b></label>
             <input class="form-control py-1" value="<?php echo $user["phone"]; ?>" type="tel" name="phone" maxlength="13"
               pattern="[0-9]+$" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Endereço</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Endereço</b></label>
             <input class="form-control py-1" value="<?php echo $user["address"]; ?>" type="text" name="address" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Data de Nascimento</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Data de Nascimento</b></label>
             <input class="form-control py-1" value="<?php echo $user["born_date"]; ?>" type="date" name="born_date" required>
           </div>
 
-          <div class="form-group"><label class="small mb-1"><b>Cidade</label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Cidade</label>
             <select class="form-control " name="city" id="city">
               <option value="<?php echo $user["city"]; ?>"><?php echo $user["city"]; ?></option>
               <option value="Brasília - DF">Brasília - DF</option>
@@ -168,7 +195,41 @@
             </select>
           </div>
 
-          <input class="btn btn-primary btn btn-block" type="submit" value="Alterar">
+          <input class="btn btn-success btn btn-block" type="submit" value="Alterar">
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Senha -->
+<div class="modal fade" id="dateModal1" tabindex="-1" role="dialog" aria-labelledby="dateModal1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dateModal1">Alterar Senha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group" action="/profile/change-password" method="post"><br>
+
+
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Senha Atual</b></label>
+            <input class="form-control py-1" value='' type="password" id="current_pass"  name="current_pass" required />
+          </div>
+
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Nova Senha</b></label>
+            <input class="form-control py-1" value='' type="password" name="new_pass" required />
+          </div>
+               
+
+          <input class="btn btn-success btn btn-block" type="submit" value="Alterar">
 
 
         </form>
@@ -192,11 +253,12 @@
           enctype="multipart/form-data"><br>
 
 
-          <div class="form-group"><label class="small mb-1"><b>Foto</b></label>
+          <div class="form-group"><label class="small mb-1"><b
+                      style="font-size:17px;color: #585858">Foto</b></label>
             <input id="addPhotoProfile"  class="form-control py-1" type="file" id="picture" name="picture" required="" />
           </div>
 
-          <input class="btn btn-primary btn btn-block" type="submit" value="Alterar">
+          <input class="btn btn-success btn btn-block" type="submit" value="Alterar">
 
         </form>
       </div>

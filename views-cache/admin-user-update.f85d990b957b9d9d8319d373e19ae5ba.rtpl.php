@@ -36,10 +36,7 @@
           </div>
 
 
-          <div class="form-group"><label class="small mb-"><b
-                      style="font-size:20px;color: #585858">Login</b></label>
-            <input class="form-control py-1" value='<?php echo $user["login"]; ?>' type="text" name="login" />
-          </div>
+          
 
            <?php if( $user["inadmin"] == 1 ){ ?>
 

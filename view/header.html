@@ -36,6 +36,7 @@
     <div class="right_area">
       <a href="/user/logout" class="logout_btn">Sair</a>
     </div>
+    
   </header>
   <!--header area end-->
 
