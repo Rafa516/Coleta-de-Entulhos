@@ -206,16 +206,29 @@ class User extends Model {
 
 		$sql  = new Sql();
 
-		$results = $sql->select("CALL sp_users_update(:iduser,:person,:inadmin,:despassword,:genre,:phone,:born_date,:city,:address)",array(
+		$results = $sql->select("CALL sp_users_update(:iduser,:person,:inadmin,:genre,:phone,:born_date,:city,:address)",array(
 			":iduser"=>$this->getiduser(),
 			":person"=>$this->getperson(),
 			":inadmin"=>$this->getinadmin(),
-			":despassword" => User::getPasswordHash($this->getdespassword()),
 			":genre"=>$this->getgenre(),
 			":phone"=>$this->getphone(),
 			":born_date"=>$this->getborn_date(),
 			":city"=>$this->getcity(),
 			":address"=>$this->getaddress()	
+		));
+
+		$this->setData($results[0]);
+
+	}
+
+	public function updatePassword()
+	{
+
+		$sql  = new Sql();
+
+		$results = $sql->select("CALL sp_password_update(:iduser,:despassword)",array(
+			":iduser"=>$this->getiduser(),
+			":despassword" => User::getPasswordHash($this->getdespassword())
 		));
 
 		$this->setData($results[0]);

@@ -19,7 +19,7 @@
 
       
             <a href="/admin/informations/register" class="btn btn-primary"><b>Cadastrar Informação</b></a>
-           <div style="float: right">
+           <div class="search" style="float: right">
                   <form  action="" method="get" >
                         <div class="input-group">
                           <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">

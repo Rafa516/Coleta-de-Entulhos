@@ -24,8 +24,6 @@
        <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
     </script>
 
- 
-
     <script>
 
       var initialCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>]; 
@@ -41,7 +39,7 @@
     
 
       var muxiCoordinates = [<?php echo $markers["valueLat"]; ?>, <?php echo $markers["valueLng"]; ?>];
-      var muxiMarkerMessage = '<b style="font-size:20px;""><?php echo $collects["valueService"]; ?></b><br><br><b style="font-size:16px;"><?php echo $collects["valueLocality"]; ?></b><br><?php echo $collects["valueInformations"]; ?><b>Latitude:</b><?php echo $collects["valueLat"]; ?><br><b>Longitude:</b><?php echo $collects["valueLng"]; ?>';
+      var muxiMarkerMessage = '<b style="font-size:16px;"><?php echo $markers["valueLocality"]; ?></b><br><?php echo $markers["valueObservation"]; ?><b>Latitude:</b><?php echo $markers["valueLat"]; ?><br><b>Longitude:</b><?php echo $markers["valueLng"]; ?>';
 
       var muxiIconProperties = {
         iconUrl: "/res/map/marker.png"

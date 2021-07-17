@@ -97,7 +97,7 @@
 
       for (var i = 0; i < planes.length; i++) {
          marker = new L.marker([planes[i][3],planes[i][4]],{icon: muxiIcon})
-            .bindPopup("<center><img src='/res/map/papa_entulho.png' height='150px' width='200px'></center><b style='font-size:16px;'>"+planes[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][3]+"<br><b>Longitude:</b>"+planes[i][4]+"<center><br><a href='/admin/collects/images/"+planes[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
+            .bindPopup("<center><img src='/res/map/papa_entulho.png' height='150px' width='200px'></center><b style='font-size:16px;'>"+planes[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planes[i][0]+"</b><br>"+planes[i][1]+"<b>Latitude:</b> "+planes[i][3]+"<br><b>Longitude:</b>"+planes[i][4]+"<center><br><a href='/user/collects/images/"+planes[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
             .addTo(map);
         
       }
@@ -106,7 +106,7 @@
 
       for (var i = 0; i < planesTwo.length; i++) {
          marker = new L.marker([planesTwo[i][3],planesTwo[i][4]],{icon: muxiIconTwo})
-            .bindPopup("<center><img src='/res/map/vidros.png' height='150px' width='150px'></center><b style='font-size:16px;'>"+planesTwo[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesTwo[i][0]+"</b><br>"+planesTwo[i][1]+"<b>Latitude:</b> "+planesTwo[i][3]+"<br><b>Longitude:</b>"+planesTwo[i][4]+"<center><br><a href='/admin/collects/images/"+planesTwo[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
+            .bindPopup("<center><img src='/res/map/vidros.png' height='150px' width='150px'></center><b style='font-size:16px;'>"+planesTwo[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesTwo[i][0]+"</b><br>"+planesTwo[i][1]+"<b>Latitude:</b> "+planesTwo[i][3]+"<br><b>Longitude:</b>"+planesTwo[i][4]+"<center><br><a href='/user/collects/images/"+planesTwo[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a>")
             .addTo(map);
         
       }
@@ -115,7 +115,7 @@
 
       for (var i = 0; i < planesThree.length; i++) {
          marker = new L.marker([planesThree[i][3],planesThree[i][4]],{icon: muxiIconThree})
-            .bindPopup("<center><img src='/res/map/eletronicos.png' height='200px' width='200px'></center><b style='font-size:16px;'>"+planesThree[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesThree[i][0]+"</b><br>"+planesThree[i][1]+"<b>Latitude:</b> "+planesThree[i][3]+"<br><b>Longitude:</b>"+planesThree[i][4]+"<center><br><a href='/admin/collects/images/"+planesThree[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a> " )
+            .bindPopup("<center><img src='/res/map/eletronicos.png' height='200px' width='200px'></center><b style='font-size:16px;'>"+planesThree[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesThree[i][0]+"</b><br>"+planesThree[i][1]+"<b>Latitude:</b> "+planesThree[i][3]+"<br><b>Longitude:</b>"+planesThree[i][4]+"<center><br><a href='/user/collects/images/"+planesThree[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a> " )
             .addTo(map);
         
       }
@@ -124,7 +124,7 @@
 
       for (var i = 0; i < planesFour.length; i++) {
          marker = new L.marker([planesFour[i][3],planesThree[i][4]],{icon: muxiIconFour})
-            .bindPopup("<center><img src='/res/map/reciclaveis.png' height='200px' width='200px'></center><b style='font-size:16px;'>"+planesFour[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesFour[i][0]+"</b><br>"+planesFour[i][1]+"<b>Latitude:</b> "+planesFour[i][3]+"<br><b>Longitude:</b>"+planesFour[i][4]+"<center><br><a href='/admin/collects/images/"+planesFour[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a> " )
+            .bindPopup("<center><img src='/res/map/reciclaveis.png' height='200px' width='200px'></center><b style='font-size:16px;'>"+planesFour[i][2]+"<br></b>"+"<b style='font-size:14px;'>"+planesFour[i][0]+"</b><br>"+planesFour[i][1]+"<b>Latitude:</b> "+planesFour[i][3]+"<br><b>Longitude:</b>"+planesFour[i][4]+"<center><br><a href='/user/collects/images/"+planesFour[i][5]+"'' style='width: 100px;color:white;'' class='btn btn-info btn-sm' ><b> Ver Fotos</b></a> " )
             .addTo(map);
         
       }

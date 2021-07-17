@@ -34,9 +34,9 @@
             </div>
             <?php } ?>
 
-        <div class="table-responsive">
+          
            <button data-toggle="modal"  data-target="#registerModal"class="btn btn-primary"><b>Cadastrar Usuário</b> </button>
-           <div style="float: right">
+           <div class="search" style="float: right">
                   <form  action="/admin/users" method="get" >
                         <div class="input-group">
                           <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
@@ -47,6 +47,7 @@
                         </div>
                       </form>
                  </div><br><br>
+            <div class="table-responsive">
             <table class="table table-hover  table-bordered">
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
@@ -109,6 +110,7 @@
 
                 </tbody>
               </table>
+            </div>
                 <br>
               <center>
             <div class="box-footer clearfix">

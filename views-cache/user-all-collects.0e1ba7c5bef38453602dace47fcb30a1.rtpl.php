@@ -32,8 +32,8 @@
 
              <?php if( totalCollects() != 0 ){ ?>
 
-             <div class="table-responsive">
-                <div style="float: right">
+            
+                <div class="search" style="float: right">
                   <form  action="/user/all-collects" method="get" >
                         <div class="input-group">
                           <input   type="text" name="search"  class="form-control" placeholder="Digite sua pesquisa...">
@@ -44,6 +44,7 @@
                         </div>
                       </form>
                  </div><br><br>
+            <div class="table-responsive">
             <table class="table table-hover  table-bordered">
                 <thead style="background-color: #D8D8D8">
                   <tr style="font-size: 16px; font-weight: bold; " >
@@ -57,7 +58,7 @@
                     <th><center>Localização</th>
                     <th><center>Fotos</th>
                     <th><center>Data de Registro</th>
-                    <th><center>Excluir</th>
+                   
 
                   </tr>
                 </thead>
@@ -93,7 +94,7 @@
                  
                    </td/>
                     <td><br><center><?php echo formatDate($value1["dtregister"]); ?></td>
-                    <td><br><center> <a style="width: 80px;" href="/user/collects/delete/<?php echo $value1["idcollect"]; ?>"  onclick="return confirm('Deseja realmente excluir o registro do Ponto de Coleta: <?php echo $value1["locality"]; ?>?')" class="btn btn-danger btn-sm"> Excluir</a></td>
+                   
                    
                    
                   </tr>
@@ -102,6 +103,7 @@
 
                 </tbody>
               </table>
+            </div>
                 <br>
               <center>
             <div class="box-footer clearfix">
