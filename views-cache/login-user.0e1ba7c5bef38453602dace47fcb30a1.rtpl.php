@@ -31,28 +31,36 @@
 
 
 			<?php if( $profileMsg != '' ){ ?>
+
 			<div class="alert alert-success">
 				<?php echo $profileMsg; ?>
-			</div>
-			<?php } ?>
-			<?php if( $error != '' ){ ?>
-			<div class="alert alert-danger">
-				<?php echo $error; ?>
+
 			</div>
 			<?php } ?>
 
-			<?php if( $errorRegister != '' ){ ?>
+			<?php if( $error != '' ){ ?>
+
 			<div class="alert alert-danger">
-				<?php echo $errorRegister; ?>
+				<?php echo $error; ?>
+
 			</div>
 			<?php } ?>
+
+
+			<?php if( $errorRegister != '' ){ ?>
+
+			<div class="alert alert-danger">
+				<?php echo $errorRegister; ?>
+
+			</div>
+			<?php } ?>
+
 
 			<input    class="user-login" type="email" name="login" placeholder="Email" required>
 			<input class="user-login" type="password" name="despassword" placeholder="Senha" required>
-			<div class="options-02">
-				
-				<center><p><a href="/forgot">Recuperar senha</a></p></center>
-
+			<div class="options-01">
+				<label class="remember-me"><input type="checkbox" name="">Lembrar</label>
+				<a href="/forgot">Esqueceu a senha</a>
 			</div>
 			<input class="btn" type="submit" name="" value="Acessar">
 			<div class="options-02">

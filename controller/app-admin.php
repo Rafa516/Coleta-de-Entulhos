@@ -44,6 +44,104 @@ $app->post('/admin/login', function() {
 
 });
 
+//---------ROTA DA PÁGINA RECUPERAR SENHA ----------------------//
+
+$app->get("/admin/forgot", function() {
+
+	$page = new PageAdmin([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("forgot-admin",[
+		'error'=>user::getError(),
+		'profileMsg'=>User::getSuccess()
+
+	]);	
+
+});
+
+//---------ROTA DA PÁGINA RECUPERAR SENHA  ENVIO DO FORMULÁRIO (POST)----------------------//
+
+$app->post("/admin/forgot", function(){
+
+	try {
+
+		User::getForgotAdmin($_POST["email"]);
+
+	} catch(Exception $e) {
+
+		User::setError($e->getMessage());
+
+		header("Location: /admin/forgot");
+		exit;
+	}
+
+	User::setSuccess("E-mail enviado!
+	Verifique as instruções no seu e-mail.");
+
+	header("Location: /admin/forgot");
+	exit;
+	
+});
+
+//---------ROTA DA PÁGINA ALTERAR SENHA ----------------------//
+
+$app->get("/admin/forgot/reset", function() {
+
+	$user = User::validForgotDecryptAdmin($_GET["code"]);
+
+	$page = new PageAdmin([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("/admin/forgot-reset-admin",[
+		'error'=>user::getError(),
+		'profileMsg'=>User::getSuccess(),
+		'name'=>$user["person"],
+		'code'=>$_GET["code"]
+
+	]);	
+
+});
+
+//---------ROTA DA PÁGINA ALTERAR SENHA (POST)----------------------//
+$app->post("/admin/forgot/reset", function(){
+
+	$forgot = User::validForgotDecryptAdmin($_POST["code"]);	
+
+
+	User::setForgotUsed($forgot["idrecovery"]);
+
+	$user = new User();
+
+	$user->get((int)$forgot["iduser"]);
+
+	$password = User::getPasswordHash($_POST["despassword"]);
+
+	$user->setPassword($password);
+
+	User::setSuccess("Senha Alterada com succeso!");
+
+	header("Location: /admin/login");
+	exit;
+
+	
+
+});
+//---------ROTA DA PÁGINA DE ERRO AO ALTERAR SENHA----------------------//
+$app->get("admin/forgot/reset/error", function() {
+
+	
+	$page = new PageAdmin([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("forgot-reset-error-admin");	
+
+});
 //---------ROTA PARA DELETAR O USUÁRIO----------------------//
 
 $app->get("/admin/users/delete/:iduser",function($iduser){
