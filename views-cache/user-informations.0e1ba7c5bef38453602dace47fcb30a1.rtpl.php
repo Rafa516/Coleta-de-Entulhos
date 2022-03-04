@@ -32,7 +32,8 @@
                 <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;<?php echo formatDate($value1["dtregister"]); ?><br><br>
 
                  <h2><?php echo $value1["title"]; ?></h2><br>
-                 <?php echo $value1["informations"]; ?><br><br>
+
+                 <div class="img"><?php echo $value1["informations"]; ?><br><br></div>
 
             
 
